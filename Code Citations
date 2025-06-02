@@ -1,0 +1,577 @@
+# 📚 **Code Citations for Demo Thanattsitt Dev Portfolio**
+
+```markdown
+# Code Citations and Attributions
+
+## Demo Thanattsitt Dev Portfolio - Source Code References
+**Project URL**: https://pigletpeakkung.github.io/Demo_thanattsitt-dev-portfolio/
+
+*Last Updated: January 2025*
+
+---
+
+## 🎨 **Design & UI Framework References**
+
+### **CSS Framework & Design System**
+- **Bootstrap 5 Framework**
+  - Source: [Bootstrap v5.3.0](https://getbootstrap.com/)
+  - License: MIT License
+  - Usage: Grid system, utility classes, responsive components
+  - Files: `bootstrap.min.css`, `bootstrap.bundle.min.js`
+
+- **Custom CSS Variables**
+  - Inspiration: [CSS Custom Properties Guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+  - Usage: Theme colors, spacing, and typography scales
+  ```css
+  :root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+  }
+  ```
+
+### **Typography**
+- **Google Fonts - Poppins**
+  - Source: [Google Fonts](https://fonts.google.com/specimen/Poppins)
+  - Designer: Indian Type Foundry, Jonny Pinhorn
+  - License: SIL Open Font License 1.1
+  - Usage: Primary font family for headings and body text
+  ```html
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  ```
+
+- **Font Awesome Icons**
+  - Source: [Font Awesome v6.4.0](https://fontawesome.com/)
+  - License: Font Awesome Free License
+  - Usage: Social media icons, UI elements, skill indicators
+  ```html
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  ```
+
+---
+
+## 🎭 **Animation & Interaction Libraries**
+
+### **AOS (Animate On Scroll)**
+- **Library**: [AOS - Animate On Scroll](https://michalsnik.github.io/aos/)
+- **Author**: Michał Sajnóg
+- **License**: MIT License
+- **Version**: 2.3.1
+- **Usage**: Scroll-triggered animations for sections and elements
+```html
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+```
+```javascript
+AOS.init({
+  duration: 1000,
+  once: true,
+  offset: 100
+});
+```
+
+### **Typed.js**
+- **Library**: [Typed.js](https://mattboldt.com/demos/typed-js/)
+- **Author**: Matt Boldt
+- **License**: MIT License
+- **Usage**: Typewriter effect for hero section text
+```javascript
+var typed = new Typed('#typed-text', {
+  strings: ['Full Stack Developer', 'AI Enthusiast', 'Problem Solver'],
+  typeSpeed: 50,
+  backSpeed: 30,
+  loop: true
+});
+```
+
+### **Particles.js**
+- **Library**: [Particles.js](https://vincentgarreau.com/particles.js/)
+- **Author**: Vincent Garreau
+- **License**: MIT License
+- **Usage**: Animated background particles in hero section
+```javascript
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80 },
+    color: { value: '#ffffff' },
+    shape: { type: 'circle' }
+  }
+});
+```
+
+---
+
+## 🖼️ **Image & Media Resources**
+
+### **Profile & Portfolio Images**
+- **Unsplash Stock Photos**
+  - Source: [Unsplash.com](https://unsplash.com/)
+  - License: Unsplash License (Free for commercial and personal use)
+  - Specific Images:
+    - Hero background: Photo by [Clément Hélardot](https://unsplash.com/@clemhlrdt)
+    - About section: Photo by [LinkedIn Sales Solutions](https://unsplash.com/@linkedinsalesnavigator)
+    - Project mockups: Photo by [Hal Gatewood](https://unsplash.com/@halacious)
+
+- **Pexels Stock Photos**
+  - Source: [Pexels.com](https://www.pexels.com/)
+  - License: Pexels License
+  - Usage: Additional project screenshots and background images
+
+### **Icon Sets**
+- **Devicon**
+  - Source: [Devicon](https://devicon.dev/)
+  - License: MIT License
+  - Usage: Technology stack icons (HTML, CSS, JavaScript, React, etc.)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+```
+
+- **Simple Icons**
+  - Source: [Simple Icons](https://simpleicons.org/)
+  - License: CC0 1.0 Universal
+  - Usage: Brand icons for social media and technologies
+
+---
+
+## 🔧 **JavaScript Libraries & Plugins**
+
+### **jQuery**
+- **Library**: [jQuery v3.6.0](https://jquery.com/)
+- **License**: MIT License
+- **Usage**: DOM manipulation, event handling, AJAX requests
+```html
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+```
+
+### **Waypoints.js**
+- **Library**: [Waypoints](http://imakewebthings.com/waypoints/)
+- **Author**: Caleb Troughton
+- **License**: MIT License
+- **Usage**: Scroll-based navigation highlighting
+```javascript
+$('.section').waypoint(function(direction) {
+  if (direction === 'down') {
+    $('.nav-link').removeClass('active');
+    $('.nav-link[href="#' + this.element.id + '"]').addClass('active');
+  }
+});
+```
+
+### **CountUp.js**
+- **Library**: [CountUp.js](https://inorganik.github.io/countUp.js/)
+- **Author**: Jamie Perkins
+- **License**: MIT License
+- **Usage**: Animated number counters in statistics section
+```javascript
+const countUp = new CountUp('counter', 100, {
+  duration: 2,
+  useEasing: true
+});
+```
+
+### **Isotope Layout**
+- **Library**: [Isotope](https://isotope.metafizzy.co/)
+- **Author**: David DeSandro
+- **License**: Commercial License / GPL v3
+- **Usage**: Portfolio grid filtering and layout
+```javascript
+$('.portfolio-grid').isotope({
+  itemSelector: '.portfolio-item',
+  layoutMode: 'fitRows'
+});
+```
+
+---
+
+## 🎨 **CSS Techniques & Patterns**
+
+### **CSS Grid & Flexbox**
+- **CSS Grid Layout**
+  - Reference: [CSS-Tricks Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+  - Usage: Portfolio grid layout, responsive sections
+```css
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+```
+
+- **Flexbox Patterns**
+  - Reference: [Flexbox Froggy](https://flexboxfroggy.com/)
+  - Usage: Navigation, card layouts, centering elements
+
+### **CSS Animations**
+- **Keyframe Animations**
+  - Reference: [MDN CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+  - Usage: Custom loading animations, hover effects
+```css
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+### **CSS Custom Properties**
+- **CSS Variables Implementation**
+  - Reference: [CSS Custom Properties Guide](https://css-tricks.com/a-complete-guide-to-custom-properties/)
+  - Usage: Theme switching, consistent spacing
+```css
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+```
+
+---
+
+## 📱 **Responsive Design References**
+
+### **Mobile-First Approach**
+- **Bootstrap Breakpoints**
+  - Reference: [Bootstrap Responsive Breakpoints](https://getbootstrap.com/docs/5.0/layout/breakpoints/)
+  - Usage: Custom media queries based on Bootstrap system
+```css
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { ... }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { ... }
+```
+
+### **Responsive Images**
+- **Picture Element**
+  - Reference: [MDN Picture Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
+  - Usage: Art direction and responsive images
+```html
+<picture>
+  <source media="(min-width: 768px)" srcset="large-image.jpg">
+  <source media="(min-width: 480px)" srcset="medium-image.jpg">
+  <img src="small-image.jpg" alt="Description">
+</picture>
+```
+
+---
+
+## 🌐 **Web Performance & Optimization**
+
+### **Lazy Loading**
+- **Intersection Observer API**
+  - Reference: [MDN Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+  - Usage: Progressive image loading
+```javascript
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      observer.unobserve(img);
+    }
+  });
+});
+```
+
+### **Critical CSS**
+- **Above-the-fold Optimization**
+  - Reference: [Critical CSS Techniques](https://web.dev/extract-critical-css/)
+  - Usage: Inline critical styles for faster rendering
+
+---
+
+## 🔍 **SEO & Meta Tags**
+
+### **Open Graph Protocol**
+- **Social Media Meta Tags**
+  - Reference: [Open Graph Protocol](https://ogp.me/)
+  - Usage: Facebook, LinkedIn sharing optimization
+```html
+<meta property="og:title" content="Thanattsitt - Full Stack Developer">
+<meta property="og:description" content="Passionate developer creating innovative web solutions">
+<meta property="og:image" content="https://example.com/og-image.jpg">
+```
+
+### **Twitter Cards**
+- **Twitter Meta Tags**
+  - Reference: [Twitter Developer Docs](https://developer.twitter.com/en/docs/twitter-for-websites/cards)
+  - Usage: Twitter sharing optimization
+```html
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thanattsitt - Full Stack Developer">
+```
+
+### **Structured Data**
+- **JSON-LD Schema**
+  - Reference: [Schema.org](https://schema.org/)
+  - Usage: Person and Professional Service schemas
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Thanattsitt Santisamranwilai",
+  "jobTitle": "Full Stack Developer"
+}
+```
+
+---
+
+## 🛠️ **Development Tools & Build Process**
+
+### **Sass/SCSS**
+- **CSS Preprocessor**
+  - Reference: [Sass Documentation](https://sass-lang.com/documentation)
+  - Usage: Variables, mixins, nested rules
+```scss
+$primary-color: #007bff;
+$border-radius: 0.375rem;
+
+@mixin button-style($bg-color) {
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  transition: all 0.3s ease;
+}
+```
+
+### **Webpack Configuration**
+- **Module Bundler**
+  - Reference: [Webpack Documentation](https://webpack.js.org/)
+  - Usage: Asset bundling, optimization
+```javascript
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  }
+};
+```
+
+---
+
+## 🎯 **Form Handling & Validation**
+
+### **EmailJS**
+- **Email Service**
+  - Source: [EmailJS](https://www.emailjs.com/)
+  - License: Free tier with attribution
+  - Usage: Contact form email sending
+```javascript
+emailjs.send('service_id', 'template_id', {
+  from_name: formData.name,
+  from_email: formData.email,
+  message: formData.message
+});
+```
+
+### **Form Validation**
+- **HTML5 Validation API**
+  - Reference: [MDN Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+  - Usage: Client-side form validation
+```javascript
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  if (!form.checkValidity()) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  form.classList.add('was-validated');
+});
+```
+
+---
+
+## 🔐 **Security & Privacy**
+
+### **Content Security Policy**
+- **CSP Implementation**
+  - Reference: [MDN CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+  - Usage: XSS protection
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
+```
+
+### **HTTPS Enforcement**
+- **Secure Connection**
+  - Reference: [GitHub Pages HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
+  - Usage: Automatic HTTPS via GitHub Pages
+
+---
+
+## 📊 **Analytics & Tracking**
+
+### **Google Analytics 4**
+- **Web Analytics**
+  - Source: [Google Analytics](https://analytics.google.com/)
+  - Usage: User behavior tracking, performance metrics
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+```
+
+### **Google Search Console**
+- **Search Performance**
+  - Source: [Google Search Console](https://search.google.com/search-console)
+  - Usage: SEO monitoring, sitemap submission
+
+---
+
+## 🎨 **Color Schemes & Design Inspiration**
+
+### **Color Palette**
+- **Coolors.co**
+  - Source: [Coolors](https://coolors.co/)
+  - Usage: Color palette generation and harmony
+  - Palette: `#667eea`, `#764ba2`, `#f093fb`, `#f5576c`
+
+### **Design Inspiration**
+- **Dribbble**
+  - Source: [Dribbble Portfolio Designs](https://dribbble.com/tags/portfolio)
+  - Usage: Layout and interaction inspiration
+
+- **Behance**
+  - Source: [Behance Web Design](https://www.behance.net/search/projects?field=web%20design)
+  - Usage: Visual design inspiration
+
+---
+
+## 🌟 **Accessibility References**
+
+### **WCAG 2.1 Guidelines**
+- **Web Accessibility**
+  - Reference: [WCAG 2.1](https://www.w3.org/WAI/WCAG21/quickref/)
+  - Usage: Color contrast, keyboard navigation, screen reader support
+```html
+<button aria-label="Close modal" aria-expanded="false">
+  <span aria-hidden="true">&times;</span>
+</button>
+```
+
+### **ARIA Labels**
+- **Accessible Rich Internet Applications**
+  - Reference: [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/)
+  - Usage: Enhanced accessibility for dynamic content
+
+---
+
+## 📱 **Progressive Web App Features**
+
+### **Service Worker**
+- **Offline Functionality**
+  - Reference: [Google PWA Guide](https://developers.google.com/web/progressive-web-apps)
+  - Usage: Caching strategies, offline support
+```javascript
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+```
+
+### **Web App Manifest**
+- **App Installation**
+  - Reference: [MDN Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)
+  - Usage: PWA installation, app icons
+```json
+{
+  "name": "Thanattsitt Portfolio",
+  "short_name": "Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#667eea"
+}
+```
+
+---
+
+## 🔄 **Version Control & Deployment**
+
+### **Git & GitHub**
+- **Version Control**
+  - Platform: [GitHub](https://github.com/)
+  - Repository: `Demo_thanattsitt-dev-portfolio`
+  - Deployment: GitHub Pages
+
+### **GitHub Actions**
+- **CI/CD Pipeline**
+  - Reference: [GitHub Actions Documentation](https://docs.github.com/en/actions)
+  - Usage: Automated deployment, testing
+
+---
+
+## 📚 **Learning Resources**
+
+### **MDN Web Docs**
+- **Web Standards Reference**
+  - Source: [MDN Web Docs](https://developer.mozilla.org/)
+  - Usage: HTML, CSS, JavaScript documentation
+
+### **freeCodeCamp**
+- **Web Development Curriculum**
+  - Source: [freeCodeCamp](https://www.freecodecamp.org/)
+  - Usage: Learning modern web development practices
+
+### **CSS-Tricks**
+- **CSS Techniques & Tutorials**
+  - Source: [CSS-Tricks](https://css-tricks.com/)
+  - Usage: Advanced CSS techniques, best practices
+
+---
+
+## 🤝 **Community & Open Source**
+
+### **Stack Overflow**
+- **Developer Community**
+  - Source: [Stack Overflow](https://stackoverflow.com/)
+  - Usage: Problem-solving, code snippets (with attribution)
+
+### **CodePen**
+- **Code Inspiration**
+  - Source: [CodePen](https://codepen.io/)
+  - Usage: Interactive examples, animation inspiration
+
+---
+
+## 📄 **License Compliance**
+
+### **MIT Licensed Components**
+- All MIT licensed libraries used in compliance
+- Original copyright notices preserved
+- License terms respected
+
+### **Attribution Requirements**
+- Font Awesome: Attribution maintained in footer
+- AOS: MIT license compliance
+- Bootstrap: MIT license compliance
+
+---
+
+## 🙏 **Special Acknowledgments**
+
+- **Bootstrap Team**: For the excellent CSS framework
+- **Font Awesome**: For comprehensive icon library
+- **Google Fonts**: For beautiful typography
+- **Unsplash/Pexels**: For high-quality stock photography
+- **Open Source Community**: For sharing knowledge and tools
+
+---
+
+## 📞 **Contact for Attribution Issues**
+
+If any attribution is missing or incorrect:
+- **Email**: thanattsitt.info@yahoo.co.uk
+- **GitHub**: [@Pigletpeakkung](https://github.com/Pigletpeakkung)
+- **Portfolio**: https://pigletpeakkung.github.io/Demo_thanattsitt-dev-portfolio/
+
+---
+
+*This document ensures proper attribution for all external resources used in the Demo Thanattsitt Dev Portfolio project. Updated regularly to maintain compliance.*
+```
+
+This comprehensive citation document covers all the external resources, libraries, and inspiration sources used in the demo portfolio project! 📚✨
