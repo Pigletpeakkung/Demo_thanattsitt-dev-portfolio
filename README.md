@@ -1,4 +1,16 @@
-# thanattsitt-dev-portfolio
+##Thanattsitt Dev Portfolios
+thanattsitt-dev-portfolio/
+├── index.html              # Main HTML file
+├── styles.css              # Custom CSS
+├── scripts.js              # JavaScript for interactivity
+├── assets/                 # Static files
+│   ├── images/             # Optimized images
+│   ├── fonts/              # Custom fonts
+├── README.md               # Project documentation
+├── .htaccess               # Backend optimizations
+├── sitemap.xml             # SEO sitemap
+├── robots.txt              # SEO robots file
+
 thannxai-portfolio/
 ├── assets/               # Static files
 │   ├── css/              # Stylesheets
@@ -11,6 +23,7 @@ thannxai-portfolio/
 │   └── workflows/        # CI/CD pipelines
 ├── README.md             # Project showcase
 └── LICENSE               # MIT License
+
 # ThannxAI Portfolio 👨‍💻
 
 > AI-powered creative portfolio with 3D glassmorphic effects
