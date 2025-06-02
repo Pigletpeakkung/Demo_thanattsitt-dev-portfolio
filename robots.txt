@@ -1,3 +1,50 @@
+# ThannxAI Portfolio - Robots.txt
+
 User-agent: *
 Allow: /
-Sitemap: https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/sitemap.xml
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /config/
+Disallow: /logs/
+Disallow: /temp/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow important files
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Block specific file types
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /*.bak$
+
+# SEO optimizations
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
