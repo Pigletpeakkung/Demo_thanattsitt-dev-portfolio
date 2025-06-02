@@ -4,7 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Offline - ThannxAI Portfolio</title>
+  <meta name="description" content="ThannxAI Portfolio offline page - Some features still available">
+  <meta name="theme-color" content="#6e40c9">
+  
   <style>
+    :root {
+      --primary-purple: #6e40c9;
+      --accent-pink: #ff6b9d;
+      --secondary-gold: #ffd700;
+      --dark-bg: #0a0a0f;
+      --dark-secondary: #1a1a2e;
+      --glass-light: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-light: rgba(255, 255, 255, 0.7);
+      --success-green: #10b981;
+      --warning-orange: #f59e0b;
+      --error-red: #ef4444;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -12,38 +29,111 @@
     }
     
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-secondary) 100%);
       color: #ffffff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-purple);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+    .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 4s; }
+    .particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 1s; }
+    .particle:nth-child(5) { top: 10%; left: 90%; animation-delay: 3s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
     }
     
     .offline-container {
       text-align: center;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.05);
+      max-width: 600px;
+      width: 100%;
+      background: var(--glass-light);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--glass-border);
       border-radius: 2rem;
       padding: 3rem 2rem;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .offline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+      );
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
     
     .offline-icon {
       width: 120px;
       height: 120px;
       margin: 0 auto 2rem;
-      background: linear-gradient(135deg, #6e40c9, #ff6b9d);
+      background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
       animation: pulse 2s infinite;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(110, 64, 201, 0.3);
+    }
+    
+    .offline-icon::after {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border: 2px solid var(--primary-purple);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: ripple 2s infinite;
     }
     
     @keyframes pulse {
@@ -51,25 +141,84 @@
       50% { transform: scale(1.05); }
     }
     
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 0.3; }
+      100% { transform: scale(1.2); opacity: 0; }
+    }
+    
     h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
       font-weight: 800;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #6e40c9, #ffd700);
+      background: linear-gradient(135deg, var(--primary-purple), var(--secondary-gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: fadeInUp 0.8s ease-out;
     }
     
-    p {
+    .subtitle {
       font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text-light);
       line-height: 1.6;
       margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .connection-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    .status-offline {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--error-red);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    
+    .status-checking {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning-orange);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .status-online {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success-green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: blink 1.5s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.3; }
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
     }
     
     .retry-button {
-      background: linear-gradient(135deg, #6e40c9, #ff6b9d);
+      background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
       color: white;
       border: none;
       padding: 1rem 2rem;
@@ -79,17 +228,71 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .retry-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .retry-button:hover::before {
+      left: 100%;
     }
     
     .retry-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(110, 64, 201, 0.3);
+      box-shadow: 0 10px 25px rgba(110, 64, 201, 0.4);
+    }
+    
+    .retry-button:active {
+      transform: translateY(0);
+    }
+    
+    .cache-button {
+      background: transparent;
+      color: var(--primary-purple);
+      border: 2px solid var(--primary-purple);
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .cache-button:hover {
+      background: var(--primary-purple);
+      color: white;
+      transform: translateY(-2px);
     }
     
     .features {
       margin-top: 2rem;
       text-align: left;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+    
+    .features-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--secondary-gold);
+      margin-bottom: 1rem;
+      text-align: center;
     }
     
     .feature {
@@ -97,22 +300,148 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: var(--text-light);
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .feature:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(5px);
     }
     
     .feature-icon {
-      width: 24px;
-      height: 24px;
-      background: #6e40c9;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin: 2rem 0;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease-out 1s both;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
+      border-radius: 2px;
+      width: 0%;
+      animation: loading 2s ease-in-out infinite;
+    }
+    
+    @keyframes loading {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 0%; }
+    }
+    
+    .last-updated {
       font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2rem;
+      animation: fadeInUp 0.8s ease-out 1.2s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .offline-container {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .retry-button,
+      .cache-button {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+      
+      .features {
+        text-align: center;
+      }
+      
+      .feature {
+        justify-content: center;
+        text-align: left;
+      }
+    }
+    
+    /* Dark mode enhancements */
+    @media (prefers-color-scheme: light) {
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        color: #1a202c;
+      }
+      
+      .offline-container {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #1a202c;
+      }
+      
+      .subtitle {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      
+      .feature {
+        color: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+    }
+    
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Animated background -->
+  <div class="bg-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
   <div class="offline-container">
     <div class="offline-icon">
       📡
@@ -120,43 +449,298 @@
     
     <h1>You're Offline</h1>
     
-    <p>
+    <p class="subtitle">
       Don't worry! Some features of ThannxAI Portfolio are still available offline. 
-      Check your connection and try again to access the full experience.
+      Your experience continues even without an internet connection.
     </p>
     
-    <button class="retry-button" onclick="window.location.reload()">
-      🔄 Try Again
-    </button>
+    <div class="connection-status status-offline" id="connectionStatus">
+      <div class="status-indicator"></div>
+      <span id="statusText">No internet connection</span>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="retry-button" onclick="checkConnection()" id="retryButton">
+        <span id="retryIcon">🔄</span>
+        <span id="retryText">Try Again</span>
+      </button>
+      
+      <button class="cache-button" onclick="viewCachedContent()">
+        💾 View Cached Content
+      </button>
+    </div>
+    
+    <div class="progress-bar" id="progressBar" style="display: none;">
+      <div class="progress-fill"></div>
+    </div>
     
     <div class="features">
+      <h3 class="features-title">✨ Available Offline Features</h3>
+      
       <div class="feature">
-        <div class="feature-icon">✅</div>
-        <span>Cached content available</span>
+        <div class="feature-icon">📄</div>
+        <div>
+          <strong>Cached Portfolio Content</strong><br>
+          <small>View previously loaded projects and information</small>
+        </div>
       </div>
+      
       <div class="feature">
         <div class="feature-icon">💾</div>
-        <span>Forms saved for later sync</span>
+        <div>
+          <strong>Form Data Preservation</strong><br>
+          <small>Your contact form data is saved and will sync when online</small>
+        </div>
       </div>
+      
       <div class="feature">
         <div class="feature-icon">🎨</div>
-        <span>Portfolio still viewable</span>
+        <div>
+          <strong>Interactive Elements</strong><br>
+          <small>Animations and UI interactions still work perfectly</small>
+        </div>
       </div>
+      
+      <div class="feature">
+        <div class="feature-icon">🔄</div>
+        <div>
+          <strong>Auto-Sync Ready</strong><br>
+          <small>Everything will sync automatically when connection returns</small>
+        </div>
+      </div>
+    </div>
+    
+    <div class="last-updated" id="lastUpdated">
+      Last updated: <span id="updateTime">Loading...</span>
     </div>
   </div>
 
   <script>
-    // Auto-retry when connection is restored
-    window.addEventListener('online', () => {
-      window.location.reload();
+    // Connection status management
+    let isChecking = false;
+    let retryCount = 0;
+    const maxRetries = 5;
+    
+    // DOM elements
+    const connectionStatus = document.getElementById('connectionStatus');
+    const statusText = document.getElementById('statusText');
+    const retryButton = document.getElementById('retryButton');
+    const retryIcon = document.getElementById('retryIcon');
+    const retryText = document.getElementById('retryText');
+    const progressBar = document.getElementById('progressBar');
+    const updateTime = document.getElementById('updateTime');
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      updateLastUpdated();
+      checkInitialConnection();
+      setupEventListeners();
     });
     
-    // Show connection status
-    if (navigator.onLine) {
-      document.querySelector('p').textContent = 
-        'Connection restored! The page will reload automatically.';
-      setTimeout(() => window.location.reload(), 2000);
+    function setupEventListeners() {
+      // Online/offline event listeners
+      window.addEventListener('online', handleOnline);
+      window.addEventListener('offline', handleOffline);
+      
+      // Visibility change (tab focus)
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && navigator.onLine) {
+          checkConnection();
+        }
+      });
+      
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'r' && (e.ctrlKey || e.metaKey)) {
+          e.preventDefault();
+          checkConnection();
+        }
+        if (e.key === 'Escape') {
+          viewCachedContent();
+        }
+      });
     }
+    
+    function checkInitialConnection() {
+      if (navigator.onLine) {
+        // Double-check with actual network request
+        checkConnection();
+      } else {
+        updateStatus('offline', 'No internet connection');
+      }
+    }
+    
+    async function checkConnection() {
+      if (isChecking) return;
+      
+      isChecking = true;
+      retryCount++;
+      
+      updateStatus('checking', 'Checking connection...');
+      showProgress();
+      updateRetryButton(true);
+      
+      try {
+        // Try to fetch a small resource with cache-busting
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        
+        const response = await fetch('/?ping=' + Date.now(), {
+          method: 'HEAD',
+          cache: 'no-cache',
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (response.ok) {
+          handleConnectionSuccess();
+        } else {
+          throw new Error('Server responded with error');
+        }
+      } catch (error) {
+        console.log('Connection check failed:', error.message);
+        handleConnectionFailure();
+      } finally {
+        isChecking = false;
+        hideProgress();
+        updateRetryButton(false);
+      }
+    }
+    
+    function handleConnectionSuccess() {
+      updateStatus('online', 'Connection restored! Redirecting...');
+      retryCount = 0;
+      
+      // Show success animation
+      retryIcon.textContent = '✅';
+      retryText.textContent = 'Connected!';
+      
+      // Redirect after short delay
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    }
+    
+    function handleConnectionFailure() {
+      const messages = [
+        'Still offline. Please check your connection.',
+        'Connection attempt failed. Trying again...',
+        'Unable to connect. Check your network settings.',
+        'Still having trouble connecting.',
+        'Connection issues persist. Please try later.'
+      ];
+      
+      const message = messages[Math.min(retryCount - 1, messages.length - 1)];
+      updateStatus('offline', message);
+      
+      // Auto-retry with exponential backoff
+      if (retryCount < maxRetries) {
+        const delay = Math.min(1000 * Math.pow(2, retryCount - 1), 30000);
+        setTimeout(checkConnection, delay);
+      }
+    }
+    
+    function handleOnline() {
+      console.log('Browser detected online status');
+      setTimeout(checkConnection, 500); // Small delay to ensure connection is stable
+    }
+    
+    function handleOffline() {
+      console.log('Browser detected offline status');
+      updateStatus('offline', 'Connection lost');
+      retryCount = 0;
+    }
+    
+    function updateStatus(status, message) {
+      connectionStatus.className = `connection-status status-${status}`;
+      statusText.textContent = message;
+      
+      // Update document title
+      document.title = status === 'online' 
+        ? 'Online - ThannxAI Portfolio' 
+        : 'Offline - ThannxAI Portfolio';
+    }
+    
+    function updateRetryButton(isLoading) {
+      if (isLoading) {
+        retryIcon.textContent = '⏳';
+        retryText.textContent = 'Checking...';
+        retryButton.disabled = true;
+        retryButton.style.opacity = '0.7';
+      } else {
+        retryIcon.textContent = '🔄';
+        retryText.textContent = 'Try Again';
+        retryButton.disabled = false;
+        retryButton.style.opacity = '1';
+      }
+    }
+    
+    function showProgress() {
+      progressBar.style.display = 'block';
+    }
+    
+    function hideProgress() {
+      setTimeout(() => {
+        progressBar.style.display = 'none';
+      }, 500);
+    }
+    
+    function viewCachedContent() {
+      // Try to navigate to cached homepage
+      try {
+        window.location.href = '/';
+      } catch (error) {
+        console.log('Unable to navigate to cached content');
+        alert('Cached content is not available. Please check your connection and try again.');
+      }
+    }
+    
+    function updateLastUpdated() {
+      const now = new Date();
+      const timeString = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      updateTime.textContent = timeString;
+    }
+    
+    // Periodic connection check
+    setInterval(() => {
+      if (!isChecking && navigator.onLine) {
+        checkConnection();
+      }
+    }, 30000); // Check every 30 seconds
+    
+    // Service Worker communication
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data.type === 'CACHE_UPDATED') {
+          updateLastUpdated();
+        }
+      });
+    }
+    
+    // Analytics (if available offline)
+    function trackOfflineEvent(action) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'offline_interaction', {
+          'action': action,
+          'event_category': 'offline',
+          'retry_count': retryCount
+        });
+      }
+    }
+    
+    // Track retry attempts
+    retryButton.addEventListener('click', () => {
+      trackOfflineEvent('retry_clicked');
+    });
+    
+    console.log('🌐 Offline page loaded successfully');
   </script>
 </body>
 </html>
