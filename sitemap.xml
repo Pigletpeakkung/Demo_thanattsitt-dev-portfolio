@@ -1,21 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
   <url>
     <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/</loc>
-    <lastmod>2023-10-15</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80</image:loc>
+      <image:title>ThannxAI - AI Developer &amp; Quantum Psychologist Portfolio</image:title>
+      <image:caption>Thanattsitt Thanatt's portfolio showcasing AI development and quantum psychology research</image:caption>
+    </image:image>
   </url>
+
+  <!-- Hero Section -->
   <url>
-    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#journey</loc>
-    <lastmod>2023-10-15</lastmod>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#hero</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
+
+  <!-- Creator/About Section -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#creator</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1494790108755-2616b612b1e4?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=500&amp;h=500&amp;q=80</image:loc>
+      <image:title>Thanattsitt Thanatt - Professional Profile</image:title>
+      <image:caption>AI Developer and Quantum Psychologist professional profile and credentials</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Projects Section -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#projects</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;h=600&amp;q=80</image:loc>
+      <image:title>AI Consciousness Model Project</image:title>
+      <image:caption>Revolutionary AI system modeling human consciousness using quantum psychology</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Gallery Section -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#gallery</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;h=600&amp;q=80</image:loc>
+      <image:title>AI Research Gallery</image:title>
+      <image:caption>Creative showcase of AI research and development work</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Skills Section -->
   <url>
     <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#skills</loc>
-    <lastmod>2023-10-15</lastmod>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Research Section -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#research</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact Section -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/#contact</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- PWA Manifest -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/manifest.json</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Service Worker -->
+  <url>
+    <loc>https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/sw.js</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
