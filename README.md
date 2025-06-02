@@ -1,31 +1,27 @@
 ##Thanattsitt Dev Portfolios
-
-
-
-thanattsitt-dev-portfolio/
-├── index.html              # Main HTML file
-├── styles.css              # Custom CSS
-├── scripts.js              # JavaScript for interactivity
-├── assets/                 # Static files
-│   ├── images/             # Optimized images
-│   ├── fonts/              # Custom fonts
-├── README.md               # Project documentation
-├── .htaccess               # Backend optimizations
-├── sitemap.xml             # SEO sitemap
-├── robots.txt              # SEO robots file
-
 thannxai-portfolio/
-├── assets/               # Static files
-│   ├── css/              # Stylesheets
-│   ├── js/               # Scripts 
-│   └── images/           # Optimized images
-├── docs/                 # GitHub Pages files
-│   └── index.html        # Main HTML file
-├── .github/              # Automation
-│   ├── ISSUE_TEMPLATE/   # Standardized templates
-│   └── workflows/        # CI/CD pipelines
-├── README.md             # Project showcase
-└── LICENSE               # MIT License
+├── index.html                 # Main HTML file
+├── styles.css                 # Complete CSS styles
+├── scripts.js                 # Complete JavaScript functionality
+├── sitemap.xml               # SEO sitemap
+├── robots.txt                # Search engine instructions
+├── manifest.json             # PWA manifest
+├── netlify.toml             # Netlify deployment config
+├── assets/
+│   ├── images/
+│   │   ├── thanattsitt-profile.jpg
+│   │   ├── social-preview.jpg
+│   │   ├── pageant-profile.png
+│   │   ├── siam-blessing.png
+│   │   ├── cozy-light.png
+│   │   ├── favicon.ico
+│   │   └── thannxai-logo.png
+│   ├── fonts/
+│   │   └── Inter-variable.woff2
+│   └── files/
+│       └── thanattsitt-cv.pdf
+└── README.md
+
 
 # ThannxAI Portfolio 👨‍💻
 
