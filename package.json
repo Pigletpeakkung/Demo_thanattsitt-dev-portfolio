@@ -1,0 +1,84 @@
+{
+  "name": "thanattsitt-portfolio",
+  "version": "2.0.0",
+  "description": "Multilingual AI Content Developer & Voice Specialist Portfolio - Thanatsitt Santisamranwilai",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/index.html",
+    "build": "npm run optimize-images && npm run minify",
+    "optimize-images": "imagemin assets/images/*.{jpg,png,svg} --out-dir=assets/images/optimized",
+    "minify": "html-minifier --collapse-whitespace --remove-comments --minify-css --minify-js index.html -o index.min.html",
+    "lighthouse": "lighthouse https://pigletpeakkung.github.io/thanattsitt-portfolio/ --view",
+    "test": "npm run validate-html && npm run test-accessibility",
+    "validate-html": "html-validate index.html",
+    "test-accessibility": "pa11y https://pigletpeakkung.github.io/thanattsitt-portfolio/",
+    "deploy": "gh-pages -d .",
+    "dev": "browser-sync start --server --files '*.html, *.css, *.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pigletpeakkung/thanattsitt-portfolio.git"
+  },
+  "keywords": [
+    "thanatsitt-santisamranwilai",
+    "ai-content-developer",
+    "voice-acting",
+    "seo-specialist",
+    "multilingual-content",
+    "thai-english-japanese",
+    "shopify-expert",
+    "telegram-mini-app",
+    "ton-blockchain",
+    "midjourney-ai",
+    "gpt-content",
+    "creative-writing",
+    "podcast-creator",
+    "youtube-content",
+    "kamphaeng-phet-thailand",
+    "pageant-empress",
+    "pegearts",
+    "ezekiel-arts",
+    "voice123",
+    "spotify-podcast",
+    "buzzsprout",
+    "wattpad-writer",
+    "medium-blogger"
+  ],
+  "author": {
+    "name": "Thanatsitt Santisamranwilai",
+    "email": "thanattsitt.info@yahoo.co.uk",
+    "url": "https://pigletpeakkung.github.io/thanattsitt-portfolio/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pigletpeakkung/thanattsitt-portfolio/issues"
+  },
+  "homepage": "https://pigletpeakkung.github.io/thanattsitt-portfolio/",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "gh-pages": "^6.0.0",
+    "html-minifier": "^4.0.0",
+    "html-validate": "^8.7.4",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "lighthouse": "^11.4.0",
+    "live-server": "^1.2.2",
+    "pa11y": "^7.0.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "chart.js": "^4.4.1",
+    "particles.js": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
