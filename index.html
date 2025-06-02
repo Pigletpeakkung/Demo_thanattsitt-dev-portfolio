@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThannxAI | AI-Powered Creative Solutions</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --thannxai-purple: #6e40c9;
+      --glass-light: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --dark-bg: #1a1a2e;
+    }
+    
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--dark-bg);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .project-intro {
+      width: 85%;
+      max-width: 900px;
+      padding: 3rem;
+      background: linear-gradient(135deg, var(--glass-light), transparent);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-intro::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(110, 64, 201, 0.15) 0%, transparent 70%);
+      transform: rotate(30deg);
+      z-index: -1;
+    }
+    
+    .project-intro:hover {
+      transform: perspective(1000px) rotateX(3deg) rotateY(3deg) translateY(-10px);
+      box-shadow: 0 30px 60px rgba(110, 64, 201, 0.25);
+    }
+    
+    .logo-container {
+      margin: 0 auto 2rem;
+      width: 180px;
+      height: 80px;
+      position: relative;
+    }
+    
+    .thannxai-logo {
+      width: 100%;
+      height: 100%;
+    }
+    
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      margin: 1rem 0;
+      background: linear-gradient(90deg, #6e40c9, #a371f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.9rem 2.2rem;
+      background: var(--thannxai-purple);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 0.5rem;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(110, 64, 201, 0.3);
+    }
+    
+    .cta-button i {
+      margin-right: 8px;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    
+    .secondary-button {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+    }
+    
+    @media (max-width: 768px) {
+      .project-intro {
+        width: 90%;
+        padding: 2rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <canvas id="particle-canvas"></canvas>
+  
+  <!-- Main Project Intro Card -->
+  <div class="project-intro" id="thannxai-intro">
+    <div class="logo-container">
+      <svg class="thannxai-logo" viewBox="0 0 200 100">
+        <path id="logo-path" d="M20,50 Q50,10 80,50 T140,50" fill="none" stroke="#6e40c9" stroke-width="2"/>
+      </svg>
+    </div>
+    
+    <h1>ThannxAI</h1>
+    <p class="tagline">
+      Revolutionizing creative workflows with AI-powered design automation and intelligent content generation. 
+      Built for artists, developers, and forward-thinking businesses.
+    </p>
+    
+    <div class="button-group">
+      <a href="#projects" class="cta-button">
+        <i class="fas fa-rocket"></i> Explore Projects
+      </a>
+      <a href="https://github.com/ThanattsittS" class="cta-button secondary-button">
+        <i class="fab fa-github"></i> View Code
+      </a>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <script>
+    // Particle Background
+    tsParticles.load('particle-canvas', {
+      particles: {
+        number: { value: 60 },
+        color: { value: "#6e40c9" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: { min: 1, max: 4 } },
+        move: { 
+          enable: true, 
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "bounce"
+        }
+      }
+    });
+    
+    // Logo Drawing Animation
+    const logoPath = document.getElementById('logo-path');
+    const pathLength = logoPath.getTotalLength();
+    
+    gsap.set(logoPath, {
+      strokeDasharray: pathLength,
+      strokeDashoffset: pathLength
+    });
+    
+    gsap.to(logoPath, {
+      strokeDashoffset: 0,
+      duration: 2,
+      ease: "power2.inOut",
+      delay: 0.5
+    });
+    
+    // 3D Parallax Effect
+    const introCard = document.getElementById('thannxai-intro');
+    
+    introCard.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+      introCard.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-10px)`;
+    });
+    
+    introCard.addEventListener('mouseleave', () => {
+      introCard.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateY(0)';
+    });
+  </script>
+</body>
+</html>
