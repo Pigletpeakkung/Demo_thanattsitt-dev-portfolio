@@ -1,0 +1,196 @@
+{
+  "work_experience": [
+    {
+      "id": "pegearts-lead",
+      "company": "Pegearts.com",
+      "position": "Web Developer & Creative Lead",
+      "duration": "2024–Present",
+      "location": "Kamphaeng Phet, Thailand",
+      "type": "Full-time",
+      "description": "Leading web development and creative direction for multimedia content platform. Managing full-stack development, content strategy, and creative team coordination.",
+      "responsibilities": [
+        "Full-stack web development using modern technologies",
+        "Creative direction for multimedia content",
+        "Team coordination and project management",
+        "SEO optimization and performance monitoring",
+        "Client relationship management"
+      ],
+      "achievements": [
+        "Launched 5 major web projects",
+        "Increased site traffic by 150%",
+        "Built creative team of 8 professionals",
+        "Implemented automated workflow systems"
+      ],
+      "technologies": ["React", "Node.js", "WordPress", "SEO Tools", "Adobe Creative Suite"],
+      "current": true
+    },
+    {
+      "id": "freelance-ai-developer",
+      "company": "Freelance",
+      "position": "AI Content Developer",
+      "duration": "2018–Present",
+      "location": "Remote",
+      "type": "Freelance",
+      "description": "Providing AI-powered content development services to international clients. Specializing in multilingual content, voice acting, and automation solutions.",
+      "responsibilities": [
+        "AI-powered content creation using GPT and MidJourney",
+        "Multilingual content development (Thai, English, Japanese)",
+        "Voice acting and audio content production",
+        "SEO strategy and implementation",
+        "Client consultation and project management"
+      ],
+      "achievements": [
+        "Served 100+ international clients",
+        "Generated $200K+ in project revenue",
+        "Maintained 98% client satisfaction rate",
+        "Built recurring client base of 25 businesses"
+      ],
+      "technologies": ["GPT-4", "MidJourney", "Voice Recording", "SEO Tools", "Project Management"],
+      "current": true
+    },
+    {
+      "id": "pageant-empress-strategist",
+      "company": "PageantEmpress.com",
+      "position": "Content Strategist & SEO Manager",
+      "duration": "2023–Present",
+      "location": "Remote",
+      "type": "Contract",
+      "description": "Leading editorial direction and SEO strategy for premier beauty pageant industry publication. Managing content calendar, brand voice, and digital marketing initiatives.",
+      "responsibilities": [
+        "Editorial strategy and content planning",
+        "SEO optimization and keyword strategy",
+        "YouTube channel management and growth",
+        "Blog content creation and editing",
+        "Brand voice and tone development"
+      ],
+      "achievements": [
+        "40% improvement in SEO visibility",
+        "150+ published articles",
+        "5K+ YouTube subscribers gained",
+        "25K monthly website visitors"
+      ],
+      "technologies": ["WordPress", "Google Analytics", "YouTube Creator Studio", "SEO Tools"],
+      "current": true
+    },
+    {
+      "id": "ezekiel-arts-specialist",
+      "company": "Ezekiel-Arts",
+      "position": "AI Multimedia Specialist",
+      "duration": "2023–2024",
+      "location": "Remote",
+      "type": "Full-time",
+      "description": "Specialized in AI-powered multimedia content creation, combining creative expertise with cutting-edge AI tools to deliver innovative digital experiences.",
+      "responsibilities": [
+        "AI-generated visual and audio content",
+        "Multimedia project coordination",
+        "Creative strategy development",
+        "Client presentation and consultation",
+        "Technology integration and optimization"
+      ],
+      "achievements": [
+        "Delivered 50+ multimedia projects",
+        "Reduced content production time by 60%",
+        "Trained team on AI tools and workflows",
+        "Established quality control processes"
+      ],
+      "technologies": ["AI Generation Tools", "Adobe Creative Suite", "Video Editing", "Audio Production"],
+      "current": false
+    },
+    {
+      "id": "thanattsitt-studio-founder",
+      "company": "Thanattsitt Studio",
+      "position": "Founder & Creative Director",
+      "duration": "2018–2023",
+      "location": "Kamphaeng Phet, Thailand",
+      "type": "Founder",
+      "description": "Founded and operated creative studio specializing in multilingual content, voice acting, and digital media production. Built client base across Asia-Pacific region.",
+      "responsibilities": [
+        "Business strategy and operations",
+        "Client acquisition and relationship management",
+        "Creative project leadership",
+        "Team hiring and training",
+        "Financial management and growth planning"
+      ],
+      "achievements": [
+        "Built studio from startup to 6-figure revenue",
+        "Established partnerships in 3 countries",
+        "Developed proprietary content workflows",
+        "Created signature creative brand identity"
+      ],
+      "technologies": ["Business Management", "Creative Direction", "Voice Recording", "Content Strategy"],
+      "current": false
+    }
+  ],
+  "certifications": [
+    {
+      "id": "shopify-ecommerce",
+      "title": "Shopify E-Commerce Certification",
+      "issuer": "Shopify",
+      "date": "2023",
+      "credential_id": "SHOP2023-TC",
+      "skills": ["E-commerce", "Shopify Platform", "Online Store Management"]
+    },
+    {
+      "id": "google-seo",
+      "title": "Google SEO Certification",
+      "issuer": "Google",
+      "date": "2022",
+      "credential_id": "GOO2022-SEO",
+      "skills": ["SEO", "Google Analytics", "Search Console", "Keywords Research"]
+    },
+    {
+      "id": "prompt-engineering",
+      "title": "Prompt Engineering Certification",
+      "issuer": "AI Training Institute",
+      "date": "2023",
+      "credential_id": "AIT2023-PE",
+      "skills": ["AI Prompting", "GPT Optimization", "Content Generation"]
+    },
+    {
+      "id": "voice-qa-telus",
+      "title": "Voice Quality Assurance",
+      "issuer": "Telus/Babel",
+      "date": "2023–2024",
+      "credential_id": "TEL2024-VQA",
+      "skills": ["Voice Quality", "Audio Assessment", "Language Testing"]
+    }
+  ],
+  "education": [
+    {
+      "id": "lcf-ba",
+      "degree": "Bachelor of Arts",
+      "institution": "London College of Fashion (LCF)",
+      "duration": "2015–2017",
+      "location": "London, UK",
+      "specialization": "Fashion Communication",
+      "relevant_coursework": ["Digital Media", "Brand Communication", "Creative Writing"]
+    },
+    {
+      "id": "bunka-diploma",
+      "degree": "Diploma in Fashion",
+      "institution": "Bunka Fashion College",
+      "duration": "2012–2014",
+      "location": "Tokyo, Japan",
+      "specialization": "Fashion Design & Cultural Studies",
+      "relevant_coursework": ["Japanese Culture", "Design Theory", "International Business"]
+    },
+    {
+      "id": "bu-performing-arts",
+      "degree": "Performing Arts Studies",
+      "institution": "Bangkok University (BU)",
+      "duration": "2009–2011",
+      "location": "Bangkok, Thailand",
+      "specialization": "Voice and Performance",
+      "relevant_coursework": ["Voice Acting", "Performance Theory", "Media Production"]
+    },
+    {
+      "id": "kpps-japanese",
+      "degree": "Japanese Language Major",
+      "institution": "Kamphaeng Phet Provincial School (KPPS)",
+      "duration": "2008",
+      "location": "Kamphaeng Phet, Thailand",
+      "specialization": "Japanese Language & Culture",
+      "relevant_coursework": ["Japanese Language", "Cultural Studies", "Translation"]
+    }
+  ]
+}
