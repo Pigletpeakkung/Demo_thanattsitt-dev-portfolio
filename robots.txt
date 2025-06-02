@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/sitemap.xml
