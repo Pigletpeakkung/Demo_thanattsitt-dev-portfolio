@@ -1,126 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ThannxAI Portfolio - AI-powered creative solutions by Thanattsitt. Explore projects, skills, and open-source contributions.">
-  <meta name="keywords" content="AI, Developer, Portfolio, Open Source, Thanattsitt, ThannxAI">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Thanattsitt Thanatt - AI Developer & Miss Universe Thailand | ThannxAI">
+  <meta name="description" content="Thanattsitt Thanatt - AI Developer, Quantum Psychologist & Miss Universe Thailand 2023. Explore innovative AI projects bridging technology with human consciousness.">
+  <meta name="keywords" content="Thanattsitt Thanatt, ThannxAI, AI Developer, Miss Universe Thailand, Quantum Psychology, Carl Jung, Machine Learning, Web Development, Open Source, Fashion Design, Performing Arts, SEO, Thailand AI, Beauty Tech">
   <meta name="author" content="Thanattsitt Thanatt Santisamranwilai">
-  <meta property="og:title" content="ThannxAI Portfolio">
-  <meta property="og:description" content="AI-powered creative solutions by Thanattsitt. Explore projects, skills, and open-source contributions.">
-  <meta property="og:image" content="https://github.com/Pigletpeakkung/thanattsitt-dev-portfolio/assets/images/social-preview.jpg">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  
+  <!-- Geographic Meta Tags -->
+  <meta name="geo.region" content="TH">
+  <meta name="geo.country" content="Thailand">
+  <meta name="geo.placename" content="Bangkok">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ThannxAI Portfolio">
-  <meta name="twitter:description" content="AI-powered creative solutions by Thanattsitt. Explore projects, skills, and open-source contributions.">
-  <meta name="twitter:image" content="https://github.com/Pigletpeakkung/thanattsitt-dev-portfolio/assets/images/social-preview.jpg">
+  <meta property="og:title" content="Thanattsitt Thanatt - AI Developer & Miss Universe Thailand | ThannxAI">
+  <meta property="og:description" content="Explore innovative AI projects by Miss Universe Thailand 2023. Bridging artificial intelligence with quantum psychology and human consciousness.">
+  <meta property="og:image" content="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/assets/images/social-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="ThannxAI Portfolio">
 
-  <!-- Schema Markup -->
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/">
+  <meta property="twitter:title" content="Thanattsitt Thanatt - AI Developer & Miss Universe Thailand">
+  <meta property="twitter:description" content="Explore innovative AI projects by Miss Universe Thailand 2023. Bridging artificial intelligence with quantum psychology.">
+  <meta property="twitter:image" content="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/assets/images/social-preview.jpg">
+  <meta name="twitter:creator" content="@ThanattsittS">
+  <meta name="twitter:site" content="@ThanattsittS">
+
+  <!-- Canonical and Alternate -->
+  <link rel="canonical" href="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/">
+  <link rel="alternate" hreflang="en" href="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/">
+  <link rel="alternate" hreflang="x-default" href="https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6e40c9">
+
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="assets/fonts/Inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="assets/images/thanattsitt-profile.jpg" as="image">
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Chart.js for Skills Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Thanattsitt Thanatt Santisamranwilai",
+    "alternateName": "ThannxAI",
     "url": "https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/",
+    "image": "https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/assets/images/thanattsitt-profile.jpg",
     "sameAs": [
+      "https://x.com/ThanattsittS",
       "https://github.com/Pigletpeakkung",
-      "https://dribbble.com/ThanattsittS",
-      "https://ko-fi.com/ezekielarts"
+      "https://www.linkedin.com/in/thanattsitts",
+      "https://linktr.ee/ThanttEzekiel",
+      "https://dribbble.com/ThanattsittS"
     ],
-    "jobTitle": "AI Developer & Creative Technologist",
-    "description": "Open-source advocate and AI developer specializing in creative solutions.",
-    "image": "https://github.com/Pigletpeakkung/thanattsitt-dev-portfolio/assets/images/profile.jpg"
+    "jobTitle": "AI Developer & Quantum Psychologist",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ThannxAI"
+    },
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "Miss Universe Thailand"
+    },
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Psychology",
+      "Carl Jung",
+      "Quantum Theory",
+      "Web Development",
+      "SEO",
+      "Fashion Design",
+      "Performing Arts"
+    ],
+    "award": [
+      "Miss Universe Thailand 2023",
+      "AI Innovation Award",
+      "Open Source Contributor"
+    ],
+    "description": "AI Developer, Quantum Psychologist, and Miss Universe Thailand 2023. Specializing in bridging artificial intelligence with human consciousness through creative technology solutions.",
+    "birthPlace": "Thailand",
+    "nationality": "Thai",
+    "gender": "Female"
   }
   </script>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ThannxAI Portfolio",
+    "url": "https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/",
+    "description": "Portfolio of Thanattsitt Thanatt - AI Developer, Quantum Psychologist, and Miss Universe Thailand 2023",
+    "author": {
+      "@type": "Person",
+      "name": "Thanattsitt Thanatt Santisamranwilai"
+    }
+  }
+  </script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <title>ThannxAI Portfolio</title>
+  <title>Thanattsitt Thanatt - AI Developer & Miss Universe Thailand | ThannxAI</title>
 </head>
+
 <body>
+  <!-- Skip to content for accessibility -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <!-- Header -->
-  <header>
-    <h1>ThannxAI Portfolio</h1>
-    <nav>
-      <a href="#journey">Journey</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <header class="header" id="header">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-brand">
+        <h1>
+          <a href="#top">ThannxAI</a>
+        </h1>
+      </div>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#creator">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+      </button>
     </nav>
   </header>
 
-  <!-- Interactive Timeline -->
-  <section id="journey" class="timeline-section">
-    <h2>Developer Journey</h2>
-    <div class="timeline-container">
-      <div class="timeline-line"></div>
-      <!-- Timeline items dynamically loaded from scripts.js -->
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section id="hero" class="hero" aria-label="Hero section">
+      <div class="hero-background">
+        <div class="hero-particles"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Welcome to <span class="gradient-text">ThannxAI</span>
+          </h1>
+          <p class="hero-subtitle">
+            Where <strong>AI meets Psychology</strong>, <strong>Pageantry meets Quantum Consciousness</strong>
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number" data-target="3">0</span>
+              <span class="stat-label">Live Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="5">0</span>
+              <span class="stat-label">Psychology Fields</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="100">0</span>
+              <span class="stat-label">% Self-Taught</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" data-target="10">0</span>
+              <span class="stat-label">K+ Followers</span>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <button class="cta-button" onclick="scrollToSection('projects')">
+              <i class="fas fa-rocket"></i>
+              Explore Projects
+            </button>
+            <button class="cta-button-secondary" onclick="scrollToSection('creator')">
+              <i class="fas fa-user"></i>
+              About Me
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
 
-  <!-- Skills Progression Chart -->
-  <section id="skills" class="chart-container">
-    <h2>Technical Skills Growth</h2>
-    <canvas id="skillsChart"></canvas>
-  </section>
+    <!-- Creator/About Section -->
+    <section id="creator" class="section creator-section">
+      <div class="container">
+        <div class="creator-content">
+          <!-- Creator Profile -->
+          <div class="creator-profile">
+            <div class="profile-image-container">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500&q=80" 
+                   alt="Thanattsitt Thanatt Santisamranwilai - AI Developer & Miss Universe Thailand" 
+                   class="profile-image" 
+                   loading="lazy">
+              <div class="profile-badge">
+                <i class="fas fa-crown"></i>
+                <span>Miss Universe Thailand 2023</span>
+              </div>
+            </div>
+            
+            <div class="creator-info">
+              <h2 class="creator-name">Thanattsitt Thanatt Santisamranwilai</h2>
+              <p class="creator-title">AI Developer • Quantum Psychologist • Miss Universe Thailand</p>
+              
+              <!-- Credentials & Achievements -->
+              <div class="credentials">
+                <div class="credential-item">
+                  <i class="fas fa-trophy"></i>
+                  <span>Miss Universe Thailand 2023</span>
+                </div>
+                <div class="credential-item">
+                  <i class="fas fa-brain"></i>
+                  <span>Self-Taught AI Researcher</span>
+                </div>
+                <div class="credential-item">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Psychology & Quantum Theory Student</span>
+                </div>
+                <div class="credential-item">
+                  <i class="fas fa-code"></i>
+                  <span>Open Source Contributor</span>
+                </div>
+              </div>
 
-  <!-- GitHub Stats -->
-  <section id="github-stats" class="github-stats">
-    <h2>GitHub Contributions</h2>
-    <div class="stat-card">
-      <div class="stat-value" id="repo-stars">--</div>
-      <p>Stars</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="repo-forks">--</div>
-      <p>Forks</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="repo-contributors">--</div>
-      <p>Contributors</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="repo-commits">--</div>
-      <p>Commits</p>
-    </div>
-  </section>
+              <!-- Bio -->
+              <div class="creator-bio">
+                <p>Bridging the gap between <strong>artificial intelligence</strong> and <strong>human consciousness</strong>, I combine my background in <strong>performing arts</strong>, <strong>fashion design</strong>, and <strong>psychology</strong> to create innovative digital experiences.</p>
+                
+                <p>As <strong>Miss Universe Thailand 2023</strong>, I advocate for <strong>AI literacy</strong> and <strong>mental health awareness</strong>, while developing open-source tools that democratize creative technology.</p>
+                
+                <p>My research focuses on <strong>Carl Jung's archetypes</strong>, <strong>quantum psychology</strong>, and how <strong>AI can enhance human creativity</strong> rather than replace it.</p>
+              </div>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-      <!-- Projects dynamically loaded from scripts.js -->
-    </div>
-  </section>
+              <!-- Skills & Expertise -->
+              <div class="expertise-tags">
+                <span class="tag">AI Development</span>
+                <span class="tag">Psychology Research</span>
+                <span class="tag">Quantum Theory</span>
+                <span class="tag">Carl Jung</span>
+                <span class="tag">SEO Writing</span>
+                <span class="tag">Fashion Design</span>
+                <span class="tag">Performing Arts</span>
+                <span class="tag">Open Source</span>
+                <span class="tag">Mental Health</span>
+                <span class="tag">MBTI/Enneagram</span>
+              </div>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form id="contactForm">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+              <!-- Social Proof -->
+              <div class="social-proof">
+                <div class="proof-item">
+                  <span class="proof-number">10K+</span>
+                  <span class="proof-label">Social Media Followers</span>
+                </div>
+                <div class="proof-item">
+                  <span class="proof-number">50+</span>
+                  <span class="proof-label">GitHub Stars</span>
+                </div>
+                <div class="proof-item">
+                  <span class="proof-number">3</span>
+                  <span class="proof-label">Live Projects</span>
+                </div>
+                <div class="proof-item">
+                  <span class="proof-number">100%</span>
+                  <span class="proof-label">Self-Taught</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creator Journey Timeline -->
+          <div class="creator-journey">
+            <h3>My Journey</h3>
+            <div class="journey-timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                  <h4>Miss Universe Thailand Crown</h4>
+                  <p>Won the prestigious title while advocating for AI literacy and mental health awareness</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                  <h4>ThannxAI Launch</h4>
+                  <p>Released open-source AI tools for creative professionals and developers</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2022</div>
+                <div class="timeline-content">
+                  <h4>Psychology Research</h4>
+                  <p>Began studying Carl Jung, quantum psychology, and consciousness theories</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2021</div>
+                <div class="timeline-content">
+                  <h4>Self-Taught AI Journey</h4>
+                  <p>Started learning machine learning, NLP, and web development independently</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creator CTA -->
+          <div class="creator-cta">
+            <h3>Let's Collaborate</h3>
+            <p>Interested in AI research, psychology projects, or creative collaborations?</p>
+            <div class="cta-buttons">
+              <a href="#contact" class="btn-primary">Get In Touch</a>
+              <a href="assets/files/thanattsitt-cv.pdf" class="btn-secondary" download>Download CV</a>
+              <a href="https://calendly.com/thanattsitt" class="btn-tertiary" target="_blank" rel="noopener">Schedule Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Explore my journey through AI, psychology, and creative technology</p>
+        
+        <div class="project-grid" id="project-grid">
+          <!-- Projects loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Chart Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">My expertise across various domains</p>
+        
+        <div class="skills-container">
+          <div class="skills-chart-container">
+            <canvas id="skillsChart"></canvas>
+          </div>
+          
+          <div class="skills-list">
+            <div class="skill-category">
+              <h4>AI/ML Technologies</h4>
+              <ul>
+                <li>Python • TensorFlow • PyTorch</li>
+                <li>Natural Language Processing</li>
+                <li>Computer Vision</li>
+                <li>OpenAI API Integration</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h4>Web Development</h4>
+              <ul>
+                <li>HTML5 • CSS3 • JavaScript</li>
+                <li>React • Node.js</li>
+                <li>Responsive Design</li>
+                <li>Performance Optimization</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h4>Psychology & Research</h4>
+              <ul>
+                <li>Carl Jung • Archetypes</li>
+                <li>MBTI • Enneagram</li>
+                <li>Quantum Psychology</li>
+                <li>Consciousness Studies</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h4>Creative Arts</h4>
+              <ul>
+                <li>Fashion Design</li>
+                <li>Performing Arts</li>
+                <li>UI/UX Design</li>
+                <li>Photography</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Research Section -->
+    <section id="education" class="section education-section">
+      <div class="container">
+        <h2 class="section-title">Education & Research</h2>
+        <p class="section-subtitle">Self-directed learning across multiple disciplines</p>
+        
+        <div class="education-grid">
+          <div class="education-card">
+            <i class="fas fa-brain"></i>
+            <h3>Psychology & Human Behavior</h3>
+            <ul>
+              <li>Carl Jung - Archetypes & Collective Unconscious</li>
+              <li>Sigmund Freud - Psychoanalytic Theory</li>
+              <li>MBTI & Enneagram Personality Systems</li>
+              <li>Cognitive Behavioral Therapy Principles</li>
+            </ul>
+          </div>
+          
+          <div class="education-card">
+            <i class="fas fa-atom"></i>
+            <h3>Quantum Psychology</h3>
+            <ul>
+              <li>Alan Watts - Eastern Philosophy</li>
+              <li>Consciousness Studies</li>
+              <li>Quantum Theory Applications</li>
+              <li>Mind-Matter Interaction Research</li>
+            </ul>
+          </div>
+          
+          <div class="education-card">
+            <i class="fas fa-robot"></i>
+            <h3>AI & Technology</h3>
+            <ul>
+              <li>Self-Taught Machine Learning</li>
+              <li>SEO Writing & Optimization</li>
+              <li>Web Development</li>
+              <li>Open Source Contribution</li>
+            </ul>
+          </div>
+          
+          <div class="education-card">
+            <i class="fas fa-crown"></i>
+            <h3>Performing Arts</h3>
+            <ul>
+              <li>Miss Universe Thailand 2023</li>
+              <li>Fashion Design</li>
+              <li>Stage Performance</li>
+              <li>Public Speaking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials-section">
+      <div class="container">
+        <h2 class="section-title">What People Say</h2>
+        <p class="section-subtitle">Feedback from collaborators and community members</p>
+        
+        <div class="testimonial-carousel" id="testimonial-carousel">
+          <!-- Testimonials loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Ready to collaborate on AI, psychology, or creative projects?</p>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>hello@thannxai.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>+66 123 456 789</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Location</h4>
+                <p>Bangkok, Thailand</p>
+              </div>
+            </div>
+            
+            <div class="social-links">
+              <a href="https://x.com/ThanattsittS" target="_blank" rel="noopener" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/Pigletpeakkung" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/thanattsitts" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://linktr.ee/ThanttEzekiel" target="_blank" rel="noopener" aria-label="Linktree">
+                <i class="fas fa-link"></i>
+              </a>
+            </div>
+          </div>
+          
+          <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display: none;">
+              <label>
+                Don't fill this out if you're human: 
+                <input name="bot-field" />
+              </label>
+            </p>
+            
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Your Email" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" name="subject" placeholder="Subject" required>
+            </div>
+            
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-button">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2023 Thanattsitt Thanatt Santisamranwilai. All rights reserved.</p>
-    <div class="social-links">
-      <a href="https://github.com/Pigletpeakkung" target="_blank">GitHub</a>
-      <a href="https://dribbble.com/ThanattsittS" target="_blank">Dribbble</a>
-      <a href="https://ko-fi.com/ezekielarts" target="_blank">Ko-fi</a>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>ThannxAI</h3>
+          <p>Bridging AI, Psychology, and Human Consciousness</p>
+          <div class="footer-social">
+            <a href="https://x.com/ThanattsittS" target="_blank" rel="noopener" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://github.com/Pigletpeakkung" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/thanattsitts" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#creator">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="https://pigletpeakkung.github.io/Pageant_profile-design/" target="_blank">Pageant Profile</a></li>
+            <li><a href="https://pigletpeakkung.github.io/Siam-Blessing/" target="_blank">Siam Blessing</a></li>
+            <li><a href="https://pigletpeakkung.github.io/Cozy-light/" target="_blank">Cozy Light</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Bangkok, Thailand</p>
+          <p>hello@thannxai.com</p>
+          <p>+66 123 456 789</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Thanattsitt Thanatt Santisamranwilai. All rights reserved.</p>
+        <p>Built with ❤️ and AI</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">ThannxAI</div>
+      <div class="loading-spinner"></div>
+      <p>Loading amazing content...</p>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="scripts.js"></script>
