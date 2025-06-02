@@ -1,447 +1,671 @@
-const CACHE_NAME = 'thannxai-portfolio-v2.0.0';
-const STATIC_CACHE = 'thannxai-static-v2.0.0';
-const DYNAMIC_CACHE = 'thannxai-dynamic-v2.0.0';
-const API_CACHE = 'thannxai-api-v2.0.0';
+// ============================================
+// SERVICE WORKER - THANNXAI PORTFOLIO PWA
+// ============================================
 
-// Enhanced static assets with online images
+const CACHE_NAME = 'thannxai-portfolio-v1.2.0';
+const STATIC_CACHE = 'thannxai-static-v1.2.0';
+const DYNAMIC_CACHE = 'thannxai-dynamic-v1.2.0';
+const IMAGE_CACHE = 'thannxai-images-v1.2.0';
+
+// Assets to cache immediately
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/styles.css',
-  '/scripts.js',
+  '/script.js',
   '/manifest.json',
-  '/offline.html',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
+  
+  // Fonts
+  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
+  
+  // Icons
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-  'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js'
+  
+  // Core Libraries
+  'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+  'https://unpkg.com/aos@2.3.1/dist/aos.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
+  'https://unpkg.com/aos@2.3.1/dist/aos.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js',
+  
+  // Images (add your actual image paths)
+  '/assets/images/hero-bg.jpg',
+  '/assets/images/profile.jpg',
+  '/assets/images/logo.png',
+  '/assets/icons/icon-192x192.png',
+  '/assets/icons/icon-512x512.png',
+  
+  // Offline page
+  '/offline.html'
 ];
 
-// Critical online images to cache
-const CRITICAL_IMAGES = [
-  'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500&h=500',
-  'https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-  'https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-  'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=800&h=600'
+// URLs that should always be fetched from network
+const NETWORK_FIRST_URLS = [
+  '/api/',
+  'https://api.',
+  'https://analytics.',
+  'https://www.google-analytics.com/',
+  'https://www.googletagmanager.com/'
 ];
 
-// Install event with enhanced caching
-self.addEventListener('install', event => {
-  console.log('🚀 ThannxAI Service Worker v2.0.0 installing...');
+// Image URLs to cache
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.ico'];
+
+// ============================================
+// INSTALL EVENT
+// ============================================
+self.addEventListener('install', (event) => {
+  console.log('🔧 Service Worker: Installing...');
   
   event.waitUntil(
     Promise.all([
       // Cache static assets
-      caches.open(STATIC_CACHE).then(cache => {
-        console.log('📦 Caching static assets...');
-        return cache.addAll(STATIC_ASSETS);
+      caches.open(STATIC_CACHE).then((cache) => {
+        console.log('📦 Service Worker: Caching static assets');
+        return cache.addAll(STATIC_ASSETS.map(url => new Request(url, {
+          cache: 'reload'
+        })));
       }),
-      // Cache critical images
-      caches.open(DYNAMIC_CACHE).then(cache => {
-        console.log('🖼️ Caching critical images...');
-        return cache.addAll(CRITICAL_IMAGES);
-      })
-    ])
-    .then(() => {
-      console.log('✅ All assets cached successfully');
+      
+      // Create other caches
+      caches.open(DYNAMIC_CACHE),
+      caches.open(IMAGE_CACHE)
+    ]).then(() => {
+      console.log('✅ Service Worker: Installation complete');
+      // Force activation
       return self.skipWaiting();
-    })
-    .catch(error => {
-      console.error('❌ Failed to cache assets:', error);
+    }).catch((error) => {
+      console.error('❌ Service Worker: Installation failed', error);
     })
   );
 });
 
-// Enhanced activate event
-self.addEventListener('activate', event => {
-  console.log('🔄 ThannxAI Service Worker v2.0.0 activating...');
+// ============================================
+// ACTIVATE EVENT
+// ============================================
+self.addEventListener('activate', (event) => {
+  console.log('🚀 Service Worker: Activating...');
   
   event.waitUntil(
     Promise.all([
       // Clean up old caches
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            if (![STATIC_CACHE, DYNAMIC_CACHE, API_CACHE].includes(cacheName)) {
-              console.log('🗑️ Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      }),
+      cleanupOldCaches(),
+      
       // Claim all clients
-      self.clients.claim(),
-      // Set up background sync
-      self.registration.sync?.register('background-sync')
-    ])
-    .then(() => {
-      console.log('✅ Service Worker activated successfully');
+      self.clients.claim()
+    ]).then(() => {
+      console.log('✅ Service Worker: Activation complete');
+      
+      // Notify all clients about the update
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_ACTIVATED',
+            message: 'Service Worker activated successfully!'
+          });
+        });
+      });
     })
   );
 });
 
-// Enhanced fetch handler with intelligent caching
-self.addEventListener('fetch', event => {
+// ============================================
+// FETCH EVENT - MAIN CACHING STRATEGY
+// ============================================
+self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
-
-  // Skip non-GET requests and non-http(s) protocols
-  if (request.method !== 'GET' || !url.protocol.startsWith('http')) {
+  
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
     return;
   }
-
+  
+  // Skip chrome-extension and other non-http requests
+  if (!request.url.startsWith('http')) {
+    return;
+  }
+  
   // Handle different types of requests
-  if (url.pathname.endsWith('.html') || url.pathname === '/') {
-    event.respondWith(handlePageRequest(request));
-  } else if (isImageRequest(request)) {
+  if (isImageRequest(request)) {
     event.respondWith(handleImageRequest(request));
-  } else if (isAPIRequest(request)) {
-    event.respondWith(handleAPIRequest(request));
+  } else if (isNetworkFirstUrl(request.url)) {
+    event.respondWith(handleNetworkFirst(request));
+  } else if (isStaticAsset(request)) {
+    event.respondWith(handleCacheFirst(request));
   } else {
-    event.respondWith(handleGenericRequest(request));
+    event.respondWith(handleStaleWhileRevalidate(request));
   }
 });
 
-// Page request handler with stale-while-revalidate
-async function handlePageRequest(request) {
+// ============================================
+// CACHING STRATEGIES
+// ============================================
+
+// Cache First Strategy (for static assets)
+async function handleCacheFirst(request) {
   try {
     const cachedResponse = await caches.match(request);
-    const networkPromise = fetch(request);
-
     if (cachedResponse) {
-      // Return cached version immediately, update in background
-      networkPromise.then(response => {
-        if (response.ok) {
-          caches.open(STATIC_CACHE).then(cache => {
-            cache.put(request, response.clone());
-          });
+      return cachedResponse;
+    }
+    
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(STATIC_CACHE);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.error('Cache First failed:', error);
+    return getOfflineResponse(request);
+  }
+}
+
+// Network First Strategy (for API calls)
+async function handleNetworkFirst(request) {
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(DYNAMIC_CACHE);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('Network failed, trying cache:', request.url);
+    
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    return getOfflineResponse(request);
+  }
+}
+
+// Stale While Revalidate Strategy (for dynamic content)
+async function handleStaleWhileRevalidate(request) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  const cachedResponse = await cache.match(request);
+  
+  const fetchPromise = fetch(request).then(networkResponse => {
+    if (networkResponse.ok) {
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  }).catch(() => {
+    // Network failed, return cached version if available
+    return cachedResponse;
+  });
+  
+  // Return cached version immediately if available, otherwise wait for network
+  return cachedResponse || fetchPromise;
+}
+
+// Image Caching Strategy
+async function handleImageRequest(request) {
+  try {
+    const cache = await caches.open(IMAGE_CACHE);
+    const cachedResponse = await cache.match(request);
+    
+    if (cachedResponse) {
+      // Return cached image and update in background
+      fetch(request).then(networkResponse => {
+        if (networkResponse.ok) {
+          cache.put(request, networkResponse.clone());
         }
       }).catch(() => {
-        // Network failed, but we have cache
+        // Ignore network errors for background updates
       });
       
       return cachedResponse;
     }
-
-    // No cache, wait for network
-    const response = await networkPromise;
-    if (response.ok) {
-      const cache = await caches.open(STATIC_CACHE);
-      cache.put(request, response.clone());
+    
+    // No cached version, fetch from network
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      // Cache successful responses
+      cache.put(request, networkResponse.clone());
     }
-    return response;
-
-  } catch (error) {
-    console.error('Page request failed:', error);
-    const offlinePage = await caches.match('/offline.html');
-    return offlinePage || new Response('Offline', { status: 503 });
-  }
-}
-
-// Image request handler with progressive enhancement
-async function handleImageRequest(request) {
-  try {
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(DYNAMIC_CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-
+    
+    return networkResponse;
   } catch (error) {
     console.error('Image request failed:', error);
     
-    // Return optimized placeholder SVG
-    const placeholder = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#6e40c9;stop-opacity:0.1" />
-            <stop offset="100%" style="stop-color:#ff6b9d;stop-opacity:0.1" />
-          </linearGradient>
-        </defs>
-        <rect width="400" height="300" fill="url(#grad)"/>
-        <circle cx="200" cy="120" r="30" fill="#6e40c9" opacity="0.3"/>
-        <rect x="150" y="180" width="100" height="8" rx="4" fill="#6e40c9" opacity="0.2"/>
-        <rect x="170" y="200" width="60" height="6" rx="3" fill="#6e40c9" opacity="0.1"/>
-        <text x="200" y="250" text-anchor="middle" fill="#6e40c9" font-family="Inter, sans-serif" font-size="14" opacity="0.7">Loading...</text>
-      </svg>
-    `;
-    
-    return new Response(placeholder, {
-      headers: { 
-        'Content-Type': 'image/svg+xml',
-        'Cache-Control': 'no-cache'
-      }
-    });
+    // Return placeholder image for failed image requests
+    return getPlaceholderImage();
   }
 }
 
-// API request handler with cache-first strategy
-async function handleAPIRequest(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(API_CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('API request failed:', error);
-    const cachedResponse = await caches.match(request);
-    return cachedResponse || new Response('{"error": "Offline"}', {
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
+// Check if request is for an image
+function isImageRequest(request) {
+  return IMAGE_EXTENSIONS.some(ext => 
+    request.url.toLowerCase().includes(ext)
+  ) || request.destination === 'image';
+}
+
+// Check if URL should use network-first strategy
+function isNetworkFirstUrl(url) {
+  return NETWORK_FIRST_URLS.some(pattern => url.includes(pattern));
+}
+
+// Check if request is for a static asset
+function isStaticAsset(request) {
+  return STATIC_ASSETS.some(asset => 
+    request.url.includes(asset) || request.url.endsWith(asset)
+  );
+}
+
+// Clean up old caches
+async function cleanupOldCaches() {
+  const cacheNames = await caches.keys();
+  const currentCaches = [STATIC_CACHE, DYNAMIC_CACHE, IMAGE_CACHE];
+  
+  return Promise.all(
+    cacheNames.map(cacheName => {
+      if (!currentCaches.includes(cacheName)) {
+        console.log('🗑️ Deleting old cache:', cacheName);
+        return caches.delete(cacheName);
+      }
+    })
+  );
+}
+
+// Get offline response based on request type
+async function getOfflineResponse(request) {
+  const url = new URL(request.url);
+  
+  // For HTML pages, return offline page
+  if (request.headers.get('accept').includes('text/html')) {
+    const offlineResponse = await caches.match('/offline.html');
+    return offlineResponse || new Response(
+      getOfflineHTML(),
+      { 
+        headers: { 'Content-Type': 'text/html' },
+        status: 200
+      }
+    );
+  }
+  
+  // For images, return placeholder
+  if (isImageRequest(request)) {
+    return getPlaceholderImage();
+  }
+  
+  // For other requests, return basic offline response
+  return new Response(
+    JSON.stringify({ 
+      error: 'Offline', 
+      message: 'This content is not available offline' 
+    }),
+    {
       headers: { 'Content-Type': 'application/json' },
       status: 503
-    });
-  }
-}
-
-// Generic request handler
-async function handleGenericRequest(request) {
-  try {
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-      return cachedResponse;
     }
-
-    const response = await fetch(request);
-    if (response.ok && shouldCache(request.url)) {
-      const cache = await caches.open(DYNAMIC_CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('Generic request failed:', error);
-    throw error;
-  }
+  );
 }
 
-// Helper functions
-function isImageRequest(request) {
-  return request.headers.get('accept')?.includes('image') ||
-         /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(new URL(request.url).pathname);
-}
-
-function isAPIRequest(request) {
-  const url = new URL(request.url);
-  return url.pathname.includes('/api/') || 
-         request.headers.get('accept')?.includes('application/json');
-}
-
-function shouldCache(url) {
-  const cacheablePatterns = [
-    'fonts.googleapis.com',
-    'fonts.gstatic.com',
-    'cdnjs.cloudflare.com',
-    'cdn.jsdelivr.net',
-    'images.pexels.com',
-    'images.unsplash.com'
-  ];
-  return cacheablePatterns.some(pattern => url.includes(pattern));
-}
-
-// Enhanced background sync
-self.addEventListener('sync', event => {
-  console.log('🔄 Background sync triggered:', event.tag);
+// Generate placeholder image (SVG)
+function getPlaceholderImage() {
+  const svg = `
+    <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="#f0f0f0"/>
+      <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="16" 
+            fill="#999" text-anchor="middle" dy=".3em">
+        Image unavailable offline
+      </text>
+    </svg>
+  `;
   
-  switch (event.tag) {
-    case 'contact-form-sync':
-      event.waitUntil(syncContactForms());
-      break;
-    case 'analytics-sync':
-      event.waitUntil(syncAnalytics());
-      break;
-    case 'content-update-sync':
-      event.waitUntil(syncContentUpdates());
-      break;
-    default:
-      console.log('Unknown sync tag:', event.tag);
+  return new Response(svg, {
+    headers: { 'Content-Type': 'image/svg+xml' },
+    status: 200
+  });
+}
+
+// Generate offline HTML page
+function getOfflineHTML() {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Offline - ThannxAI Portfolio</title>
+      <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 2rem;
+        }
+        
+        .offline-container {
+          max-width: 500px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(20px);
+          border-radius: 20px;
+          padding: 3rem 2rem;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .offline-icon {
+          font-size: 4rem;
+          margin-bottom: 1rem;
+          opacity: 0.8;
+        }
+        
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          font-weight: 700;
+        }
+        
+        p {
+          font-size: 1.1rem;
+          line-height: 1.6;
+          margin-bottom: 2rem;
+          opacity: 0.9;
+        }
+        
+        .retry-btn {
+          background: rgba(255, 255, 255, 0.2);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 50px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+        }
+        
+        .retry-btn:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px);
+        }
+        
+        .features {
+          margin-top: 2rem;
+          text-align: left;
+        }
+        
+        .feature {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
+          opacity: 0.8;
+        }
+        
+        .feature::before {
+          content: "✓";
+          margin-right: 0.5rem;
+          color: #4ade80;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>
+          Don't worry! Some content is still available while you're offline. 
+          Check your connection and try again.
+        </p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+          Try Again
+        </button>
+        
+        <div class="features">
+          <div class="feature">Cached pages available</div>
+          <div class="feature">Images stored locally</div>
+          <div class="feature">Core functionality works</div>
+        </div>
+      </div>
+      
+      <script>
+        // Auto-retry when online
+        window.addEventListener('online', () => {
+          window.location.reload();
+        });
+        
+        // Show online/offline status
+        function updateOnlineStatus() {
+          if (navigator.onLine) {
+            window.location.reload();
+          }
+        }
+        
+        window.addEventListener('online', updateOnlineStatus);
+        
+        // Check connection periodically
+        setInterval(() => {
+          if (navigator.onLine) {
+            fetch('/', { method: 'HEAD', cache: 'no-cache' })
+              .then(() => window.location.reload())
+              .catch(() => {});
+          }
+        }, 30000);
+      </script>
+    </body>
+    </html>
+  `;
+}
+
+// ============================================
+// BACKGROUND SYNC
+// ============================================
+self.addEventListener('sync', (event) => {
+  console.log('🔄 Background Sync:', event.tag);
+  
+  if (event.tag === 'background-sync') {
+    event.waitUntil(doBackgroundSync());
   }
 });
 
-// Enhanced push notifications
-self.addEventListener('push', event => {
-  console.log('📱 Push notification received');
+async function doBackgroundSync() {
+  try {
+    // Sync any pending data
+    console.log('📡 Performing background sync...');
+    
+    // Example: Sync form submissions, analytics, etc.
+    await syncPendingData();
+    
+    console.log('✅ Background sync completed');
+  } catch (error) {
+    console.error('❌ Background sync failed:', error);
+  }
+}
+
+async function syncPendingData() {
+  // Implementation for syncing pending data
+  // This could include form submissions, analytics events, etc.
   
-  let notificationData = {
-    title: 'ThannxAI Portfolio',
-    body: 'New updates available!',
-    icon: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=192&h=192',
-    badge: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=72&h=72',
+  const pendingRequests = await getPendingRequests();
+  
+  for (const request of pendingRequests) {
+    try {
+      await fetch(request.url, request.options);
+      await removePendingRequest(request.id);
+    } catch (error) {
+      console.log('Failed to sync request:', request.url);
+    }
+  }
+}
+
+// ============================================
+// PUSH NOTIFICATIONS
+// ============================================
+self.addEventListener('push', (event) => {
+  console.log('📬 Push notification received');
+  
+  const options = {
+    body: event.data ? event.data.text() : 'New update available!',
+    icon: '/assets/icons/icon-192x192.png',
+    badge: '/assets/icons/badge-72x72.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: 1,
-      url: '/'
+      primaryKey: 1
     },
     actions: [
       {
         action: 'explore',
-        title: 'Explore Projects',
-        icon: 'https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=64&h=64'
+        title: 'View Update',
+        icon: '/assets/icons/checkmark.png'
       },
       {
-        action: 'contact',
-        title: 'Get in Touch',
-        icon: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=64&h=64'
+        action: 'close',
+        title: 'Close',
+        icon: '/assets/icons/xmark.png'
       }
-    ],
-    requireInteraction: true,
-    tag: 'thannxai-update'
+    ]
   };
-
-  if (event.data) {
-    try {
-      const pushData = event.data.json();
-      notificationData = { ...notificationData, ...pushData };
-    } catch (error) {
-      console.error('Failed to parse push data:', error);
-    }
-  }
-
+  
   event.waitUntil(
-    self.registration.showNotification(notificationData.title, notificationData)
+    self.registration.showNotification('ThannxAI Portfolio', options)
   );
 });
 
-// Enhanced notification click handling
-self.addEventListener('notificationclick', event => {
+// Handle notification clicks
+self.addEventListener('notificationclick', (event) => {
   console.log('🔔 Notification clicked:', event.action);
   
   event.notification.close();
-
-  const urlToOpen = (() => {
-    switch (event.action) {
-      case 'explore':
-        return '/#projects';
-      case 'contact':
-        return '/#contact';
-      default:
-        return event.notification.data?.url || '/';
-    }
-  })();
-
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true })
-      .then(clientList => {
-        // Check if there's already a window/tab open with the target URL
-        for (const client of clientList) {
-          if (client.url === urlToOpen && 'focus' in client) {
-            return client.focus();
-          }
-        }
-        
-        // If not, open a new window/tab
-        if (clients.openWindow) {
-          return clients.openWindow(urlToOpen);
-        }
-      })
-  );
+  
+  if (event.action === 'explore') {
+    event.waitUntil(
+      clients.openWindow('/')
+    );
+  }
 });
 
-// Sync functions
-async function syncContactForms() {
-  try {
-    const db = await openIndexedDB();
-    const forms = await getAllPendingForms(db);
-    
-    for (const form of forms) {
-      try {
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: form.data
+// ============================================
+// MESSAGE HANDLING
+// ============================================
+self.addEventListener('message', (event) => {
+  console.log('💬 Message received:', event.data);
+  
+  if (event.data && event.data.type) {
+    switch (event.data.type) {
+      case 'SKIP_WAITING':
+        self.skipWaiting();
+        break;
+        
+      case 'GET_VERSION':
+        event.ports[0].postMessage({ version: CACHE_NAME });
+        break;
+        
+      case 'CLEAR_CACHE':
+        clearAllCaches().then(() => {
+          event.ports[0].postMessage({ success: true });
         });
+        break;
+        
+      case 'CACHE_URLS':
+        cacheUrls(event.data.urls).then(() => {
+          event.ports[0].postMessage({ success: true });
+        });
+        break;
+    }
+  }
+});
 
-        if (response.ok) {
-          await deletePendingForm(db, form.id);
-          console.log('✅ Form synced successfully');
-        }
-      } catch (error) {
-        console.error('❌ Failed to sync form:', error);
+// ============================================
+// UTILITY FUNCTIONS FOR MESSAGE HANDLING
+// ============================================
+
+async function clearAllCaches() {
+  const cacheNames = await caches.keys();
+  return Promise.all(
+    cacheNames.map(cacheName => caches.delete(cacheName))
+  );
+}
+
+async function cacheUrls(urls) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  return cache.addAll(urls);
+}
+
+async function getPendingRequests() {
+  // Implementation to get pending requests from IndexedDB
+  return [];
+}
+
+async function removePendingRequest(id) {
+  // Implementation to remove pending request from IndexedDB
+}
+
+// ============================================
+// CACHE MANAGEMENT
+// ============================================
+
+// Periodic cache cleanup
+setInterval(async () => {
+  try {
+    await cleanupExpiredCache();
+    console.log('🧹 Cache cleanup completed');
+  } catch (error) {
+    console.error('❌ Cache cleanup failed:', error);
+  }
+}, 24 * 60 * 60 * 1000); // Run daily
+
+async function cleanupExpiredCache() {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  const requests = await cache.keys();
+  const now = Date.now();
+  const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+  
+  for (const request of requests) {
+    const response = await cache.match(request);
+    const dateHeader = response.headers.get('date');
+    
+    if (dateHeader) {
+      const responseDate = new Date(dateHeader).getTime();
+      if (now - responseDate > maxAge) {
+        await cache.delete(request);
+        console.log('🗑️ Removed expired cache:', request.url);
       }
     }
-  } catch (error) {
-    console.error('❌ Contact form sync failed:', error);
   }
 }
 
-async function syncAnalytics() {
-  try {
-    // Sync offline analytics data
-    console.log('📊 Syncing analytics data...');
-    // Implementation would depend on your analytics setup
-  } catch (error) {
-    console.error('❌ Analytics sync failed:', error);
-  }
-}
+// ============================================
+// ERROR HANDLING
+// ============================================
+self.addEventListener('error', (event) => {
+  console.error('❌ Service Worker Error:', event.error);
+});
 
-async function syncContentUpdates() {
-  try {
-    console.log('🔄 Checking for content updates...');
-    
-    // Update critical caches
-    const cache = await caches.open(STATIC_CACHE);
-    await cache.add('/');
-    
-    console.log('✅ Content updated successfully');
-  } catch (error) {
-    console.error('❌ Content update failed:', error);
-  }
-}
+self.addEventListener('unhandledrejection', (event) => {
+  console.error('❌ Service Worker Unhandled Rejection:', event.reason);
+});
 
-// IndexedDB helpers
-function openIndexedDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('ThannxAI-DB', 2);
-    
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => resolve(request.result);
-    
-    request.onupgradeneeded = () => {
-      const db = request.result;
-      
-      if (!db.objectStoreNames.contains('pending-forms')) {
-        const store = db.createObjectStore('pending-forms', { 
-          keyPath: 'id', 
-          autoIncrement: true 
-        });
-        store.createIndex('timestamp', 'timestamp', { unique: false });
-      }
-      
-      if (!db.objectStoreNames.contains('analytics')) {
-        const analyticsStore = db.createObjectStore('analytics', { 
-          keyPath: 'id', 
-          autoIncrement: true 
-        });
-        analyticsStore.createIndex('timestamp', 'timestamp', { unique: false });
-      }
-    };
-  });
-}
-
-async function getAllPendingForms(db) {
-  const transaction = db.transaction(['pending-forms'], 'readonly');
-  const store = transaction.objectStore('pending-forms');
-  return new Promise((resolve, reject) => {
-    const request = store.getAll();
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-}
-
-async function deletePendingForm(db, id) {
-  const transaction = db.transaction(['pending-forms'], 'readwrite');
-  const store = transaction.objectStore('pending-forms');
-  return new Promise((resolve, reject) => {
-    const request = store.delete(id);
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
-  });
-}
-
-console.log('🚀 ThannxAI Service Worker v2.0.0 loaded successfully!');
+console.log('🚀 Service Worker loaded successfully!');
