@@ -1,0 +1,401 @@
+# ============================================
+# THANNXAI PORTFOLIO - GITIGNORE
+# ============================================
+
+# ========== DEPENDENCIES ==========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package lock files (choose one)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ========== BUILD OUTPUTS ==========
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+
+# ========== ENVIRONMENT VARIABLES ==========
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging
+
+# API Keys and Secrets
+config/keys.js
+config/config.json
+secrets.json
+credentials.json
+
+# ========== LOGS ==========
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ========== CACHE DIRECTORIES ==========
+.npm/
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.cache/
+.temp/
+.tmp/
+
+# Webpack
+.webpack/
+
+# Rollup
+.rollup.cache/
+
+# Vite
+.vite/
+
+# ========== EDITOR DIRECTORIES ==========
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# ========== OS GENERATED FILES ==========
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ========== TESTING ==========
+coverage/
+*.lcov
+.nyc_output/
+.coverage/
+htmlcov/
+.tox/
+.nox/
+.coverage
+.pytest_cache/
+.ruff_cache/
+
+# Jest
+jest.config.js
+__tests__/
+**/__tests__/**
+**/*.test.js
+**/*.spec.js
+
+# ========== DOCUMENTATION ==========
+docs/_build/
+site/
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# ========== DEPLOYMENT ==========
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# AWS
+.aws/
+
+# Heroku
+.heroku/
+
+# ========== DATABASES ==========
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# MongoDB
+*.mongodb
+
+# Redis
+dump.rdb
+
+# ========== MEDIA FILES ==========
+# Large media files (uncomment if needed)
+# *.mp4
+# *.avi
+# *.mov
+# *.wmv
+# *.flv
+# *.webm
+
+# Large images (uncomment if needed)
+# *.psd
+# *.ai
+# *.sketch
+
+# ========== BACKUP FILES ==========
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.swp
+*.tmp
+
+# ========== SECURITY ==========
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# SSH keys
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# ========== ANALYTICS & TRACKING ==========
+# Google Analytics
+ga-*.js
+
+# Hotjar
+hj-*.js
+
+# ========== DEVELOPMENT TOOLS ==========
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# Less
+*.less.map
+
+# Stylus
+*.styl.map
+
+# PostCSS
+postcss.config.js
+
+# Tailwind
+tailwind.config.js
+
+# ========== BUNDLERS ==========
+# Webpack
+webpack.config.js
+webpack.*.js
+
+# Rollup
+rollup.config.js
+
+# Parcel
+.parcel-cache/
+
+# Vite
+vite.config.js
+
+# ========== LINTING ==========
+.eslintrc.js
+.eslintrc.json
+.eslintrc.yml
+.eslintrc.yaml
+.eslintignore
+
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+.prettierrc.yml
+.prettierrc.yaml
+.prettierignore
+
+.stylelintrc
+.stylelintrc.js
+.stylelintrc.json
+.stylelintrc.yml
+.stylelintrc.yaml
+
+# ========== PACKAGE MANAGERS ==========
+# Yarn
+.yarn/
+.yarnrc.yml
+
+# PNPM
+.pnpm-store/
+
+# Rush
+common/temp/
+
+# ========== MISC ==========
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ========== PROJECT SPECIFIC ==========
+# Portfolio specific files
+drafts/
+archive/
+old-versions/
+experiments/
+
+# Design files
+design/
+mockups/
+wireframes/
+
+# Content drafts
+content-drafts/
+blog-drafts/
+
+# Analytics data
+analytics/
+reports/
+
+# User uploads (if any)
+uploads/
+user-content/
+
+# ========== SENSITIVE DATA ==========
+# Email configurations
+mail-config.json
+smtp-config.json
+
+# Social media tokens
+social-tokens.json
+api-tokens.json
+
+# Payment configurations
+payment-config.json
+stripe-config.json
+
+# ========== PERFORMANCE ==========
+# Lighthouse reports
+lighthouse-reports/
+performance-reports/
+
+# Bundle analysis
+bundle-analysis/
+webpack-bundle-analyzer-report.html
+
+# ========== COMMENTS FOR TEAM ==========
+# Uncomment the following lines if you want to ignore:
+
+# All log files
+# *.log
+
+# All environment files
+# .env*
+
+# All config files
+# config/
+
+# All test files
+# **/*.test.*
+# **/*.spec.*
+
+# All documentation
+# docs/
+# README.md
+
+# ========== KEEP THESE FILES ==========
+# Important: DO NOT ignore these files
+!.gitkeep
+!.gitignore
+!README.md
+!LICENSE
+!package.json
+!manifest.json
+!sw.js
+!robots.txt
+!sitemap.xml
+
+# Keep essential config files
+!.github/
+!netlify.toml
+!vercel.json
+
+# Keep essential assets
+!assets/icons/
+!assets/images/favicon.ico
+!assets/images/logo.png
+
+# ========== END OF GITIGNORE ==========
