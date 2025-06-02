@@ -1,0 +1,313 @@
+{
+  "name": "ThannxAI Portfolio - Thanattsitt Thanatt | AI Developer, Quantum Psychologist & Miss Universe Thailand 2023",
+  "short_name": "ThannxAI",
+  "description": "Explore the revolutionary fusion of artificial intelligence, quantum psychology, and creative technology by Thannt. Bridging consciousness studies with cutting-edge AI development.",
+  "start_url": "/?utm_source=pwa&utm_medium=homescreen&utm_campaign=app_launch",
+  "scope": "/",
+  "id": "/thanattsitt-dev-portfolio/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "orientation": "any",
+  "background_color": "#0a0a0f",
+  "theme_color": "#6e40c9",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": [
+    "portfolio",
+    "technology",
+    "artificial-intelligence",
+    "psychology",
+    "education",
+    "entertainment",
+    "lifestyle",
+    "productivity",
+    "business",
+    "developer-tools"
+  ],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "screenshots": [
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1280&h=720",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "ThannxAI Portfolio Desktop - AI Projects & Psychology Research Dashboard"
+    },
+    {
+      "src": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=390&h=844",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "label": "ThannxAI Portfolio Mobile - Responsive AI Developer Experience"
+    },
+    {
+      "src": "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=1280&h=720",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "Quantum Psychology Projects - Siam Blessing Spiritual Platform"
+    },
+    {
+      "src": "https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=390&h=844",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "label": "Cozy Light Wellness - Environmental Psychology Design"
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=72&h=72",
+      "sizes": "72x72",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+      "sizes": "96x96",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=128&h=128",
+      "sizes": "128x128",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=144&h=144",
+      "sizes": "144x144",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=152&h=152",
+      "sizes": "152x152",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=192&h=192",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=384&h=384",
+      "sizes": "384x384",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=512&h=512",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik05NiA0OEM3My45MDg2IDQ4IDU2IDY1LjkwODYgNTYgODhWMTA0QzU2IDEyNi4wOTEgNzMuOTA4NiAxNDQgOTYgMTQ0QzExOC4wOTEgMTQ0IDEzNiAxMjYuMDkxIDEzNiAxMDRWODhDMTM2IDY1LjkwODYgMTE4LjA5MSA0OCA5NiA0OFoiIGZpbGw9IiNGRkQ3MDAiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDEwQzE0LjQ3NzIgMTAgMTAgMTQuNDc3MiAxMCAyMFYyNUMxMCAzMC41MjI4IDE0LjQ3NzIgMzUgMjAgMzVDMjUuNTIyOCAzNSAzMCAzMC41MjI4IDMwIDI1VjIwQzMwIDE0LjQ3NzIgMjUuNTIyOCAxMCAyMCAxMFoiIGZpbGw9IiM2RTQwQzkiLz4KPHN2Zz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwX2xpbmVhcl8xXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjE5MiIgeTI9IjE5MiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNkU0MEM5Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGNkI5RCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTA0IiBmaWxsPSJ1cmwoI2dyYWRpZW50MF9saW5lYXJfMV8xKSIvPgo8cGF0aCBkPSJNMjU2IDEyOEMxOTcuNDMgMTI4IDE1MiAxNzMuNDMgMTUyIDIzMlYyNzJDMTUyIDMzMC41NyAxOTcuNDMgMzc2IDI1NiAzNzZDMzE0LjU3IDM3NiAzNjAgMzMwLjU3IDM2MCAyNzJWMjMyQzM2MCAxNzMuNDMgMzE0LjU3IDEyOCAyNTYgMTI4WiIgZmlsbD0iI0ZGRDcwMCIvPgo8cGF0aCBkPSJNMjU2IDE2MEMyMTYuMjM1IDE2MCAyMDAgMTc2LjIzNSAyMDAgMjE2VjI4OEMyMDAgMzI3Ljc2NSAyMTYuMjM1IDM0NCAyNTYgMzQ0QzI5NS43NjUgMzQ0IDMxMiAzMjcuNzY1IDMxMiAyODhWMjE2QzMxMiAxNzYuMjM1IDI5NS43NjUgMTYwIDI1NiAxNjBaIiBmaWxsPSIjNkU0MEM5Ii8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSI1MTIiIHkyPSI1MTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzZFNDBDOSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGRjZCOUQiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Projects Gallery",
+      "short_name": "Projects",
+      "description": "Explore cutting-edge AI and psychology projects",
+      "url": "/#projects?utm_source=shortcut&utm_medium=projects",
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "About Thanattsitt",
+      "short_name": "About",
+      "description": "Discover the journey from Miss Universe to AI Developer",
+      "url": "/#creator?utm_source=shortcut&utm_medium=about",
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Technical Skills",
+      "short_name": "Skills",
+      "description": "View AI development and psychology expertise",
+      "url": "/#skills?utm_source=shortcut&utm_medium=skills",
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Contact & Collaborate",
+      "short_name": "Contact",
+      "description": "Connect for AI projects and consultations",
+      "url": "/#contact?utm_source=shortcut&utm_medium=contact",
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Education & Research",
+      "short_name": "Education",
+      "description": "Academic background and research publications",
+      "url": "/#education?utm_source=shortcut&utm_medium=education",
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/",
+      "id": "thanattsitt-portfolio"
+    },
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.thannxai.portfolio",
+      "id": "com.thannxai.portfolio"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 420
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "protocol_handlers": [
+    {
+      "protocol": "mailto",
+      "url": "/#contact?action=email&to=%s"
+    },
+    {
+      "protocol": "tel",
+      "url": "/#contact?action=call&number=%s"
+    },
+    {
+      "protocol": "web+thannxai",
+      "url": "/?action=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/#contact?action=file_share",
+      "accept": {
+        "text/plain": [".txt", ".md"],
+        "application/pdf": [".pdf"],
+        "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+        "application/json": [".json"],
+        "text/csv": [".csv"]
+      },
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=96&h=96",
+          "sizes": "96x96",
+          "type": "image/jpeg"
+        }
+      ],
+      "launch_type": "single-client"
+    }
+  ],
+  "share_target": {
+    "action": "/#contact?action=share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "shared_title",
+      "text": "shared_text",
+      "url": "shared_url"
+    }
+  },
+  "capture_links": "existing-client-navigate",
+  "scope_extensions": [
+    {
+      "origin": "https://pigletpeakkung.github.io"
+    },
+    {
+      "origin": "https://thannxai.com"
+    }
+  ],
+  "note_taking": {
+    "new_note_url": "/#contact?action=note"
+  },
+  "widgets": [
+    {
+      "name": "AI Project Stats",
+      "short_name": "Stats",
+      "description": "Quick view of project metrics and achievements",
+      "tag": "project-stats",
+      "template": "project-stats-template",
+      "ms_ac_template": "adaptive-card-template.json",
+      "data": "widgets/stats-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=320&h=240",
+          "sizes": "320x240",
+          "label": "AI Project Statistics Widget"
+        }
+      ],
+      "icons": [
+        {
+          "src": "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=64&h=64",
+          "sizes": "64x64"
+        }
+      ],
+      "auth": false,
+      "update": 86400
+    }
+  ],
+  "background_sync": [
+    "contact-form-sync",
+    "analytics-sync",
+    "content-update-sync"
+  ],
+  "permissions": [
+    "notifications",
+    "background-sync",
+    "persistent-storage"
+  ],
+  "features": [
+    "cross-origin-isolated",
+    "web-share",
+    "web-share-target",
+    "background-sync",
+    "push-messaging",
+    "notifications"
+  ]
+}
