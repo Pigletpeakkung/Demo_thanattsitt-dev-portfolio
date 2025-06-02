@@ -1,50 +1,115 @@
 # ThannxAI Portfolio - Robots.txt
+# Thanattsitt Thanatt - AI Developer & Quantum Psychologist
 
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://yourdomain.com/sitemap.xml
+# High-value pages for indexing
+Allow: /index.html
+Allow: /#hero
+Allow: /#creator
+Allow: /#projects
+Allow: /#gallery
+Allow: /#skills
+Allow: /#research
+Allow: /#contact
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Disallow sensitive areas
-Disallow: /admin/
-Disallow: /config/
+# Block unnecessary crawler access to assets
+Disallow: /assets/temp/
+Disallow: /cache/
 Disallow: /logs/
-Disallow: /temp/
-Disallow: /.git/
+Disallow: /_temp/
 Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /backup/
+Disallow: /private/
 
-# Allow important files
-Allow: /assets/
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /fonts/
+# Allow essential assets for proper rendering
+Allow: /manifest.json
+Allow: /sw.js
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.ico
 
-# Block specific file types
-Disallow: /*.log$
-Disallow: /*.tmp$
-Disallow: /*.bak$
+# Special directives for major search engines
 
-# SEO optimizations
+# Google
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
+# Bing
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
-User-agent: Slurp
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
 Allow: /
 
-# Social media crawlers
-User-agent: facebookexternalhit
+# LinkedIn (for professional profile sharing)
+User-agent: LinkedInBot
 Allow: /
 
+# Twitter/X (for social sharing)
 User-agent: Twitterbot
 Allow: /
 
-User-agent: LinkedInBot
+# Facebook (for social sharing)
+User-agent: FacebookExternalHit
 Allow: /
+
+# Block aggressive or unwanted crawlers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# AI Training bots (Optional - adjust based on preference)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Sitemap location
+Sitemap: https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/sitemap.xml
+
+# Additional information
+# Website: https://pigletpeakkung.github.io/thanattsitt-dev-portfolio/
+# Contact: thanattsitt.info@yahoo.co.uk
+# LinkedIn: https://www.linkedin.com/in/thanattsitts
+# Twitter: https://x.com/ThanattsittS
+# Last Updated: 2025-01-27
