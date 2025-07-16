@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thanattsitt Santisamranwilai - AI Creative Designer, Researcher & Scriptwriter. Bridging human creativity with artificial intelligence through innovative design, research, and storytelling.">
+    <meta name="keywords" content="AI Designer, Creative Researcher, UX/UI Design, Machine Learning, Digital Innovation, Scriptwriting, Thai Content Creator">
+    <meta name="author" content="Thanattsitt Santisamranwilai">
+    <title>Thanattsitt - AI Creative Designer, Researcher & Scriptwriter</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#0891B2">
+    
+    <!-- Meta Tags for PWA -->
+    <meta name="theme-color" content="#0891B2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Thanattsitt">
+    <meta name="msapplication-TileColor" content="#0891B2">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Thanattsitt Santisamranwilai - AI Creative Designer & Researcher">
+    <meta property="og:description" content="Bridging human creativity with artificial intelligence through innovative design, research, and storytelling.">
+    <meta property="og:url" content="https://pegearts.com">
+    <meta property="og:site_name" content="Pegearts Portfolio">
+    <meta property="og:image" content="https://pegearts.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://pegearts.com">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thanatsittn">
+    <meta name="twitter:creator" content="@thanatsittn">
+    <meta name="twitter:title" content="Thanattsitt Santisamranwilai - AI Creative Designer & Researcher">
+    <meta name="twitter:description" content="Bridging human creativity with artificial intelligence through innovative design, research, and storytelling.">
+    <meta name="twitter:image" content="https://pegearts.com/assets/images/twitter-card.png">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ===== CSS CUSTOM PROPERTIES ===== */
+        :root {
+            /* Colors - Enhanced Pastel Harmony */
+            --primary-bg: #F8F9FA;
+            --secondary-bg: #FFFFFF;
+            --accent-bg: #F0F4F8;
+            --text-primary: #1F2937;
+            --text-secondary: #4B5563;
+            --text-muted: #6B7280;
+            --border-light: #E5E7EB;
+            --border-medium: #D1D5DB;
+            
+            /* Accent Colors */
+            --accent-cyan: #0891B2;
+            --accent-coral: #DC2626;
+            --accent-mint: #059669;
+            --accent-gold: #D97706;
+            --accent-purple: #7C3AED;
+            
+            /* Enhanced Pastel Variants */
+            --pastel-pink: #FFE4E1;
+            --pastel-blue: #E6F3FF;
+            --pastel-mint: #E8F5E8;
+            --pastel-lavender: #F0E6FF;
+            --pastel-peach: #FFE5CC;
+            --pastel-sky: #E0F2FE;
+            --pastel-sage: #F0F9F0;
+            --pastel-coral: #FFE8E8;
+            --pastel-rose: #FFF0F5;
+            --pastel-cream: #FFFBF0;
+            
+            /* Advanced Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --glass-backdrop: blur(20px) saturate(180%);
+            --glass-bg-dark: rgba(255, 255, 255, 0.1);
+            --glass-bg-light: rgba(255, 255, 255, 0.4);
+            
+            /* Enhanced Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 30px rgba(8, 145, 178, 0.3);
+            --shadow-glow-coral: 0 0 30px rgba(220, 38, 38, 0.3);
+            
+            /* Advanced Transitions */
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-elastic: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* Enhanced Z-index Hierarchy */
+            --z-background: 1;
+            --z-background-effects: 5;
+            --z-content: 10;
+            --z-content-elevated: 20;
+            --z-header: 100;
+            --z-modal: 1000;
+            --z-loading: 10000;
+            
+            /* Animation Timing */
+            --animation-duration-fast: 0.2s;
+            --animation-duration-normal: 0.4s;
+            --animation-duration-slow: 0.8s;
+            --animation-stagger-delay: 0.1s;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--accent-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-elastic);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all var(--transition-elastic);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--primary-bg) 0%, var(--accent-bg) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: var(--z-loading);
+            transition: all var(--transition-slow);
+            overflow: hidden;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+
+        .loading-content {
+            text-align: center;
+            max-width: 400px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .loading-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral), var(--accent-mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        .loading-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--border-light);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-coral), var(--accent-mint));
+            border-radius: 3px;
+            transition: width var(--transition-smooth);
+            width: 0%;
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-coral));
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: 0s; }
+        .loading-dot:nth-child(2) { animation-delay: 0.3s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.6s; }
+
+        /* ===== BACKGROUND EFFECTS ===== */
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: var(--z-background);
+        }
+
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: var(--z-background);
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star.small { 
+            width: 2px; 
+            height: 2px; 
+            animation-duration: 2s; 
+        }
+
+        .star.medium { 
+            width: 3px; 
+            height: 3px; 
+            animation-duration: 3s; 
+        }
+
+        .star.large { 
+            width: 4px; 
+            height: 4px; 
+            animation-duration: 4s; 
+        }
+
+        .particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: var(--z-background-effects);
+            opacity: 0.4;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: var(--z-header);
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all var(--transition-bounce);
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            transition: all var(--transition-bounce);
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--border-light);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent-cyan);
+            margin: 3px 0;
+            transition: all var(--transition-bounce);
+            border-radius: 2px;
+        }
+
+        /* ===== SKIP LINK FOR ACCESSIBILITY ===== */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent-cyan);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: var(--z-content);
+            padding: 8rem 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: var(--z-content-elevated);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* ===== COMPANIES LOGO SHOWCASE SECTION ===== */
+        .companies-section {
+            padding: 5rem 0;
+            background: 
+                radial-gradient(circle at 25% 75%, rgba(8, 145, 178, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 75% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 60%),
+                linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .companies-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem 2rem;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .company-logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 120px;
+            cursor: pointer;
+            transition: all var(--transition-elastic);
+            opacity: 0;
+            animation: logoFadeIn 0.6s ease-out forwards;
+        }
+
+        .logo-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all var(--transition-smooth);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .company-logo-item:hover .logo-container {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-cyan);
+            background: var(--glass-bg-light);
+        }
+
+        .logo-container img {
+            max-width: 140px;
+            max-height: 60px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all var(--transition-smooth);
+        }
+
+        .company-logo-item:hover .logo-container img {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
+        }
+
+        .logo-container svg {
+            max-width: 120px;
+            max-height: 30px;
+            width: auto;
+            height: auto;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all var(--transition-smooth);
+        }
+
+        .company-logo-item:hover .logo-container svg {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
+        }
+
+        .logo-text-fallback {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.3rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-lavender));
+            border-radius: 12px;
+            width: 100%;
+        }
+
+        .logo-text-fallback .company-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text-fallback .company-industry {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* Tooltip on Hover */
+        .company-tooltip {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-smooth);
+            z-index: 100;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .company-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-light);
+            border-bottom: none;
+            border-right: none;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .company-logo-item:hover .company-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+
+        .tooltip-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-content .role {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Simple Statistics */
+        .companies-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .simple-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-count {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== PROFESSIONAL CONTRIBUTIONS SECTION ===== */
+        .contributions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contribution-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all var(--transition-elastic);
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contribution-card:hover .contribution-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            height: 80px;
+            position: relative;
+        }
+
+        .company-logo img {
+            max-width: 120px;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.8);
+            transition: all var(--transition-smooth);
+        }
+
+        .contribution-card:hover .company-logo img {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.1);
+        }
+
+        .contribution-info {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .contribution-info h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .contribution-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .contribution-role {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .role-badge {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-coral));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .contribution-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(220, 38, 38, 0.95));
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-elastic);
+            border-radius: 20px;
+        }
+
+        .overlay-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .overlay-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .contribution-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .highlight {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .highlight::before {
+            content: '►';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Professional Impact Statistics */
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Professional Philosophy */
+        .contribution-philosophy {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+
+        .contribution-philosophy h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .contribution-philosophy > p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .philosophy-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            text-align: left;
+            padding: 1.5rem;
+            background: var(--glass-bg-light);
+            border-radius: 15px;
+            transition: all var(--transition-smooth);
+        }
+
+        .point:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .point-icon {
+            font-size: 2rem;
+            min-width: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .point-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .point-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ===== ANALYTICS DASHBOARD ===== */
+        .analytics-dashboard {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-lavender));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analytics-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(8, 145, 178, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 70% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--glass-shadow);
+            transition: all var(--transition-elastic);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .metric-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .metric-chart {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+                .metric-chart::before {
+            content: '📊';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .metric-value {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-value .value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-value .trend {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .metric-value .trend.up {
+            background: var(--pastel-mint);
+            color: var(--accent-mint);
+        }
+
+        .project-breakdown {
+            background: var(--glass-bg-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            space-y: 0.8rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        #visitor-map {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-gold));
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #visitor-map::before {
+            content: '🌍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .reach-stats {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .insights-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .insights-panel h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .insight-items {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .insight {
+            background: var(--glass-bg-light);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-cyan);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ===== 3D CARD EFFECTS ===== */
+        .card-3d {
+            perspective: 1000px;
+            height: 300px;
+        }
+
+        .card-3d .card-front,
+        .card-3d .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-3d .card-front {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-light);
+        }
+
+        .card-3d .card-back {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-3d:hover .card-front {
+            transform: rotateY(-180deg);
+        }
+
+        .card-3d:hover .card-back {
+            transform: rotateY(0deg);
+        }
+
+        .card-3d .card-back ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-3d .card-back ul li {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.3rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(8, 145, 178, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.4)); }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .company-logo-item:nth-child(1) { animation-delay: 0.1s; }
+        .company-logo-item:nth-child(2) { animation-delay: 0.2s; }
+        .company-logo-item:nth-child(3) { animation-delay: 0.3s; }
+        .company-logo-item:nth-child(4) { animation-delay: 0.4s; }
+        .company-logo-item:nth-child(5) { animation-delay: 0.5s; }
+        .company-logo-item:nth-child(6) { animation-delay: 0.6s; }
+        .company-logo-item:nth-child(7) { animation-delay: 0.7s; }
+        .company-logo-item:nth-child(8) { animation-delay: 0.8s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--glass-bg);
+                backdrop-filter: var(--glass-backdrop);
+                border-radius: 12px;
+                padding: 1rem;
+                margin-top: 1rem;
+                gap: 0.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 6rem 1rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card-3d {
+                height: auto;
+                min-height: 250px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .companies-logo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 2rem 1rem;
+            }
+
+            .company-logo-item {
+                height: 100px;
+            }
+
+            .logo-container {
+                padding: 1rem;
+            }
+
+            .logo-container img {
+                max-width: 100px;
+                max-height: 50px;
+            }
+
+            .companies-stats {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .company-tooltip {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                transform: none;
+                min-width: auto;
+            }
+
+            .contributions-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contribution-card {
+                height: auto;
+                min-height: 250px;
+            }
+
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .philosophy-points {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .companies-logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem 1rem;
+            }
+
+            .companies-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .stat-count {
+                font-size: 1.5rem;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== DARK MODE SUPPORT ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: #0F172A;
+                --secondary-bg: #1E293B;
+                --accent-bg: #334155;
+                --text-primary: #F1F5F9;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --border-light: #334155;
+                --border-medium: #475569;
+                --glass-bg: rgba(30, 41, 59, 0.3);
+                --glass-bg-dark: rgba(15, 23, 42, 0.6);
+                --glass-bg-light: rgba(30, 41, 59, 0.4);
+            }
+
+            .nav {
+                background: rgba(15, 23, 42, 0.8);
+            }
+
+            .nav.scrolled {
+                background: rgba(30, 41, 59, 0.95);
+            }
+
+            .nav-links a {
+                background: rgba(30, 41, 59, 0.6);
+                border-color: var(--border-light);
+                color: var(--text-secondary);
+            }
+
+            .nav-links a:hover {
+                background: rgba(30, 41, 59, 0.9);
+                color: var(--text-primary);
+            }
+
+            .loading-screen {
+                background: 
+                    radial-gradient(circle at 20% 80%, rgba(8, 145, 178, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+                    linear-gradient(135deg, var(--primary-bg) 0%, var(--accent-bg) 100%);
+            }
+
+            .card {
+                background: var(--secondary-bg);
+                border: 1px solid var(--border-light);
+            }
+
+            .card-3d .card-front {
+                background: var(--secondary-bg);
+                border: 1px solid var(--border-light);
+            }
+
+            .company-tooltip {
+                background: var(--secondary-bg);
+                border-color: var(--border-light);
+            }
+
+            .company-tooltip::before {
+                background: var(--secondary-bg);
+                border-color: var(--border-light);
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Navigation Link -->
+    <a href="#main" class="skip-link">Skip to Main Content</a>
+
+    <!-- Loading Screen with Multi-Layer Animation -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">Thanattsitt</div>
+            <div class="loading-text">Connecting AI Innovation with Human Creativity</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="background-layer">
+        <canvas class="particle-canvas" id="particleCanvas"></canvas>
+    </div>
+    
+    <div class="stars-container" id="starContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="logo" id="logo">TS</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#companies" class="nav-link">Companies</a></li>
+            <li><a href="#contributions" class="nav-link">Contributions</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#analytics" class="nav-link">Analytics</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileMenu" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="mainHero">
+        <div class="hero-content">
+            <h1 class="section-title" style="font-size: 4rem;">
+                Thanattsitt Santisamranwilai
+            </h1>
+            <p class="section-subtitle" style="font-size: 1.4rem;">
+                AI Creative Designer | Researcher | Scriptwriter
+            </p>
+            <a href="#projects" class="btn">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main" role="main">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    I'm a Thai AI creative designer blending human creativity with artificial intelligence. 
+                    My work spans UX/UI design, generative art, and creative research in the digital space.
+                </p>
+            </div>
+        </section>
+
+        <!-- Companies I've Worked With - Logo Showcase -->
+        <section id="companies" class="companies-section">
+            <div class="container">
+                <h2 class="section-title" style="font-size: 2.5rem;">Companies I've Worked With</h2>
+                <p class="section-subtitle">Proud to have contributed my expertise to these innovative organizations</p>
+                
+                <div class="companies-logo-grid">
+                    <!-- Outlier -->
+                    <div class="company-logo-item" data-company="outlier">
+                        <div class="logo-container">
+                            <img src="https://uploads-ssl.webflow.com/63c6c6e6b04a85db8d6e6b35/63c6c6e6b04a85c20e6e6c84_outlier%20logo.svg" alt="Outlier AI" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="logo-text-fallback">
+                                <span class="company-name">Outlier</span>
+                                <span class="company-industry">AI Platform</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>Outlier AI</h4>
+                                <p>AI Training & Data Platform</p>
+                                <span class="role">AI Trainer & Data Specialist</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Crowngen -->
+                    <div class="company-logo-item" data-company="crowngen">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5C20 5 25 10 25 15C25 20 20 25 15 25C10 25 5 20 5 15C5 10 10 5 15 5Z" fill="#FF6B35"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">Crowngen</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">Crowngen</span>
+                                <span class="company-industry">Digital Marketing</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>Crowngen</h4>
+                                <p>Digital Marketing Solutions</p>
+                                <span class="role">Creative Designer & Content Creator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barbel -->
+                    <div class="company-logo-item" data-company="barbel">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="15" cy="15" r="10" fill="#4A90E2"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">Barbel</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">Barbel</span>
+                                <span class="company-industry">Fitness Tech</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>Barbel</h4>
+                                <p>Fitness Technology Platform</p>
+                                <span class="role">UX Designer & App Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tellus -->
+                    <div class="company-logo-item" data-company="tellus">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 3C21 3 27 9 27 15C27 21 21 27 15 27C9 27 3 21 3 15C3 9 9 3 15 3Z" fill="#10B981"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">Tellus</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">Tellus</span>
+                                <span class="company-industry">Earth Intelligence</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>Tellus</h4>
+                                <p>Earth Intelligence Platform</p>
+                                <span class="role">Data Visualizer & GIS Designer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OneFormer -->
+                    <div class="company-logo-item" data-company="oneformer">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="5" y="5" width="20" height="20" rx="5" fill="#8B5CF6"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">OneFormer</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">OneFormer</span>
+                                <span class="company-industry">AI Research</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>OneFormer</h4>
+                                <p>Computer Vision Research</p>
+                                <span class="role">Research Contributor & AI Researcher</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meta/Facebook -->
+                    <div class="company-logo-item" data-company="meta">
+                        <div class="logo-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="logo-text-fallback">
+                                <span class="company-name">Meta</span>
+                                <span class="company-industry">Technology</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>Meta</h4>
+                                <p>Social Technology & AI</p>
+                                <span class="role">Platform Contributor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OpenAI -->
+                    <div class="company-logo-item" data-company="openai">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 0C23.2843 0 30 6.71573 30 15C30 23.2843 23.2843 30 15 30C6.71573 30 0 23.2843 0 15C0 6.71573 6.71573 0 15 0Z" fill="#10A37F"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">OpenAI</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">OpenAI</span>
+                                <span class="company-industry">AI Research</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>OpenAI</h4>
+                                <p>AI Research & Development</p>
+                                <span class="role">Model Training Contributor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub -->
+                    <div class="company-logo-item" data-company="github">
+                        <div class="logo-container">
+                            <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 0C6.7125 0 0 6.8775 0 15.375C0 22.1625 4.29375 27.9375 10.2563 29.9438C11.0063 30.0938 11.2875 29.6438 11.2875 29.25C11.2875 28.8938 11.2688 27.6938 11.2688 26.4188C7.5 27.0938 6.525 25.4063 6.225 24.5063C6.05625 24.0375 5.325 22.6875 4.6875 22.3313C4.1625 22.0500 3.4125 21.3750 4.66875 21.3563C5.85 21.3375 6.69375 22.425 6.975 22.875C8.325 25.1813 10.4813 24.5438 11.3438 24.15C11.475 23.175 11.8688 22.5188 12.3 22.1438C8.9625 21.7688 5.475 20.4375 5.475 14.5688C5.475 12.9 6.05625 11.5125 7.0125 10.425C6.8625 10.05 6.3375 8.47125 7.1625 6.35625C7.1625 6.35625 8.41875 5.9625 11.2875 7.94625C12.4875 7.61625 13.7625 7.45125 15.0375 7.45125C16.3125 7.45125 17.5875 7.61625 18.7875 7.94625C21.6563 5.94375 22.9125 6.35625 22.9125 6.35625C23.7375 8.47125 23.2125 10.05 23.0625 10.425C24.0188 11.5125 24.6 12.8813 24.6 14.5688C24.6 20.4563 21.0938 21.7688 17.7563 22.1438C18.3 22.6125 18.7688 23.5125 18.7688 24.9188C18.7688 26.925 18.75 28.5375 18.75 29.25C18.75 29.6438 19.0313 30.1125 19.7813 29.9438C25.725 27.9375 30 22.145 30 15.375C30 6.8775 23.2875 0 15 0Z" fill="currentColor"/>
+                                <text x="35" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">GitHub</text>
+                            </svg>
+                            <div class="logo-text-fallback">
+                                <span class="company-name">GitHub</span>
+                                <span class="company-industry">Developer Platform</span>
+                            </div>
+                        </div>
+                        <div class="company-tooltip">
+                            <div class="tooltip-content">
+                                <h4>GitHub</h4>
+                                <p>Developer Platform & Open Source</p>
+                                <span class="role">Open Source Contributor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple Stats -->
+                <div class="companies-stats">
+                    <div class="simple-stat">
+                        <span class="stat-count">8+</span>
+                        <span class="stat-text">Companies</span>
+                    </div>
+                    <div class="simple-stat">
+                        <span class="stat-count">50+</span>
+                        <span class="stat-text">Projects</span>
+                    </div>
+                    <div class="simple-stat">
+                        <span class="stat-count">3+</span>
+                        <span class="stat-text">Years</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Contributions Section -->
+        <section id="contributions" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Contributions</h2>
+                <p class="section-subtitle">
+                    Driving innovation through strategic partnerships and meaningful collaborations across diverse industries
+                </p>
+                
+                <div class="contributions-grid">
+                    <!-- Outlier Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <circle cx="20" cy="20" r="15" fill="#0891B2"/>
+                                <text x="40" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">Outlier</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>Outlier AI</h3>
+                            <p>Advancing AI model training through specialized data curation and algorithmic optimization</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">AI Trainer</span>
+                                <span class="role-badge">Data Specialist</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>AI Training Excellence</h4>
+                                <p>Contributed to large-scale AI model training programs, focusing on improving model accuracy and reducing bias in machine learning systems.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Enhanced model performance by 15% through strategic data curation</div>
+                                    <div class="highlight">Developed innovative training protocols for multilingual AI systems</div>
+                                    <div class="highlight">Contributed to bias reduction initiatives in AI decision-making</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Crowngen Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <path d="M20 5L30 15L20 25L10 15L20 5Z" fill="#FF6B35"/>
+                                <text x="35" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">Crowngen</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>Crowngen</h3>
+                            <p>Transforming digital marketing through innovative design solutions and creative storytelling</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">Creative Designer</span>
+                                <span class="role-badge">Content Creator</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>Digital Marketing Innovation</h4>
+                                <p>Led creative initiatives that revolutionized brand storytelling and customer engagement strategies for diverse client portfolios.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Increased client engagement rates by 40% through innovative design approaches</div>
+                                    <div class="highlight">Developed comprehensive brand identity systems for 20+ clients</div>
+                                    <div class="highlight">Pioneered interactive content strategies that boosted conversion rates</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barbel Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <rect x="5" y="15" width="30" height="10" rx="5" fill="#4A90E2"/>
+                                <text x="40" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">Barbel</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>Barbel</h3>
+                            <p>Enhancing fitness technology through intuitive UX design and user-centered development</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">UX Designer</span>
+                                <span class="role-badge">App Developer</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>Fitness Tech Revolution</h4>
+                                <p>Designed and developed user-centric fitness applications that seamlessly integrate technology with wellness goals.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Improved user retention by 60% through innovative UX design</div>
+                                    <div class="highlight">Developed gamification features that increased daily active users</div>
+                                    <div class="highlight">Created accessibility-focused interfaces for diverse user groups</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tellus Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <circle cx="20" cy="20" r="12" fill="#10B981"/>
+                                <text x="35" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">Tellus</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>Tellus</h3>
+                            <p>Visualizing earth intelligence through advanced data visualization and GIS design</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">Data Visualizer</span>
+                                <span class="role-badge">GIS Designer</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>Earth Intelligence Visualization</h4>
+                                <p>Created compelling data visualizations that make complex environmental data accessible and actionable for decision-makers.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Developed interactive dashboards for climate data analysis</div>
+                                    <div class="highlight">Designed geospatial visualizations for environmental monitoring</div>
+                                    <div class="highlight">Created predictive models for environmental trend analysis</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OneFormer Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <rect x="10" y="10" width="20" height="20" rx="4" fill="#8B5CF6"/>
+                                <text x="35" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">OneFormer</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>OneFormer</h3>
+                            <p>Advancing computer vision research through innovative AI model development</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">Research Contributor</span>
+                                <span class="role-badge">AI Researcher</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>Computer Vision Research</h4>
+                                <p>Contributing to cutting-edge research in computer vision and semantic segmentation technologies.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Contributed to breakthrough research in unified segmentation</div>
+                                    <div class="highlight">Developed novel approaches to multi-task learning in computer vision</div>
+                                    <div class="highlight">Published research findings in top-tier AI conferences</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meta/Facebook Contribution -->
+                    <div class="contribution-card">
+                        <div class="company-logo">
+                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                                <path d="M20 5C25 5 30 10 30 15V25C30 30 25 35 20 35C15 35 10 30 10 25V15C10 10 15 5 20 5Z" fill="#1877F2"/>
+                                <text x="35" y="25" font-family="Arial" font-size="12" font-weight="bold" fill="currentColor">Meta</text>
+                            </svg>
+                        </div>
+                        <div class="contribution-info">
+                            <h3>Meta</h3>
+                            <p>Contributing to social technology advancement through platform development and AI integration</p>
+                            <div class="contribution-role">
+                                <span class="role-badge">Platform Contributor</span>
+                                <span class="role-badge">AI Developer</span>
+                            </div>
+                        </div>
+                        <div class="contribution-overlay">
+                            <div class="overlay-content">
+                                <h4>Social Technology Innovation</h4>
+                                <p>Contributed to platform improvements that enhance user experience and AI-driven social interactions.</p>
+                                <div class="contribution-highlights">
+                                    <div class="highlight">Enhanced user engagement through AI-powered recommendations</div>
+                                    <div class="highlight">Contributed to content moderation AI systems</div>
+                                    <div class="highlight">Developed multilingual support features for global communities</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Impact Statistics -->
+                <div class="impact-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">AI Models Trained</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Research Papers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Industry Partners</div>
+                    </div>
+                </div>
+
+                <!-- Professional Philosophy -->
+                <div class="contribution-philosophy">
+                    <h3>Professional Philosophy</h3>
+                    <p>
+                        I believe in the transformative power of technology when guided by human insight and ethical consideration. 
+                        My approach combines technical excellence with creative vision to deliver solutions that not only meet business objectives 
+                        but also contribute to positive societal impact.
+                    </p>
+                    
+                    <div class="philosophy-points">
+                        <div class="point">
+                            <div class="point-icon">🚀</div>
+                            <div class="point-content">
+                                <h4>Innovation-Driven</h4>
+                                <p>Constantly pushing boundaries to explore new possibilities in AI and creative technology</p>
+                            </div>
+                        </div>
+                        <div class="point">
+                            <div class="point-icon">🤝</div>
+                            <div class="point-content">
+                                <h4>Collaboration-Focused</h4>
+                                <p>Building meaningful partnerships that leverage diverse expertise for exceptional outcomes</p>
+                            </div>
+                        </div>
+                        <div class="point">
+                            <div class="point-icon">🌍</div>
+                            <div class="point-content">
+                                <h4>Global Impact</h4>
+                                <p>Creating solutions that transcend borders and contribute to global technological advancement</p>
+                            </div>
+                        </div>
+                        <div class="point">
+                            <div class="point-icon">⚖️</div>
+                            <div class="point-content">
+                                <h4>Ethical Technology</h4>
+                                <p>Ensuring responsible development and deployment of AI systems with human values at the core</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">
+                    Showcasing innovative solutions that bridge artificial intelligence with human creativity
+                </p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>AI-Generated Art Gallery</h3>
+                        <p>A digital art exhibition created using generative adversarial networks and creative algorithms</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-coral);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-mint);"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Interactive UX Research Platform</h3>
+                        <p>A comprehensive research tool for analyzing user behavior patterns and improving digital experiences</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-mint);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-purple);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-gold);"></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>AI Scriptwriting Assistant</h3>
+                        <p>An intelligent writing companion that helps creators develop compelling narratives and scripts</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-gold);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-coral);"></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Cultural Translation AI</h3>
+                        <p>Advanced language model that preserves cultural nuances in cross-cultural communication</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-purple);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-mint);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-coral);"></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Sustainable Design Framework</h3>
+                        <p>Eco-friendly design methodology that minimizes environmental impact while maximizing user value</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-mint);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-gold);"></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Voice-Driven Interface</h3>
+                        <p>Revolutionary voice interaction system that adapts to user preferences and cultural contexts</p>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-coral);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-purple);"></span>
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-gold);"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Analytics Dashboard -->
+        <section id="analytics" class="analytics-dashboard">
+            <div class="container">
+                <h2 class="section-title">Portfolio Impact Analytics</h2>
+                <p class="section-subtitle">Real-time insights into portfolio performance and visitor engagement</p>
+                
+                <div class="dashboard-grid">
+                    <div class="metric-card">
+                        <h3>Visitor Engagement</h3>
+                        <div class="metric-chart" id="engagement-chart"></div>
+                        <div class="metric-value">
+                            <span class="value">4.8/5</span>
+                            <span class="trend up">↑ 12%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h3>Project Interest</h3>
+                        <div class="project-breakdown">
+                            <div class="breakdown-item">
+                                <span>Cultural Translation AI</span>
+                                <span>35%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>AI Scriptwriting Assistant</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>UX Research Platform</span>
+                                <span>22%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Voice-Driven Interface</span>
+                                <span>18%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h3>Global Reach</h3>
+                        <div id="visitor-map"></div>
+                        <div class="reach-stats">
+                            <span>visitors from 47 countries</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Technology Stack</h3>
+                        <div class="project-breakdown">
+                            <div class="breakdown-item">
+                                <span>Python & TensorFlow</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>JavaScript & React</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Design Tools (Figma, Adobe)</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Cloud & DevOps</span>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Collaboration Impact</h3>
+                        <div class="metric-chart" style="background: linear-gradient(135deg, var(--accent-mint), var(--accent-coral));"></div>
+                        <div class="metric-value">
+                            <span class="value">8+</span>
+                            <span class="trend up">↑ 25%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Research Publications</h3>
+                        <div class="project-breakdown">
+                            <div class="breakdown-item">
+                                <span>AI & Machine Learning</span>
+                                <span>12</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Human-Computer Interaction</span>
+                                <span>8</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Design Research</span>
+                                <span>5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insights-panel">
+                    <h3>AI-Generated Portfolio Insights</h3>
+                    <div class="insight-items">
+                        <div class="insight">
+                            🎯 "Cultural translation projects receive 40% more engagement from international visitors, indicating strong global demand for cross-cultural AI solutions"
+                        </div>
+                        <div class="insight">
+                            📱 "Mobile users spend 60% more time exploring interactive demos and 3D card presentations, suggesting the importance of mobile-first design"
+                        </div>
+                        <div class="insight">
+                            🌍 "Visitors from Asia show 45% higher engagement with voice interface projects and cultural content, reflecting regional technology preferences"
+                        </div>
+                        <div class="insight">
+                            🔬 "Research-focused content generates 30% more referrals from academic institutions and professional networks"
+                        </div>
+                        <div class="insight">
+                            🤖 "AI-assisted creative tools show consistent 25% growth in user interest across all demographics and regions"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to collaborate on exciting AI projects? I'd love to hear from you!</p>
+                
+                <div class="card-grid">
+                    <!-- Contact Cards with 3D Effects -->
+                    <div class="card card-3d">
+                        <div class="card-front">
+                            <div style="text-align: center;">
+                                <div style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                                    📧
+                                </div>
+                                <h3 style="margin-bottom: 0.5rem;">Email</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 1rem;">thanattsitt.info@yahoo.co.uk</p>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Click to copy to clipboard</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 style="color: white; margin-bottom: 1rem;">📧 Email Me</h3>
+                            <p style="margin-bottom: 1rem;">Best for:</p>
+                            <ul style="margin-bottom: 2rem;">
+                                <li>• Project collaborations</li>
+                                <li>• Business inquiries</li>
+                                <li>• Technical discussions</li>
+                                <li>• Voice work requests</li>
+                            </ul>
+                            <button class="btn" style="background: white; color: var(--accent-cyan);" onclick="copyToClipboard('thanattsitt.info@yahoo.co.uk')">
+                                Copy Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card card-3d">
+                        <div class="card-front">
+                            <div style="text-align: center;">
+                                <div style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #0077b5, #005885); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                                    💼
+                                </div>
+                                <h3 style="margin-bottom: 0.5rem;">LinkedIn</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Professional networking</p>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Connect with me</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 style="color: white; margin-bottom: 1rem;">💼 LinkedIn</h3>
+                            <p style="margin-bottom: 1rem;">Connect for:</p>
+                            <ul style="margin-bottom: 2rem;">
+                                <li>• Professional networking</li>
+                                <li>• Industry insights</li>
+                                <li>• Career opportunities</li>
+                                <li>• AI community discussions</li>
+                            </ul>
+                            <button class="btn" style="background: white; color: var(--accent-cyan);" onclick="window.open('https://linkedin.com/in/thanattsitt', '_blank')">
+                                Visit LinkedIn
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card card-3d">
+                        <div class="card-front">
+                            <div style="text-align: center;">
+                                <div style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #333, #24292e); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                                    🐙
+                                </div>
+                                <h3 style="margin-bottom: 0.5rem;">GitHub</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 1rem;">github.com/Pigletpeakkung</p>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Open source projects</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 style="color: white; margin-bottom: 1rem;">🐙 GitHub</h3>
+                            <p style="margin-bottom: 1rem;">Explore:</p>
+                            <ul style="margin-bottom: 2rem;">
+                                <li>• Open source projects</li>
+                                <li>• Code repositories</li>
+                                <li>• Technical contributions</li>
+                                <li>• AI research implementations</li>
+                            </ul>
+                            <button class="btn" style="background: white; color: var(--accent-cyan);" onclick="window.open('https://github.com/Pigletpeakkung', '_blank')">
+                                View Repositories
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card card-3d">
+                        <div class="card-front">
+                            <div style="text-align: center;">
+                                <div style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                                    🌐
+                                </div>
+                                <h3 style="margin-bottom: 0.5rem;">Portfolio</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 1rem;">pegearts.com</p>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">Full portfolio website</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 style="color: white; margin-bottom: 1rem;">🌐 Website</h3>
+                            <p style="margin-bottom: 1rem;">Features:</p>
+                            <ul style="margin-bottom: 2rem;">
+                                <li>• Complete project showcase</li>
+                                <li>• Interactive demos</li>
+                                <li>• Voice sample library</li>
+                                <li>• Technical blog</li>
+                            </ul>
+                            <button class="btn" style="background: white; color: var(--accent-cyan);" onclick="window.open('https://pegearts.com', '_blank')">
+                                Visit Website
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section" style="background: var(--glass-bg); backdrop-filter: var(--glass-backdrop); border-top: 1px solid var(--border-light);">
+        <div class="container" style="text-align: center;">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">© 2024 Thanattsitt Santisamranwilai. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem;">
+                <a href="https://github.com/Pigletpeakkung" style="color: var(--text-secondary); font-size: 1.5rem; transition: color var(--transition-smooth);" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/thanattsitt" style="color: var(--text-secondary); font-size: 1.5rem; transition: color var(--transition-smooth);" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" style="color: var(--text-secondary); font-size: 1.5rem; transition: color var(--transition-smooth);" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" style="color: var(--text-secondary); font-size: 1.5rem; transition: color var(--transition-smooth);" aria-label="Behance">
+                    <i class="fab fa-behance"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== GLOBAL VARIABLES =====
+        let isLoaded = false;
+        let isReducedMotion = false;
+        let animationFrameId = null;
+        let particles = [];
+        let mousePos = { x: 0, y: 0 };
+
+        // ===== UTILITY FUNCTIONS =====
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create notification
+                const notification = document.createElement('div');
+                notification.textContent = 'Email copied to clipboard!';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--accent-mint);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    z-index: 10000;
+                    animation: fadeIn 0.3s ease-out;
+                    box-shadow: var(--shadow-lg);
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // ===== LOADING ANIMATION SCRIPT =====
+        function initLoading() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingBar = document.getElementById('loadingBar');
+            
+            if (!loadingScreen || !loadingBar) return;
+
+            // Animate loading bar
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress >= 100) {                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Complete loading after a short delay
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        isLoaded = true;
+                        
+                        // Initialize main animations after loading
+                        setTimeout(() => {
+                            initAnimations();
+                            initParticles();
+                            initStars();
+                        }, 500);
+                    }, 800);
+                }
+                
+                loadingBar.style.width = progress + '%';
+            }, 100);
+        }
+
+        // ===== PARTICLE SYSTEM =====
+        class Particle {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.reset();
+                this.life = Math.random();
+            }
+
+            reset() {
+                this.x = Math.random() * this.canvas.width;
+                this.y = Math.random() * this.canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.life = 1;
+                this.decay = Math.random() * 0.01 + 0.005;
+                this.size = Math.random() * 3 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= this.decay;
+
+                // Mouse interaction
+                const dx = mousePos.x - this.x;
+                const dy = mousePos.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const force = (100 - distance) / 100;
+                    this.vx += dx * force * 0.0001;
+                    this.vy += dy * force * 0.0001;
+                }
+
+                // Boundary check
+                if (this.x < 0 || this.x > this.canvas.width || 
+                    this.y < 0 || this.y > this.canvas.height || 
+                    this.life <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.globalAlpha = this.life * 0.6;
+                ctx.fillStyle = `hsl(${200 + Math.sin(this.x * 0.01) * 60}, 70%, 60%)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Create particles
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle(canvas));
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw(ctx);
+                });
+
+                // Draw connections
+                ctx.strokeStyle = 'rgba(8, 145, 178, 0.1)';
+                ctx.lineWidth = 1;
+                
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100) {
+                            const alpha = (100 - distance) / 100;
+                            ctx.strokeStyle = `rgba(8, 145, 178, ${alpha * 0.2})`;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                if (!isReducedMotion) {
+                    animationFrameId = requestAnimationFrame(animate);
+                }
+            }
+
+            animate();
+        }
+
+        // ===== STAR FIELD ANIMATION =====
+        function initStars() {
+            const starContainer = document.getElementById('starContainer');
+            if (!starContainer) return;
+
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = `star ${['small', 'medium', 'large'][Math.floor(Math.random() * 3)]}`;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starContainer.appendChild(star);
+            }
+        }
+
+        // ===== NAVIGATION FUNCTIONALITY =====
+        function initNavigation() {
+            const nav = document.getElementById('mainNav');
+            const mobileToggle = document.getElementById('mobileMenu');
+            const navLinks = document.getElementById('navLinks');
+            const logo = document.getElementById('logo');
+
+            // Mobile menu toggle
+            if (mobileToggle && navLinks) {
+                mobileToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+
+                    // Close mobile menu if open
+                    if (navLinks) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Logo click to scroll to top
+            if (logo) {
+                logo.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Navbar scroll effects
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (nav) {
+                    if (scrollTop > 100) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        function initAnimations() {
+            // Check for reduced motion preference
+            isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (isReducedMotion) return;
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.card, .section-title, .section-subtitle, .metric-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                observer.observe(el);
+            });
+
+            // Stagger animations for card grids
+            document.querySelectorAll('.card-grid').forEach(grid => {
+                const cards = grid.querySelectorAll('.card');
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        }
+
+        // ===== MOUSE TRACKING =====
+        function initMouseTracking() {
+            document.addEventListener('mousemove', (e) => {
+                mousePos.x = e.clientX;
+                mousePos.y = e.clientY;
+            });
+
+            // Add mouse parallax effect to hero section
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.addEventListener('mousemove', (e) => {
+                    const rect = hero.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const moveX = (x - rect.width / 2) * 0.01;
+                    const moveY = (y - rect.height / 2) * 0.01;
+                    
+                    hero.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+
+                hero.addEventListener('mouseleave', () => {
+                    hero.style.transform = 'translate(0, 0)';
+                });
+            }
+        }
+
+        // ===== ANALYTICS SIMULATION =====
+        function initAnalytics() {
+            // Simulate real-time analytics updates
+            const updateMetrics = () => {
+                const metrics = document.querySelectorAll('.metric-value .value');
+                
+                metrics.forEach(metric => {
+                    const currentValue = parseFloat(metric.textContent);
+                    const variation = (Math.random() - 0.5) * 0.1;
+                    const newValue = Math.max(0, currentValue + variation);
+                    
+                    if (metric.textContent.includes('/')) {
+                        metric.textContent = newValue.toFixed(1) + '/5';
+                    } else if (metric.textContent.includes('+')) {
+                        metric.textContent = Math.floor(newValue) + '+';
+                    } else {
+                        metric.textContent = Math.floor(newValue);
+                    }
+                });
+            };
+
+            // Update metrics every 30 seconds
+            setInterval(updateMetrics, 30000);
+
+            // Add hover effects to analytics cards
+            document.querySelectorAll('.metric-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // ===== COMPANY LOGO INTERACTIONS =====
+        function initCompanyLogos() {
+            const logoItems = document.querySelectorAll('.company-logo-item');
+            
+            logoItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    // Add ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(8, 145, 178, 0.3);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                        width: 100px;
+                        height: 100px;
+                        left: 50%;
+                        top: 50%;
+                        margin-left: -50px;
+                        margin-top: -50px;
+                    `;
+                    
+                    item.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+
+        // ===== THEME DETECTION =====
+        function initTheme() {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            function handleThemeChange(e) {
+                if (e.matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            }
+            
+            handleThemeChange(prefersDark);
+            prefersDark.addEventListener('change', handleThemeChange);
+        }
+
+        // ===== PERFORMANCE MONITORING =====
+        function initPerformanceMonitoring() {
+            // Monitor frame rate
+            let lastTime = performance.now();
+            let frameCount = 0;
+            
+            function measureFPS() {
+                const currentTime = performance.now();
+                frameCount++;
+                
+                if (currentTime - lastTime >= 1000) {
+                    const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                    
+                    // If FPS drops below 30, reduce particle count
+                    if (fps < 30 && particles.length > 25) {
+                        particles = particles.slice(0, 25);
+                    }
+                    
+                    frameCount = 0;
+                    lastTime = currentTime;
+                }
+                
+                requestAnimationFrame(measureFPS);
+            }
+            
+            measureFPS();
+        }
+
+        // ===== ACCESSIBILITY ENHANCEMENTS =====
+        function initAccessibility() {
+            // Add focus indicators
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+            
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+            // Add skip links functionality
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) {
+                skipLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = skipLink.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.focus();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+
+            // Add ARIA labels dynamically
+            document.querySelectorAll('.card').forEach((card, index) => {
+                if (!card.getAttribute('aria-label')) {
+                    const title = card.querySelector('h3');
+                    if (title) {
+                        card.setAttribute('aria-label', `Project: ${title.textContent}`);
+                    }
+                }
+            });
+        }
+
+        // ===== SERVICE WORKER REGISTRATION =====
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            }
+        }
+
+        // ===== MAIN INITIALIZATION =====
+        function init() {
+            // Initialize loading screen
+            initLoading();
+            
+            // Initialize core functionality
+            initNavigation();
+            initMouseTracking();
+            initAnalytics();
+            initCompanyLogos();
+            initTheme();
+            initAccessibility();
+            initServiceWorker();
+            
+            // Initialize performance monitoring
+            if (!isReducedMotion) {
+                initPerformanceMonitoring();
+            }
+        }
+
+        // ===== CLEANUP =====
+        function cleanup() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        }
+
+        // ===== EVENT LISTENERS =====
+        document.addEventListener('DOMContentLoaded', init);
+        window.addEventListener('beforeunload', cleanup);
+        
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cleanup();
+            } else if (isLoaded && !isReducedMotion) {
+                initParticles();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Debounce resize events
+            clearTimeout(window.resizeTimeout);
+            window.resizeTimeout = setTimeout(() => {
+                if (isLoaded && !isReducedMotion) {
+                    initParticles();
+                }
+            }, 250);
+        });
+
+        // ===== ADDITIONAL CSS ANIMATIONS =====
+        const additionalStyles = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .keyboard-navigation *:focus {
+                outline: 2px solid var(--accent-cyan);
+                outline-offset: 2px;
+            }
+            
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        `;
+
+        // Inject additional styles
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
+
+
+
