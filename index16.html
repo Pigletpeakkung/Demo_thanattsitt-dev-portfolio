@@ -163,7 +163,7 @@
             opacity: 0.9;
         }
 
-        /* === DYNAMIC ANIMATED GRADIENT BACKGROUND === */
+        /* === ENHANCED DYNAMIC ANIMATED GRADIENT BACKGROUND === */
         .dynamic-bg {
             position: fixed;
             top: 0;
@@ -171,24 +171,49 @@
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(
+                -45deg,
+                #FFB6C1,  /* Light Pink */
+                #E6E6FA,  /* Lavender */
+                #B0E0E6,  /* Powder Blue */
+                #F0E68C,  /* Khaki */
+                #DDA0DD,  /* Plum */
+                #98FB98,  /* Pale Green */
+                #FFE4E1,  /* Misty Rose */
+                #B19CD9   /* Light Purple */
+            );
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
+            will-change: background-position;
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { 
+                background-position: 0% 50%; 
+            }
+            25% { 
+                background-position: 100% 50%; 
+            }
+            50% { 
+                background-position: 100% 100%; 
+            }
+            75% { 
+                background-position: 0% 100%; 
+            }
+            100% { 
+                background-position: 0% 50%; 
+            }
         }
 
-        /* === CONTENT OVERLAY WITH BACKDROP BLUR === */
+        /* === ENHANCED CONTENT OVERLAY === */
         .content-overlay {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             min-height: 100vh;
             position: relative;
             z-index: 1;
+            box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
         }
 
         /* === PROGRESS BAR === */
@@ -652,8 +677,26 @@
             transform: scale(0.8);
         }
 
+        /* === PERFORMANCE OPTIMIZATION === */
+        @media (prefers-reduced-motion: reduce) {
+            .dynamic-bg {
+                animation: none;
+                background: linear-gradient(-45deg, #E6E6FA, #B0E0E6, #F0E68C, #DDA0DD);
+            }
+        }
+
         /* === RESPONSIVE DESIGN === */
         @media (max-width: 768px) {
+            .dynamic-bg {
+                animation-duration: 25s;
+                background-size: 300% 300%;
+            }
+            
+            .content-overlay {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
             .hero-section {
                 padding: 1rem;
             }
@@ -708,11 +751,6 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
-            .dynamic-bg {
-                animation: none;
-                background: linear-gradient(-45deg, #23a6d5, #23d5ab);
-            }
         }
 
         /* === GPU ACCELERATION === */
@@ -742,10 +780,10 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Dynamic Animated Gradient Background -->
+    <!-- Enhanced Dynamic Animated Gradient Background -->
     <div class="dynamic-bg"></div>
 
-    <!-- Content Overlay with Backdrop Blur -->
+    <!-- Enhanced Content Overlay with Backdrop Blur -->
     <div class="content-overlay">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
@@ -855,7 +893,7 @@
                                 </div>
                                 
                                 <div class="col-md-6 mb-3">
-                                    <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.3">
+                                                                        <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.3">
                                         <div class="text-center">
                                             <i class="fas fa-code fa-2x mb-2" style="color: var(--primary-gold);"></i>
                                             <h4>Creative Development</h4>
@@ -1029,7 +1067,7 @@
                                         <i class="fas fa-eye"></i>
                                     </div>
                                     <div>
-                                                                                <h4>Computer Vision</h4>
+                                        <h4>Computer Vision</h4>
                                         <p>Image processing, object detection, style transfer</p>
                                     </div>
                                 </div>
@@ -1422,11 +1460,9 @@
             init() {
                 if (this.isReducedMotion) {
                     document.body.classList.add('reduced-motion');
-                    // Disable GSAP animations for reduced motion
                     gsap.set('*', { clearProps: 'all' });
                 }
 
-                // Optimize for mobile
                 if (this.isMobile) {
                     ScrollTrigger.config({
                         syncInterval: 150,
@@ -1454,7 +1490,6 @@
             }
 
             initNavbarAnimations() {
-                // Navbar brand animation
                 gsap.from('.navbar-brand', {
                     duration: 0.8,
                     x: -50,
@@ -1462,7 +1497,6 @@
                     ease: 'power3.out'
                 });
 
-                // Navbar links staggered animation
                 gsap.from('.nav-link', {
                     duration: 0.6,
                     y: -30,
@@ -1505,7 +1539,6 @@
             }
 
             initScrollTriggerAnimations() {
-                // Section titles
                 gsap.utils.toArray('.section-title').forEach(title => {
                     gsap.from(title, {
                         duration: 0.8,
@@ -1521,7 +1554,6 @@
                     });
                 });
 
-                // Cards with staggered animations
                 gsap.utils.toArray('.card-3d, .project-card, .skill-category').forEach((card, index) => {
                     gsap.from(card, {
                         duration: 0.8,
@@ -1537,7 +1569,6 @@
                     });
                 });
 
-                // Testimonials with different directions
                 gsap.utils.toArray('.testimonial-card').forEach((testimonial, index) => {
                     const direction = index % 2 === 0 ? -60 : 60;
                     gsap.from(testimonial, {
@@ -1553,7 +1584,6 @@
                     });
                 });
 
-                // Contact cards
                 gsap.utils.toArray('.contact-info-card').forEach((card, index) => {
                     gsap.from(card, {
                         duration: 0.8,
@@ -1569,7 +1599,6 @@
                     });
                 });
 
-                // Form animation
                 gsap.from('#contact-form', {
                     duration: 1,
                     y: 60,
@@ -1585,10 +1614,8 @@
 
             initMobileOptimizations() {
                 if (window.innerWidth <= 768) {
-                    // Reduce animation complexity on mobile
                     gsap.set('*', { force3D: true });
                     
-                    // Optimize scroll triggers for mobile
                     ScrollTrigger.batch('.gsap-fade-in, .gsap-fade-left, .gsap-fade-right', {
                         onEnter: (elements) => {
                             gsap.from(elements, {
@@ -1598,722 +1625,618 @@
                                 stagger: 0.1,
                                 ease: 'power2.out'
                             });
-                        },
-                        start: 'top 90%'
+                        }
                     });
                 }
             }
         }
 
-        // === LOADING SCREEN MANAGEMENT ===
+        // === LOADING SCREEN MANAGER ===
         class LoadingManager {
             constructor() {
                 this.loadingScreen = document.getElementById('loading-screen');
-                this.minLoadTime = 1500;
-                this.startTime = Date.now();
                 this.init();
             }
 
             init() {
                 window.addEventListener('load', () => {
-                    this.hideLoadingScreen();
+                    setTimeout(() => {
+                        this.hideLoading();
+                    }, 1500);
                 });
-                
-                setTimeout(() => {
-                    this.hideLoadingScreen();
-                }, 3000);
             }
 
-            hideLoadingScreen() {
-                const elapsed = Date.now() - this.startTime;
-                const remaining = Math.max(0, this.minLoadTime - elapsed);
-                
+            hideLoading() {
+                this.loadingScreen.classList.add('fade-out');
                 setTimeout(() => {
-                    gsap.to(this.loadingScreen, {
-                        duration: 0.8,
-                        opacity: 0,
-                        ease: 'power2.out',
-                        onComplete: () => {
-                            this.loadingScreen.style.display = 'none';
-                            document.body.style.overflow = 'auto';
-                            
-                            // Initialize other systems
-                            new NavigationManager();
-                            new GSAPAnimationManager();
-                            new FormManager();
-                            new ScrollProgressManager();
-                            
-                            const liveRegion = document.getElementById('live-region');
-                            if (liveRegion) {
-                                liveRegion.textContent = 'Portfolio loaded successfully. Welcome!';
-                            }
-                        }
-                    });
-                }, remaining);
+                    this.loadingScreen.style.display = 'none';
+                }, 800);
             }
         }
 
-        // === SCROLL PROGRESS MANAGER ===
-        class ScrollProgressManager {
+        // === PROGRESS BAR MANAGER ===
+        class ProgressBarManager {
             constructor() {
                 this.progressBar = document.getElementById('progressBar');
                 this.init();
             }
 
             init() {
-                gsap.to(this.progressBar, {
-                    width: '100%',
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: document.body,
-                        start: 'top top',
-                        end: 'bottom bottom',
-                        scrub: 0.3
-                    }
+                window.addEventListener('scroll', () => {
+                    this.updateProgress();
                 });
+            }
+
+            updateProgress() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / scrollHeight) * 100;
+                
+                this.progressBar.style.width = `${progress}%`;
             }
         }
 
-        // === NAVIGATION MANAGER ===
-        class NavigationManager {
+        // === NAVBAR MANAGER ===
+        class NavbarManager {
             constructor() {
                 this.navbar = document.getElementById('navbar');
                 this.navLinks = document.querySelectorAll('.nav-link');
-                this.sections = document.querySelectorAll('section[id]');
                 this.init();
             }
 
             init() {
-                this.setupScrollEffects();
-                this.setupActiveNavigation();
-                this.setupSmoothScrolling();
+                this.handleScroll();
+                this.handleNavigation();
+                this.handleMobileMenu();
             }
 
-            setupScrollEffects() {
-                gsap.to(this.navbar, {
-                    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                    backdropFilter: 'blur(25px)',
-                    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
-                    scrollTrigger: {
-                        trigger: document.body,
-                        start: 'top -100',
-                        end: 'bottom bottom',
-                        toggleActions: 'play none none reverse',
-                        scrub: 0.3
+            handleScroll() {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        this.navbar.classList.add('scrolled');
+                    } else {
+                        this.navbar.classList.remove('scrolled');
                     }
                 });
             }
 
-            setupActiveNavigation() {
-                this.sections.forEach(section => {
-                    ScrollTrigger.create({
-                        trigger: section,
-                        start: 'top 30%',
-                        end: 'bottom 30%',
-                        onEnter: () => this.updateActiveLink(section.id),
-                        onEnterBack: () => this.updateActiveLink(section.id)
-                    });
-                });
-            }
-
-            updateActiveLink(activeId) {
-                this.navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${activeId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            setupSmoothScrolling() {
+            handleNavigation() {
                 this.navLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
                         const targetId = link.getAttribute('href').substring(1);
                         const targetElement = document.getElementById(targetId);
-                        
+
                         if (targetElement) {
-                            gsap.to(window, {
-                                duration: 1,
-                                scrollTo: {
-                                    y: targetElement,
-                                    offsetY: 80
-                                },
-                                ease: 'power2.out'
-                            });
+                            this.scrollToElement(targetElement);
+                            this.setActiveLink(link);
+                            this.closeMobileMenu();
                         }
                     });
                 });
+
+                // Update active link on scroll
+                window.addEventListener('scroll', () => {
+                    this.updateActiveLink();
+                });
+            }
+
+            scrollToElement(element) {
+                const offsetTop = element.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+
+            setActiveLink(activeLink) {
+                this.navLinks.forEach(link => link.classList.remove('active'));
+                activeLink.classList.add('active');
+            }
+
+            updateActiveLink() {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPosition = window.scrollY + 100;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        const activeLink = document.querySelector(`.nav-link[href="#${section.id}"]`);
+                        if (activeLink) {
+                            this.setActiveLink(activeLink);
+                        }
+                    }
+                });
+            }
+
+            handleMobileMenu() {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+
+                if (navbarToggler && navbarCollapse) {
+                    navbarToggler.addEventListener('click', () => {
+                        navbarCollapse.classList.toggle('show');
+                    });
+                }
+            }
+
+            closeMobileMenu() {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
             }
         }
 
         // === FORM MANAGER ===
         class FormManager {
             constructor() {
-                this.contactForm = document.getElementById('contact-form');
+                this.form = document.getElementById('contact-form');
                 this.init();
             }
 
             init() {
-                if (!this.contactForm) return;
-                
-                this.setupFormValidation();
-                this.setupFormSubmission();
-                this.setupFormAnimations();
-            }
+                if (this.form) {
+                    this.form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.handleSubmit();
+                    });
 
-            setupFormValidation() {
-                const inputs = this.contactForm.querySelectorAll('input, textarea');
-                
-                inputs.forEach(input => {
-                    input.addEventListener('blur', () => {
-                        this.validateField(input);
+                    // Real-time validation
+                    this.form.querySelectorAll('input, textarea').forEach(field => {
+                        field.addEventListener('blur', () => {
+                            this.validateField(field);
+                        });
                     });
-                    
-                    input.addEventListener('input', () => {
-                        if (input.classList.contains('is-invalid')) {
-                            this.validateField(input);
-                        }
-                    });
-                });
+                }
             }
 
             validateField(field) {
                 const value = field.value.trim();
-                const errorElement = document.getElementById(field.name + '-error');
-                
-                if (!errorElement) return;
-                
+                const fieldType = field.type;
+                const fieldName = field.name;
                 let isValid = true;
                 let errorMessage = '';
-                
-                if (field.hasAttribute('required') && !value) {
-                    isValid = false;
-                    errorMessage = 'This field is required.';
-                } else if (field.type === 'email' && value) {
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailPattern.test(value)) {
-                        isValid = false;
-                        errorMessage = 'Please enter a valid email address.';
+
+                // Clear previous error state
+                field.classList.remove('is-invalid');
+                const errorDiv = document.getElementById(`${fieldName}-error`);
+
+                switch (fieldType) {
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Please enter a valid email address';
+                        }
+                        break;
+                    case 'text':
+                    case 'textarea':
+                        if (value.length < 2) {
+                            isValid = false;
+                            errorMessage = `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least 2 characters long`;
+                        }
+                        break;
+                }
+
+                if (!isValid) {
+                    field.classList.add('is-invalid');
+                    if (errorDiv) {
+                        errorDiv.textContent = errorMessage;
+                        errorDiv.style.display = 'block';
+                    }
+                } else {
+                    field.classList.add('is-valid');
+                    if (errorDiv) {
+                        errorDiv.style.display = 'none';
                     }
                 }
-                
-                if (isValid) {
-                    field.classList.remove('is-invalid');
-                    field.classList.add('is-valid');
-                    errorElement.textContent = '';
-                } else {
-                    field.classList.remove('is-valid');
-                    field.classList.add('is-invalid');
-                    errorElement.textContent = errorMessage;
-                }
-                
+
                 return isValid;
             }
 
-            setupFormSubmission() {
-                this.contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    const inputs = this.contactForm.querySelectorAll('input, textarea');
-                    let isFormValid = true;
-                    
-                    inputs.forEach(input => {
-                        if (!this.validateField(input)) {
-                            isFormValid = false;
-                        }
-                    });
-                    
-                    if (isFormValid) {
-                        this.submitForm();
-                    } else {
-                        const firstInvalid = this.contactForm.querySelector('.is-invalid');
-                        if (firstInvalid) {
-                            firstInvalid.focus();
-                        }
+            handleSubmit() {
+                const formData = new FormData(this.form);
+                const fields = this.form.querySelectorAll('input[required], textarea[required]');
+                let isFormValid = true;
+
+                // Validate all fields
+                fields.forEach(field => {
+                    if (!this.validateField(field)) {
+                        isFormValid = false;
                     }
                 });
-            }
 
-            setupFormAnimations() {
-                // Form field focus animations
-                const formControls = this.contactForm.querySelectorAll('.form-control');
-                formControls.forEach(control => {
-                    control.addEventListener('focus', () => {
-                        gsap.to(control, {
-                            duration: 0.3,
-                            scale: 1.02,
-                            ease: 'power2.out'
-                        });
-                    });
-                    
-                    control.addEventListener('blur', () => {
-                        gsap.to(control, {
-                            duration: 0.3,
-                            scale: 1,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-            }
-
-            submitForm() {
-                const submitButton = this.contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                
-                // Button loading animation
-                gsap.to(submitButton, {
-                    duration: 0.3,
-                    scale: 0.95,
-                    ease: 'power2.out',
-                    onComplete: () => {
-                        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                        submitButton.disabled = true;
-                        
-                        gsap.to(submitButton, {
-                            duration: 0.3,
-                            scale: 1,
-                            ease: 'back.out(1.7)'
-                        });
-                    }
-                });
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitButton.style.background = 'var(--accent-teal)';
-                    
-                    // Success animation
-                    gsap.fromTo(submitButton, 
-                        { scale: 1 },
-                        { 
-                            duration: 0.6,
-                            scale: 1.05,
-                            ease: 'elastic.out(1, 0.3)',
-                            yoyo: true,
-                            repeat: 1
-                        }
-                    );
-                    
-                    this.contactForm.reset();
-                    this.contactForm.querySelectorAll('.is-valid').forEach(field => {
-                        field.classList.remove('is-valid');
-                    });
-                    
-                    setTimeout(() => {
-                        submitButton.innerHTML = originalText;
-                        submitButton.disabled = false;
-                        submitButton.style.background = '';
-                    }, 3000);
-                    
-                    const liveRegion = document.getElementById('live-region');
-                    if (liveRegion) {
-                        liveRegion.textContent = 'Message sent successfully! Thank you for your inquiry.';
-                    }
-                }, 2000);
-            }
-        }
-
-        // === ENHANCED HOVER EFFECTS ===
-        class HoverEffectsManager {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.setupCardHoverEffects();
-                this.setupButtonHoverEffects();
-                this.setupSocialLinkEffects();
-            }
-
-            setupCardHoverEffects() {
-                // Enhanced card hover animations
-                const cards = document.querySelectorAll('.card-3d, .project-card, .skill-category, .contact-info-card, .testimonial-card');
-                
-                cards.forEach(card => {
-                    card.addEventListener('mouseenter', () => {
-                        gsap.to(card, {
-                            duration: 0.3,
-                            y: -10,
-                            rotationX: 2,
-                            rotationY: 2,
-                            scale: 1.02,
-                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
-                            ease: 'power2.out'
-                        });
-                    });
-                    
-                    card.addEventListener('mouseleave', () => {
-                        gsap.to(card, {
-                            duration: 0.3,
-                            y: 0,
-                            rotationX: 0,
-                            rotationY: 0,
-                            scale: 1,
-                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-            }
-
-            setupButtonHoverEffects() {
-                const buttons = document.querySelectorAll('.cta-button');
-                
-                buttons.forEach(button => {
-                    button.addEventListener('mouseenter', () => {
-                        gsap.to(button, {
-                            duration: 0.3,
-                            y: -3,
-                            scale: 1.05,
-                            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
-                            ease: 'back.out(1.7)'
-                        });
-                        
-                        // Icon animation
-                        const icon = button.querySelector('i');
-                        if (icon) {
-                            gsap.to(icon, {
-                                duration: 0.3,
-                                rotation: 360,
-                                ease: 'power2.out'
-                            });
-                        }
-                    });
-                    
-                    button.addEventListener('mouseleave', () => {
-                        gsap.to(button, {
-                            duration: 0.3,
-                            y: 0,
-                            scale: 1,
-                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                            ease: 'power2.out'
-                        });
-                        
-                        const icon = button.querySelector('i');
-                        if (icon) {
-                            gsap.to(icon, {
-                                duration: 0.3,
-                                rotation: 0,
-                                ease: 'power2.out'
-                            });
-                        }
-                    });
-                });
-            }
-
-            setupSocialLinkEffects() {
-                const socialLinks = document.querySelectorAll('.social-link');
-                
-                socialLinks.forEach(link => {
-                    link.addEventListener('mouseenter', () => {
-                        gsap.to(link, {
-                            duration: 0.3,
-                            y: -3,
-                            scale: 1.1,
-                            rotation: 5,
-                            ease: 'back.out(1.7)'
-                        });
-                    });
-                    
-                    link.addEventListener('mouseleave', () => {
-                        gsap.to(link, {
-                            duration: 0.3,
-                            y: 0,
-                            scale: 1,
-                            rotation: 0,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-            }
-        }
-
-        // === PARALLAX EFFECTS ===
-        class ParallaxManager {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-                
-                this.setupHeroParallax();
-                this.setupSectionParallax();
-            }
-
-            setupHeroParallax() {
-                gsap.to('.hero-content', {
-                    yPercent: -50,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: '.hero-section',
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: true
-                    }
-                });
-            }
-
-            setupSectionParallax() {
-                // Subtle parallax for section titles
-                gsap.utils.toArray('.section-title').forEach(title => {
-                    gsap.to(title, {
-                        yPercent: -30,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: title,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true
-                        }
-                    });
-                });
-            }
-        }
-
-        // === CURSOR EFFECTS (Desktop Only) ===
-        class CursorEffects {
-            constructor() {
-                this.isMobile = window.innerWidth <= 768;
-                if (!this.isMobile) {
-                    this.init();
+                if (isFormValid) {
+                    this.submitForm(formData);
+                } else {
+                    this.showNotification('Please correct the errors above', 'error');
                 }
             }
 
-            init() {
-                this.cursor = document.createElement('div');
-                this.cursor.className = 'custom-cursor';
-                this.cursor.style.cssText = `
-                    position: fixed;
-                    width: 20px;
-                    height: 20px;
-                    background: var(--primary-gold);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    mix-blend-mode: difference;
-                    transition: transform 0.1s ease;
-                `;
-                document.body.appendChild(this.cursor);
-
-                this.setupCursorTracking();
-                this.setupHoverEffects();
-            }
-
-            setupCursorTracking() {
-                document.addEventListener('mousemove', (e) => {
-                    gsap.to(this.cursor, {
-                        duration: 0.1,
-                        x: e.clientX - 10,
-                        y: e.clientY - 10,
-                        ease: 'none'
-                    });
-                });
-            }
-
-            setupHoverEffects() {
-                const hoverElements = document.querySelectorAll('a, button, .card-3d, .project-card');
+            async submitForm(formData) {
+                const submitButton = this.form.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
                 
-                hoverElements.forEach(element => {
-                    element.addEventListener('mouseenter', () => {
-                        gsap.to(this.cursor, {
-                            duration: 0.2,
-                            scale: 2,
-                            ease: 'power2.out'
-                        });
-                    });
+                // Show loading state
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+
+                try {
+                    // Simulate API call (replace with actual endpoint)
+                    await new Promise(resolve => setTimeout(resolve, 2000));
                     
-                    element.addEventListener('mouseleave', () => {
-                        gsap.to(this.cursor, {
-                            duration: 0.2,
-                            scale: 1,
-                            ease: 'power2.out'
-                        });
+                    // Success
+                    this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    this.form.reset();
+                    this.form.querySelectorAll('.is-valid').forEach(field => {
+                        field.classList.remove('is-valid');
                     });
-                });
+                } catch (error) {
+                    this.showNotification('Failed to send message. Please try again.', 'error');
+                } finally {
+                    // Reset button
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }
+            }
+
+            showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} mt-3`;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    z-index: 1000;
+                    min-width: 300px;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: all 0.3s ease;
+                `;
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+                    ${message}
+                `;
+
+                document.body.appendChild(notification);
+
+                // Animate in
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                // Auto remove
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 5000);
             }
         }
 
-        // === INTERSECTION OBSERVER FOR PERFORMANCE ===
-        class VisibilityManager {
+        // === ACCESSIBILITY MANAGER ===
+        class AccessibilityManager {
             constructor() {
                 this.init();
             }
 
             init() {
-                this.setupLazyAnimations();
-                this.setupVisibilityTracking();
+                this.handleKeyboardNavigation();
+                this.handleFocusManagement();
+                this.handleScreenReader();
             }
 
-            setupLazyAnimations() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('in-view');
-                            
-                            // Trigger custom animations for specific elements
-                            if (entry.target.classList.contains('skill-item')) {
-                                this.animateSkillItem(entry.target);
-                            }
-                        }
-                    });
-                }, { threshold: 0.1, rootMargin: '50px' });
+            handleKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        document.body.classList.add('keyboard-navigation');
+                    }
+                });
 
-                document.querySelectorAll('.skill-item, .tech-tag').forEach(el => {
-                    observer.observe(el);
+                document.addEventListener('mousedown', () => {
+                    document.body.classList.remove('keyboard-navigation');
                 });
             }
 
-            setupVisibilityTracking() {
-                // Track section visibility for analytics
-                const sectionObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            console.log(`Section ${entry.target.id} is visible`);
-                        }
-                    });
-                }, { threshold: 0.5 });
+            handleFocusManagement() {
+                const focusableElements = 'a[href], button, textarea, input[type="text"], input[type="email"], input[type="password"], select, [tabindex]:not([tabindex="-1"])';
+                const focusableContent = document.querySelectorAll(focusableElements);
 
-                document.querySelectorAll('section[id]').forEach(section => {
-                    sectionObserver.observe(section);
+                focusableContent.forEach(element => {
+                    element.addEventListener('focus', () => {
+                        element.classList.add('focus-visible');
+                    });
+
+                    element.addEventListener('blur', () => {
+                        element.classList.remove('focus-visible');
+                    });
                 });
             }
 
-            animateSkillItem(item) {
-                const icon = item.querySelector('.skill-icon');
-                const text = item.querySelector('div:last-child');
+            handleScreenReader() {
+                const liveRegion = document.getElementById('live-region');
                 
-                gsap.timeline()
-                    .from(icon, {
-                        duration: 0.6,
-                        scale: 0,
-                        rotation: 180,
-                        ease: 'back.out(1.7)'
-                    })
-                    .from(text, {
-                        duration: 0.4,
-                        x: 30,
-                        opacity: 0,
-                        ease: 'power2.out'
-                    }, '-=0.3');
+                window.addEventListener('load', () => {
+                    liveRegion.textContent = 'Page loaded successfully';
+                });
+
+                // Announce section changes
+                window.addEventListener('scroll', this.debounce(() => {
+                    const activeSection = this.getCurrentSection();
+                    if (activeSection) {
+                        const sectionTitle = activeSection.querySelector('h2, h1');
+                        if (sectionTitle) {
+                            liveRegion.textContent = `Now viewing: ${sectionTitle.textContent}`;
+                        }
+                    }
+                }, 1000));
+            }
+
+            getCurrentSection() {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPosition = window.scrollY + 100;
+
+                for (let section of sections) {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        return section;
+                    }
+                }
+                return null;
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
             }
         }
 
-        // === PERFORMANCE MONITORING ===
+        // === PERFORMANCE MONITOR ===
         class PerformanceMonitor {
             constructor() {
-                this.metrics = {
-                    loadTime: 0,
-                    animationFrames: 0,
-                    lastFrameTime: performance.now()
-                };
                 this.init();
             }
 
             init() {
-                this.trackLoadTime();
                 this.monitorFPS();
-                this.optimizeForDevice();
-            }
-
-            trackLoadTime() {
-                window.addEventListener('load', () => {
-                    this.metrics.loadTime = performance.now();
-                    console.log(`🚀 Page loaded in ${this.metrics.loadTime.toFixed(2)}ms`);
-                });
+                this.monitorMemory();
+                this.optimizeImages();
             }
 
             monitorFPS() {
-                const trackFPS = () => {
-                    const now = performance.now();
-                    const delta = now - this.metrics.lastFrameTime;
-                    this.metrics.lastFrameTime = now;
-                    this.metrics.animationFrames++;
+                let fps = 0;
+                let lastTime = performance.now();
+                
+                const updateFPS = (currentTime) => {
+                    fps = 1000 / (currentTime - lastTime);
+                    lastTime = currentTime;
                     
-                    // Log FPS every second
-                    if (this.metrics.animationFrames % 60 === 0) {
-                        const fps = 1000 / delta;
-                        if (fps < 30) {
-                            console.warn(`⚠️ Low FPS detected: ${fps.toFixed(1)}`);
-                            this.reduceAnimationComplexity();
-                        }
+                    // If FPS drops below 30, reduce animations
+                    if (fps < 30) {
+                        document.body.classList.add('low-performance');
+                    } else {
+                        document.body.classList.remove('low-performance');
                     }
                     
-                    requestAnimationFrame(trackFPS);
+                    requestAnimationFrame(updateFPS);
                 };
                 
-                requestAnimationFrame(trackFPS);
+                requestAnimationFrame(updateFPS);
             }
 
-            optimizeForDevice() {
-                // Reduce animations on low-end devices
-                if (navigator.hardwareConcurrency <= 2) {
-                    gsap.globalTimeline.timeScale(0.7);
-                    console.log('🔧 Reduced animation complexity for low-end device');
+            monitorMemory() {
+                if ('memory' in performance) {
+                    const checkMemory = () => {
+                        const memory = performance.memory;
+                        const usedJSHeapSize = memory.usedJSHeapSize;
+                        const totalJSHeapSize = memory.totalJSHeapSize;
+                        
+                        // If memory usage is above 80%, optimize
+                        if (usedJSHeapSize / totalJSHeapSize > 0.8) {
+                            this.optimizePerformance();
+                        }
+                    };
+                    
+                    setInterval(checkMemory, 10000); // Check every 10 seconds
                 }
             }
 
-            reduceAnimationComplexity() {
-                // Reduce animation quality if performance is poor
-                gsap.set('*', { force3D: false });
-                ScrollTrigger.refresh();
+            optimizeImages() {
+                const images = document.querySelectorAll('img');
+                
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.add('loaded');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                });
+
+                images.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            optimizePerformance() {
+                // Reduce animation complexity
+                document.body.classList.add('performance-mode');
+                
+                // Disable non-essential animations
+                gsap.globalTimeline.timeScale(0.5);
+                
+                // Reduce particle count if any
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach((particle, index) => {
+                    if (index % 2 === 0) {
+                        particle.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // === MAIN APPLICATION INITIALIZATION ===
+        class App {
+            constructor() {
+                this.managers = {};
+                this.init();
+            }
+
+            init() {
+                // Initialize all managers
+                this.managers.performance = new PerformanceManager();
+                this.managers.loading = new LoadingManager();
+                this.managers.progress = new ProgressBarManager();
+                this.managers.navbar = new NavbarManager();
+                this.managers.form = new FormManager();
+                this.managers.accessibility = new AccessibilityManager();
+                this.managers.performanceMonitor = new PerformanceMonitor();
+                this.managers.gsap = new GSAPAnimationManager();
+
+                // Initialize additional features
+                this.initSmoothScroll();
+                this.initResponsiveDesign();
+                this.initErrorHandling();
+                this.initServiceWorker();
+            }
+
+            initSmoothScroll() {
+                // Already handled in NavbarManager
+            }
+
+            initResponsiveDesign() {
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        ScrollTrigger.refresh();
+                        this.updateViewportHeight();
+                    }, 250);
+                });
+
+                this.updateViewportHeight();
+            }
+
+            updateViewportHeight() {
+                // Fix for mobile viewport height
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+
+            initErrorHandling() {
+                window.addEventListener('error', (e) => {
+                    console.error('Global error:', e.error);
+                    this.showErrorNotification('An error occurred. Please refresh the page.');
+                });
+
+                window.addEventListener('unhandledrejection', (e) => {
+                    console.error('Unhandled promise rejection:', e.reason);
+                    this.showErrorNotification('An error occurred. Please try again.');
+                });
+            }
+
+            showErrorNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'alert alert-danger';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 10000;
+                    max-width: 400px;
+                `;
+                notification.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    ${message}
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 5000);
+            }
+
+            initServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('ServiceWorker registered:', registration);
+                        })
+                        .catch(error => {
+                            console.log('ServiceWorker registration failed:', error);
+                        });
+                }
             }
         }
 
         // === INITIALIZE APPLICATION ===
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize performance monitoring first
-            new PerformanceManager();
-            new PerformanceMonitor();
-            
-            // Initialize loading screen
-            new LoadingManager();
-            
-            // Initialize additional effects after load
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    new HoverEffectsManager();
-                    new ParallaxManager();
-                    new CursorEffects();
-                    new VisibilityManager();
-                }, 1000);
-            });
-            
-            console.log('🎨 Thanattsitt Portfolio - Enhanced with GSAP');
-            console.log('⚡ Hardware-accelerated animations loaded');
-            console.log('📱 Mobile-friendly optimizations active');
-            console.log('♿ Accessibility features enabled');
-            console.log('🎭 Professional light theme applied');
-            console.log('🌈 Dynamic gradient background active');
+        document.addEventListener('DOMContentLoaded', () => {
+            new App();
         });
 
-        // === ERROR HANDLING ===
-        window.addEventListener('error', (e) => {
-            console.warn('Non-critical error caught:', e.error);
-            
-            // Fallback for animation failures
-            if (e.error.message.includes('gsap')) {
-                document.querySelectorAll('.gsap-fade-in, .gsap-fade-left, .gsap-fade-right, .gsap-scale-in').forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                });
+        // === ADDITIONAL CSS FOR PERFORMANCE MODES ===
+        const additionalStyles = `
+            .low-performance * {
+                animation-duration: 0.3s !important;
+                transition-duration: 0.3s !important;
             }
-        });
 
-        // === SERVICE WORKER FOR PERFORMANCE (Optional) ===
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('🔧 SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
+            .performance-mode .dynamic-bg {
+                animation-duration: 30s !important;
+            }
+
+            .keyboard-navigation *:focus {
+                outline: 2px solid var(--primary-gold) !important;
+                outline-offset: 2px !important;
+            }
+
+            .focus-visible {
+                outline: 2px solid var(--primary-gold) !important;
+                outline-offset: 2px !important;
+            }
+
+            .reduced-motion * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            @media (max-width: 768px) {
+                .hero-section {
+                    min-height: calc(100vh - 60px);
+                }
+            }
+        `;
+
+        // Inject additional styles
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
+
 
