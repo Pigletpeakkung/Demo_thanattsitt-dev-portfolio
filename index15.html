@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanattsitt Santisamranwilai - AI Artist & Creative Developer</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="AI Artist and Creative Developer specializing in cultural heritage preservation through artificial intelligence and digital art.">
+    <meta name="keywords" content="AI artist, creative developer, cultural heritage, artificial intelligence, digital art">
+    <meta name="author" content="Thanattsitt Santisamranwilai">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Thanattsitt Santisamranwilai - AI Artist & Creative Developer">
+    <meta property="og:description" content="Bridging tradition and technology through AI-powered cultural preservation.">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* === CSS VARIABLES === */
+        :root {
+            --primary-gold: #FFD700;
+            --secondary-gold: #FFA500;
+            --accent-teal: #4ECDC4;
+            --accent-coral: #FF6B6B;
+            --dark-bg: #0F0F23;
+            --darker-bg: #0A0A1A;
+            --card-bg: #1A1A2E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-coral) 100%);
+            --shadow-glow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            --border-radius: 20px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* === GLOBAL STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* === ACCESSIBILITY === */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* === LOADING SCREEN === */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .loading-moon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            position: relative;
+            animation: moonPulse 2s ease-in-out infinite;
+        }
+
+        .loading-moon::before,
+        .loading-moon::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            animation: liquidPulse 2s ease-in-out infinite;
+        }
+
+        .loading-moon::before {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
+            animation-delay: 0s;
+        }
+
+        .loading-moon::after {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.4), rgba(78, 205, 196, 0.1));
+            animation-delay: 0.5s;
+        }
+
+        @keyframes moonPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes liquidPulse {
+            0%, 100% {
+                transform: scale(1);
+                border-radius: 50%;
+            }
+            25% {
+                transform: scale(1.1);
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                transform: scale(1.2);
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+            75% {
+                transform: scale(1.1);
+                border-radius: 70% 30% 40% 60% / 40% 70% 60% 30%;
+            }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.8;
+            animation: textFadeIn 3s ease-in-out infinite;
+        }
+
+        @keyframes textFadeIn {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* === LIQUID MORPHING BACKGROUND === */
+        .liquid-morph-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .liquid-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            mix-blend-mode: screen;
+            animation: blobFloat 20s ease-in-out infinite;
+            will-change: transform, border-radius;
+        }
+
+        .liquid-blob:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.1));
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .liquid-blob:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.3), rgba(69, 183, 168, 0.1));
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .liquid-blob:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.2), rgba(255, 142, 142, 0.1));
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+
+        .liquid-blob:nth-child(4) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(147, 112, 219, 0.2), rgba(138, 43, 226, 0.1));
+            top: 10%;
+            right: 30%;
+            animation-delay: -21s;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% {
+                transform: translate(0px, 0px) scale(1) rotate(0deg);
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            20% {
+                transform: translate(100px, -50px) scale(1.1) rotate(72deg);
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+            40% {
+                transform: translate(-80px, 100px) scale(0.9) rotate(144deg);
+                border-radius: 70% 30% 40% 60% / 40% 70% 60% 30%;
+            }
+            60% {
+                transform: translate(150px, 80px) scale(1.05) rotate(216deg);
+                border-radius: 40% 70% 60% 30% / 70% 40% 50% 60%;
+            }
+            80% {
+                transform: translate(-120px, -60px) scale(0.95) rotate(288deg);
+                border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
+            }
+        }
+
+        /* === LIQUID PROGRESS BAR === */
+        .liquid-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.3);
+        }
+
+        .liquid-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #FFD700, #4ECDC4, #FF6B6B, #9370DB);
+            background-size: 400% 100%;
+            animation: progressFlow 3s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShimmer 2s ease infinite;
+        }
+
+        @keyframes progressFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes progressShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* === NIGHT SKY BACKGROUND === */
+        .night-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 50%, #16213E 100%);
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star.small {
+            width: 1px;
+            height: 1px;
+            animation-duration: 2s;
+        }
+
+        .star.medium {
+            width: 2px;
+            height: 2px;
+            animation-duration: 3s;
+        }
+
+        .star.large {
+            width: 3px;
+            height: 3px;
+            animation-duration: 4s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* === ENHANCED NAVBAR === */
+        .navbar {
+            background: rgba(15, 15, 35, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.98) !important;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: var(--transition-smooth);
+            text-decoration: none !important;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-gold) !important;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 80%;
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === ENHANCED BUTTONS === */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--dark-bg);
+            background: var(--gradient-primary);
+            box-shadow: var(--shadow-glow);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            border-radius: 50%;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.6), rgba(78, 205, 196, 0.2));
+            border-radius: 50%;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .cta-button:hover::after {
+            width: 250px;
+            height: 250px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* === ENHANCED CARDS === */
+        .card-3d {
+            background: rgba(26, 26, 46, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(20px);
+        }
+
+        .card-3d::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(255, 215, 0, 0.3) 60deg,
+                rgba(78, 205, 196, 0.3) 120deg,
+                rgba(255, 107, 107, 0.3) 180deg,
+                rgba(147, 112, 219, 0.3) 240deg,
+                rgba(255, 215, 0, 0.3) 300deg,
+                transparent 360deg
+            );
+            animation: morphRotate 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+
+        .card-3d:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes morphRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-face {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .card-face:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        /* === PROJECT CARDS === */
+        .project-card {
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--primary-gold);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* === SKILLS SECTION === */
+        .skill-category {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            color: var(--dark-bg);
+            font-size: 1.2rem;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonial-card {
+            background: rgba(26, 26, 46, 0.9);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-gold);
+            font-family: serif;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-info-card {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--darker-bg);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* === CUSTOM CURSOR === */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--primary-gold), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-cursor.attract {
+            transform: translate(-50%, -50%) scale(2);
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.8) 0%, rgba(255, 107, 107, 0.3) 50%, transparent 70%);
+        }
+
+        .custom-cursor.repel {
+            transform: translate(-50%, -50%) scale(0.5);
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.8) 0%, rgba(78, 205, 196, 0.3) 50%, transparent 70%);
+        }
+
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: radial-gradient(circle, var(--accent-teal), transparent);
+        }
+
+        .custom-cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease-out;
+        }
+
+        /* === LIQUID TRAIL EFFECTS === */
+        .liquid-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.8), transparent);
+            animation: trailDissolve 1.5s ease-out forwards;
+        }
+
+        @keyframes trailDissolve {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* === SCROLL WAVE EFFECTS === */
+        .liquid-wave-container {
+            position: absolute;
+            width: 120%;
+            height: 200px;
+            left: -10%;
+            overflow: hidden;
+        }
+
+        .liquid-wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 215, 0, 0.1) 25%, 
+                rgba(78, 205, 196, 0.15) 50%, 
+                rgba(255, 215, 0, 0.1) 75%, 
+                transparent 100%);
+            animation: waveMove 15s linear infinite;
+            transform: rotate(-2deg);
+        }
+
+        .liquid-wave:nth-child(2) {
+            animation-delay: -5s;
+            opacity: 0.7;
+            animation-duration: 18s;
+            transform: rotate(2deg);
+        }
+
+        .liquid-wave:nth-child(3) {
+            animation-delay: -10s;
+            opacity: 0.5;
+            animation-duration: 22s;
+            transform: rotate(-1deg);
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-100%) rotate(-2deg); }
+            100% { transform: translateX(0%) rotate(-2deg); }
+        }
+
+        /* === MORPHING TEXT BACKGROUNDS === */
+        .morph-text-bg {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .morph-text-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.1), 
+                rgba(78, 205, 196, 0.1), 
+                rgba(255, 107, 107, 0.1), 
+                rgba(147, 112, 219, 0.1)
+            );
+            background-size: 400% 400%;
+            border-radius: 15px;
+            animation: morphBg 8s ease infinite;
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+
+        .morph-text-bg:hover::before {
+            transform: scale(1.1);
+        }
+
+        @keyframes morphBg {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === LIQUID REVEAL ANIMATIONS === */
+        .liquid-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-reveal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 215, 0, 0.3) 30%, 
+                rgba(78, 205, 196, 0.3) 70%, 
+                transparent 100%
+            );
+            transition: left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 2;
+        }
+
+        .liquid-reveal.revealed::before {
+            left: 100%;
+        }
+
+        /* === SECTION TRANSITIONS === */
+        .section-transition {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 215, 0, 0.1) 50%, transparent 100%);
+            transform: skewY(-2deg);
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .section-transition.active {
+            opacity: 1;
+        }
+
+        /* === ANIMATIONS === */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animate-on-scroll.from-left {
+            transform: translateX(-50px);
+        }
+
+        .animate-on-scroll.from-right {
+            transform: translateX(50px);
+        }
+
+        .animate-on-scroll.from-bottom {
+            transform: translateY(50px);
+        }
+
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        .text-reveal {
+            overflow: hidden;
+        }
+
+        .text-reveal .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .text-reveal.animate .char {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .floating-symbol {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.1);
+            font-size: 2rem;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .card-3d {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-nav {
+                background: rgba(15, 15, 35, 0.95);
+                border-radius: 10px;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .card-3d {
+                padding: 1.5rem;
+            }
+            
+            .liquid-blob {
+                width: 200px !important;
+                height: 200px !important;
+                filter: blur(25px);
+            }
+            
+            .liquid-wave-container {
+                height: 100px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* === ACCESSIBILITY & PERFORMANCE === */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .liquid-blob,
+            .liquid-wave,
+            .floating-symbol {
+                animation: none !important;
+            }
+            
+            .card-3d::before {
+                display: none;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --dark-bg: #f8f9fa;
+                --darker-bg: #e9ecef;
+                --card-bg: #ffffff;
+                --text-primary: #212529;
+                --text-secondary: #6c757d;
+            }
+        }
+
+        /* === GPU ACCELERATION === */
+        .gpu-accelerated {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* === HIGH DPI DISPLAYS === */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .star {
+                box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Accessibility Features -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-moon" aria-label="Loading animation"></div>
+            <div class="loading-text">Welcome to the Future of AI Art</div>
+        </div>
+    </div>
+
+    <!-- Liquid Progress Bar -->
+    <div class="liquid-progress">
+        <div class="liquid-progress-bar" id="liquidProgressBar"></div>
+    </div>
+
+    <!-- Liquid Morphing Background -->
+    <div class="liquid-morph-container">
+        <div class="liquid-blob"></div>
+        <div class="liquid-blob"></div>
+        <div class="liquid-blob"></div>
+        <div class="liquid-blob"></div>
+    </div>
+
+    <!-- Night Sky Background -->
+    <div class="night-sky">
+        <div class="stars" id="stars"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-trail" id="cursor-trail"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Thanattsitt</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section" role="banner">
+            <div class="floating-elements" aria-hidden="true">
+                <!-- Floating symbols will be generated by JavaScript -->
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title text-reveal liquid-reveal morph-text-bg">
+                    Thanattsitt Santisamranwilai
+                </h1>
+                <h2 class="hero-subtitle text-reveal liquid-reveal">
+                    AI Artist & Creative Developer
+                </h2>
+                <p class="hero-description text-reveal liquid-reveal">
+                    Bridging the gap between tradition and technology through innovative AI-powered art. 
+                    I specialize in cultural heritage preservation, creating immersive digital experiences 
+                    that honor the past while embracing the future.
+                </p>
+                
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#portfolio" class="cta-button gpu-accelerated text-reveal" 
+                       role="button" aria-describedby="explore-work-desc">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Explore My Work
+                    </a>
+                    <a href="#contact" class="cta-button btn-secondary gpu-accelerated text-reveal" 
+                       role="button" aria-describedby="contact-desc">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <!-- Screen reader descriptions -->
+                <div id="explore-work-desc" class="sr-only">View portfolio of AI art and cultural heritage projects</div>
+                <div id="contact-desc" class="sr-only">Contact for collaboration opportunities</div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section" role="main">
+            <div class="section-transition"></div>
+            <div class="liquid-wave-container" style="bottom: 0;">
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+            </div>
+            
+            <div class="container">
+                <h2 class="section-title text-reveal gradient-text liquid-reveal morph-text-bg">About Me</h2>
+                
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card-3d animate-on-scroll from-left gpu-accelerated">
+                            <h3 class="gradient-text mb-3">My Journey</h3>
+                            <p class="mb-3">
+                                As an AI artist and creative developer, I'm passionate about exploring the intersection 
+                                of artificial intelligence and cultural preservation. My work focuses on creating innovative 
+                                digital experiences that bridge traditional art forms with cutting-edge technology.
+                            </p>
+                            <p>
+                                Through my projects, I aim to preserve and celebrate cultural heritage while pushing 
+                                the boundaries of what's possible with AI-generated art and interactive media.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="card-face animate-on-scroll from-right gpu-accelerated" style="animation-delay: 0.1s;">
+                                    <div class="text-center">
+                                        <i class="fas fa-brain fa-2x text-warning mb-2" aria-hidden="true"></i>
+                                        <h4>AI Innovation</h4>
+                                        <p>Pioneering new approaches to AI-generated art and machine learning applications in creative fields.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <div class="card-face animate-on-scroll from-right gpu-accelerated" style="animation-delay: 0.2s;">
+                                    <div class="text-center">
+                                        <i class="fas fa-landmark fa-2x text-warning mb-2" aria-hidden="true"></i>
+                                        <h4>Cultural Heritage</h4>
+                                        <p>Preserving traditional art forms and cultural narratives through digital transformation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <div class="card-face animate-on-scroll from-right gpu-accelerated" style="animation-delay: 0.3s;">
+                                    <div class="text-center">
+                                        <i class="fas fa-code fa-2x text-warning mb-2" aria-hidden="true"></i>
+                                        <h4>Creative Development</h4>
+                                        <p>Building interactive experiences that engage audiences in meaningful cultural dialogue.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <div class="card-face animate-on-scroll from-right gpu-accelerated" style="animation-delay: 0.4s;">
+                                    <div class="text-center">
+                                        <i class="fas fa-palette fa-2x text-warning mb-2" aria-hidden="true"></i>
+                                        <h4>Digital Art</h4>
+                                        <p>Creating immersive visual experiences that blend traditional aesthetics with modern technology.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="section-transition"></div>
+            <div class="container">
+                <h2 class="section-title text-reveal gradient-text liquid-reveal morph-text-bg">Portfolio</h2>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card animate-on-scroll from-left gpu-accelerated">
+                            <h3 class="gradient-text mb-3">AI Cultural Heritage Preservation</h3>
+                            <p class="mb-3">
+                                A groundbreaking project that uses machine learning to restore and preserve ancient 
+                                artifacts and artworks. The AI analyzes historical patterns and reconstructs missing 
+                                elements while maintaining cultural authenticity.
+                            </p>
+                            
+                            <div class="project-tech">
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">Computer Vision</span>
+                                <span class="tech-tag">3D Reconstruction</span>
+                                <span class="tech-tag">Cultural Analysis</span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <a href="#" class="cta-button me-2" role="button">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="cta-button btn-secondary" role="button">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card animate-on-scroll from-right gpu-accelerated">
+                            <h3 class="gradient-text mb-3">Interactive AI Art Installation</h3>
+                            <p class="mb-3">
+                                An immersive installation that responds to visitor movements and emotions, 
+                                generating unique artworks in real-time. The system combines motion tracking, 
+                                facial recognition, and generative AI to create personalized artistic experiences.
+                            </p>
+                            
+                            <div class="project-tech">
+                                <span class="tech-tag">OpenCV</span>
+                                <span class="tech-tag">Emotion Recognition</span>
+                                <span class="tech-tag">Generative AI</span>
+                                <span class="tech-tag">Real-time Processing</span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <a href="#" class="cta-button me-2" role="button">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="cta-button btn-secondary" role="button">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card animate-on-scroll from-left gpu-accelerated">
+                            <h3 class="gradient-text mb-3">Digital Storytelling Platform</h3>
+                            <p class="mb-3">
+                                A web-based platform that allows communities to share and preserve their cultural 
+                                stories through AI-enhanced multimedia experiences. Features include automatic 
+                                translation, voice synthesis, and adaptive visual narratives.
+                            </p>
+                            
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Natural Language Processing</span>
+                                <span class="tech-tag">Voice Synthesis</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <a href="#" class="cta-button me-2" role="button">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="cta-button btn-secondary" role="button">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card animate-on-scroll from-right gpu-accelerated">
+                            <h3 class="gradient-text mb-3">AI-Powered Music Visualization</h3>
+                            <p class="mb-3">
+                                A dynamic visualization system that creates stunning visual art from traditional 
+                                music compositions. The AI analyzes musical patterns, emotions, and cultural 
+                                context to generate culturally relevant visual interpretations.
+                            </p>
+                            
+                            <div class="project-tech">
+                                <span class="tech-tag">Audio Analysis</span>
+                                <span class="tech-tag">Three.js</span>
+                                <span class="tech-tag">Machine Learning</span>
+                                <span class="tech-tag">WebGL</span>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <a href="#" class="cta-button me-2" role="button">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="cta-button btn-secondary" role="button">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="section-transition"></div>
+            <div class="liquid-wave-container" style="bottom: 0;">
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+            </div>
+            
+            <div class="container">
+                <h2 class="section-title text-reveal gradient-text liquid-reveal morph-text-bg">Skills & Expertise</h2>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="skill-category animate-on-scroll from-left gpu-accelerated">
+                            <h3 class="gradient-text mb-3">AI & Machine Learning</h3>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-brain" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Deep Learning</h4>
+                                    <p>Neural networks, CNNs, GANs for creative applications</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Computer Vision</h4>
+                                    <p>Image processing, object detection, style transfer</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-comments" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Natural Language Processing</h4>
+                                    <p>Text analysis, language generation, translation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="skill-category animate-on-scroll from-right gpu-accelerated">
+                            <h3 class="gradient-text mb-3">Creative Development</h3>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-js-square" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Frontend Development</h4>
+                                    <p>React, Vue.js, Three.js, WebGL for interactive experiences</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-server" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Backend Development</h4>
+                                    <p>Python, Node.js, API development, cloud deployment</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-cube" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>3D Graphics & Animation</h4>
+                                    <p>Blender, Unity, procedural generation, real-time rendering</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="skill-category animate-on-scroll from-left gpu-accelerated">
+                            <h3 class="gradient-text mb-3">Cultural & Artistic</h3>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-palette" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Digital Art Creation</h4>
+                                    <p>Generative art, digital painting, multimedia composition</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-landmark" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Cultural Research</h4>
+                                    <p>Heritage preservation, anthropological analysis, art history</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-users" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Community Engagement</h4>
+                                    <p>Participatory design, cultural consultation, inclusive practices</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="skill-category animate-on-scroll from-right gpu-accelerated">
+                            <h3 class="gradient-text mb-3">Tools & Technologies</h3>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-python" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Python Ecosystem</h4>
+                                    <p>TensorFlow, PyTorch, OpenCV, Pandas, NumPy</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-cloud" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Cloud Platforms</h4>
+                                    <p>AWS, Google Cloud, Azure, Docker, Kubernetes</p>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-database" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <h4>Data Management</h4>
+                                    <p>MongoDB, PostgreSQL, Data pipelines, ETL processes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <div class="section-transition"></div>
+            <div class="container">
+                <h2 class="section-title text-reveal gradient-text liquid-reveal morph-text-bg">What People Say</h2>
+                
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="testimonial-card animate-on-scroll from-bottom gpu-accelerated">
+                            <p class="mb-3">
+                                "Thanattsitt's work in AI-powered cultural preservation is groundbreaking. 
+                                His ability to merge traditional art forms with cutting-edge technology 
+                                has opened new possibilities for our heritage projects."
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                               border-radius: 50%; display: flex; align-items: center; 
+                                               justify-content: center; color: var(--dark-bg); font-weight: bold;">
+                                        DR
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Dr. Sarah Chen</h5>
+                                    <small class="text-muted">Director, Cultural Heritage Institute</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="testimonial-card animate-on-scroll from-bottom gpu-accelerated" style="animation-delay: 0.1s;">
+                            <p class="mb-3">
+                                "The interactive AI art installation created by Thanattsitt transformed 
+                                our gallery space. Visitors are captivated by how the artwork responds 
+                                to their presence, creating truly unique and personal experiences."
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                               border-radius: 50%; display: flex; align-items: center; 
+                                               justify-content: center; color: var(--dark-bg); font-weight: bold;">
+                                        MJ
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Marcus Johnson</h5>
+                                    <small class="text-muted">Curator, Modern Art Museum</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4">
+                        <div class="testimonial-card animate-on-scroll from-bottom gpu-accelerated" style="animation-delay: 0.2s;">
+                            <p class="mb-3">
+                                "Working with Thanattsitt on our digital storytelling platform was 
+                                an incredible experience. His technical expertise combined with deep 
+                                cultural sensitivity resulted in a tool that truly serves our community."
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                               border-radius: 50%; display: flex; align-items: center; 
+                                               justify-content: center; color: var(--dark-bg); font-weight: bold;">
+                                        AP
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Aisha Patel</h5>
+                                    <small class="text-muted">Community Arts Director</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-transition"></div>
+            <div class="liquid-wave-container" style="bottom: 0;">
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+                <div class="liquid-wave"></div>
+            </div>
+            
+            <div class="container">
+                <h2 class="section-title text-reveal gradient-text liquid-reveal morph-text-bg">Get In Touch</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <p class="lead">
+                                Ready to explore the intersection of AI and cultural heritage? 
+                                Let's collaborate on creating meaningful digital experiences that honor tradition 
+                                while embracing innovation.
+                            </p>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="contact-info-card animate-on-scroll from-left gpu-accelerated">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                    <h4>Email</h4>
+                                    <p>thanattsitt@example.com</p>
+                                    <a href="mailto:thanattsitt@example.com" class="cta-button">
+                                        Send Message
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="contact-info-card animate-on-scroll from-bottom gpu-accelerated" style="animation-delay: 0.1s;">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                    </div>
+                                    <h4>LinkedIn</h4>
+                                    <p>Connect professionally</p>
+                                    <a href="#" class="cta-button">
+                                        Connect
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="contact-info-card animate-on-scroll from-right gpu-accelerated" style="animation-delay: 0.2s;">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-github" aria-hidden="true"></i>
+                                    </div>
+                                    <h4>GitHub</h4>
+                                    <p>Explore my code</p>
+                                    <a href="#" class="cta-button">
+                                        View Projects
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Form -->
+                        <div class="card-3d mt-5 animate-on-scroll from-bottom gpu-accelerated">
+                            <form id="contact-form" action="#" method="POST" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required
+                                               aria-describedby="name-error" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                                        <div id="name-error" class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required
+                                               aria-describedby="email-error" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                                        <div id="email-error" class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject *</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" required
+                                           aria-describedby="subject-error" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                                    <div id="subject-error" class="invalid-feedback"></div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required
+                                              aria-describedby="message-error" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,215,0,0.3); color: white;"></textarea>
+                                    <div id="message-error" class="invalid-feedback"></div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="cta-button gpu-accelerated">
+                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Thanattsitt Santisamranwilai</h4>
+                    <p>AI Artist & Creative Developer specializing in cultural heritage preservation through innovative technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub Profile">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter Profile">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram Profile">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">AI Art Creation</a></li>
+                        <li><a href="#">Cultural Preservation</a></li>
+                        <li><a href="#">Interactive Installations</a></li>
+                        <li><a href="#">Digital Storytelling</a></li>
+                        <li><a href="#">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            thanattsitt@example.com
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            Bangkok, Thailand
+                        </li>
+                        <li>
+                            <i class="fas fa-globe" aria-hidden="true"></i>
+                            Available Worldwide
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Thanattsitt Santisamranwilai. All rights reserved. | 
+                   <a href="#" style="color: var(--primary-gold);">Privacy Policy</a> | 
+                   <a href="#" style="color: var(--primary-gold);">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // === PERFORMANCE OPTIMIZATION ===
+        class PerformanceManager {
+            constructor() {
+                this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                this.isHighPerformance = navigator.hardwareConcurrency >= 4;
+                this.init();
+            }
+
+            init() {
+                if (this.isReducedMotion) {
+                    document.body.classList.add('reduced-motion');
+                    return;
+                }
+                this.optimizeForDevice();
+            }
+
+            optimizeForDevice() {
+                if (!this.isHighPerformance) {
+                    // Reduce animation complexity for lower-end devices
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        .liquid-blob { animation-duration: 30s !important; }
+                        .floating-symbol { animation-duration: 25s !important; }
+                        .star { animation-duration: 4s !important; }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+        }
+
+        // === LOADING SCREEN MANAGEMENT ===
+        class LoadingManager {
+            constructor() {
+                this.loadingScreen = document.getElementById('loading-screen');
+                this.minLoadTime = 2000; // Minimum 2 seconds
+                this.startTime = Date.now();
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('load', () => {
+                    this.hideLoadingScreen();
+                });
+                
+                // Fallback timeout
+                setTimeout(() => {
+                    this.hideLoadingScreen();
+                }, 5000);
+            }
+
+            hideLoadingScreen() {
+                const elapsed = Date.now() - this.startTime;
+                const remaining = Math.max(0, this.minLoadTime - elapsed);
+                
+                setTimeout(() => {
+                    this.loadingScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        this.loadingScreen.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        
+                        // Initialize other systems after loading
+                        new PerformanceManager();
+                        new LiquidAnimationSystem();
+                        new NavigationManager();
+                        new AnimationManager();
+                        new CursorManager();
+                        new BackgroundManager();
+                        new FormManager();
+                        
+                        // Update live region for accessibility
+                        const liveRegion = document.getElementById('live-region');
+                        if (liveRegion) {
+                            liveRegion.textContent = 'Portfolio loaded successfully. Welcome to Thanattsitt\'s AI art showcase.';
+                        }
+                    }, 800);
+                }, remaining);
+            }
+        }
+
+        // === LIQUID ANIMATION SYSTEM ===
+        class LiquidAnimationSystem {
+            constructor() {
+                this.trails = [];
+                this.progressBar = document.getElementById('liquidProgressBar');
+                this.mouse = { x: 0, y: 0 };
+                this.lastMouse = { x: 0, y: 0 };
+                this.init();
+            }
+
+            init() {
+                this.setupLiquidTrails();
+                this.setupScrollProgress();
+                this.setupSectionTransitions();
+                this.setupLiquidReveal();
+                this.setupParallaxBlobs();
+            }
+
+            setupLiquidTrails() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+
+                    const distance = Math.sqrt(
+                        Math.pow(this.mouse.x - this.lastMouse.x, 2) + 
+                        Math.pow(this.mouse.y - this.lastMouse.y, 2)
+                    );
+
+                    if (distance > 30) {
+                        this.createLiquidTrail(this.mouse.x, this.mouse.y);
+                        this.lastMouse = { ...this.mouse };
+                    }
+                });
+            }
+
+            createLiquidTrail(x, y) {
+                if (Math.random() > 0.8) { // Reduce frequency for performance
+                    const trail = document.createElement('div');
+                    trail.className = 'liquid-trail';
+                    trail.style.left = (x - 10) + 'px';
+                    trail.style.top = (y - 10) + 'px';
+                    
+                    const hue = 30 + Math.random() * 60;
+                    trail.style.background = `radial-gradient(circle, hsla(${hue}, 70%, 60%, 0.6), transparent)`;
+                    
+                    document.body.appendChild(trail);
+
+                    setTimeout(() => {
+                        if (trail.parentNode) {
+                            trail.parentNode.removeChild(trail);
+                        }
+                    }, 1500);
+                }
+            }
+
+            setupScrollProgress() {
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.pageYOffset;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+                    
+                    this.progressBar.style.width = scrollPercent + '%';
+                });
+            }
+
+            setupSectionTransitions() {
+                const sections = document.querySelectorAll('.section');
+                
+                sections.forEach(section => {
+                    if (!section.querySelector('.section-transition')) {
+                        const transition = document.createElement('div');
+                        transition.className = 'section-transition';
+                        section.appendChild(transition);
+                    }
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const transition = entry.target.querySelector('.section-transition');
+                        if (transition) {
+                            if (entry.isIntersecting) {
+                                transition.classList.add('active');
+                            } else {
+                                transition.classList.remove('active');
+                            }
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => observer.observe(section));
+            }
+
+            setupLiquidReveal() {
+                const revealElements = document.querySelectorAll('.liquid-reveal');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('revealed');
+                            }, 300);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                revealElements.forEach(element => observer.observe(element));
+            }
+
+            setupParallaxBlobs() {
+                const blobs = document.querySelectorAll('.liquid-blob');
+                
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.pageYOffset;
+                    
+                    blobs.forEach((blob, index) => {
+                        const speed = 0.1 + (index * 0.03);
+                        const yPos = -(scrollY * speed);
+                        blob.style.transform = `translateY(${yPos}px)`;
+                    });
+                });
+            }
+        }
+
+        // === NAVIGATION MANAGER ===
+        class NavigationManager {
+            constructor() {
+                this.navbar = document.getElementById('navbar');
+                this.navLinks = document.querySelectorAll('.nav-link');
+                this.sections = document.querySelectorAll('section[id]');
+                this.init();
+            }
+
+            init() {
+                this.setupScrollEffects();
+                this.setupActiveNavigation();
+                this.setupSmoothScrolling();
+            }
+
+            setupScrollEffects() {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        this.navbar.classList.add('scrolled');
+                    } else {
+                        this.navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            setupActiveNavigation() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            this.updateActiveLink(id);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                this.sections.forEach(section => observer.observe(section));
+            }
+
+            updateActiveLink(activeId) {
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${activeId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            setupSmoothScrolling() {
+                this.navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+        }
+
+        // === ANIMATION MANAGER ===
+        class AnimationManager {
+            constructor() {
+                this.textElements = document.querySelectorAll('.text-reveal');
+                this.scrollElements = document.querySelectorAll('.animate-on-scroll');
+                this.init();
+            }
+
+            init() {
+                this.setupTextReveal();
+                this.setupScrollAnimations();
+            }
+
+            setupTextReveal() {
+                this.textElements.forEach(element => {
+                    const text = element.textContent;
+                    element.innerHTML = '';
+                    
+                    text.split('').forEach((char, index) => {
+                        const span = document.createElement('span');
+                        span.className = 'char';
+                        span.textContent = char === ' ' ? '\u00A0' : char;
+                        span.style.transitionDelay = `${index * 0.03}s`;
+                        element.appendChild(span);
+                    });
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                this.textElements.forEach(element => observer.observe(element));
+            }
+
+            setupScrollAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '50px' });
+
+                this.scrollElements.forEach(element => observer.observe(element));
+            }
+        }
+
+        // === CURSOR MANAGER ===
+        class CursorManager {
+            constructor() {
+                this.cursor = document.getElementById('custom-cursor');
+                this.trail = document.getElementById('cursor-trail');
+                this.mouse = { x: 0, y: 0 };
+                this.cursorPos = { x: 0, y: 0 };
+                this.trailPos = { x: 0, y: 0 };
+                this.init();
+            }
+
+            init() {
+                if (!this.cursor || !this.trail) return;
+                
+                this.bindEvents();
+                this.animate();
+            }
+
+            bindEvents() {
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+
+                // Hover effects for interactive elements
+                const hoverElements = document.querySelectorAll('a, button, .card-3d, .project-card');
+                
+                hoverElements.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                        this.cursor.classList.add('hover');
+                    });
+
+                    element.addEventListener('mouseleave', () => {
+                        this.cursor.classList.remove('hover');
+                    });
+                });
+            }
+
+            animate() {
+                // Smooth cursor movement
+                const ease = 0.15;
+                this.cursorPos.x += (this.mouse.x - this.cursorPos.x) * ease;
+                this.cursorPos.y += (this.mouse.y - this.cursorPos.y) * ease;
+                
+                // Delayed trail movement
+                const trailEase = 0.1;
+                this.trailPos.x += (this.mouse.x - this.trailPos.x) * trailEase;
+                this.trailPos.y += (this.mouse.y - this.trailPos.y) * trailEase;
+
+                this.cursor.style.left = this.cursorPos.x + 'px';
+                this.cursor.style.top = this.cursorPos.y + 'px';
+                this.trail.style.left = this.trailPos.x + 'px';
+                this.trail.style.top = this.trailPos.y + 'px';
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // === BACKGROUND MANAGER ===
+        class BackgroundManager {
+            constructor() {
+                this.starsContainer = document.getElementById('stars');
+                this.floatingElements = document.querySelector('.floating-elements');
+                this.init();
+            }
+
+            init() {
+                this.createStars();
+                this.createFloatingSymbols();
+            }
+
+            createStars() {
+                if (!this.starsContainer) return;
+                
+                const starCount = window.innerWidth < 768 ? 50 : 100;
+                
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = `star ${this.getRandomStarSize()}`;
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 3 + 's';
+                    this.starsContainer.appendChild(star);
+                }
+            }
+
+            getRandomStarSize() {
+                const rand = Math.random();
+                if (rand < 0.6) return 'small';
+                if (rand < 0.9) return 'medium';
+                return 'large';
+            }
+
+            createFloatingSymbols() {
+                if (!this.floatingElements) return;
+                
+                const symbols = ['✦', '✧', '⟡', '◊', '◈', '⬟', '⬢', '⬣'];
+                const symbolCount = window.innerWidth < 768 ? 5 : 10;
+                
+                for (let i = 0; i < symbolCount; i++) {
+                    setTimeout(() => {
+                        this.createFloatingSymbol(symbols);
+                    }, i * 2000);
+                }
+
+                // Continue creating symbols periodically
+                setInterval(() => {
+                    if (document.querySelectorAll('.floating-symbol').length < symbolCount) {
+                        this.createFloatingSymbol(symbols);
+                    }
+                }, 5000);
+            }
+
+            createFloatingSymbol(symbols) {
+                const symbol = document.createElement('div');
+                symbol.className = 'floating-symbol';
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = Math.random() * 100 + '%';
+                symbol.style.animationDuration = (15 + Math.random() * 10) + 's';
+                symbol.style.fontSize = (1.5 + Math.random() * 1) + 'rem';
+                
+                this.floatingElements.appendChild(symbol);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (symbol.parentNode) {
+                        symbol.parentNode.removeChild(symbol);
+                    }
+                }, 25000);
+            }
+        }
+
+        // === FORM MANAGER ===
+        class FormManager {
+            constructor() {
+                this.contactForm = document.getElementById('contact-form');
+                this.init();
+            }
+
+            init() {
+                if (!this.contactForm) return;
+                
+                this.setupFormValidation();
+                this.setupFormSubmission();
+            }
+
+            setupFormValidation() {
+                const inputs = this.contactForm.querySelectorAll('input, textarea');
+                
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => {
+                        this.validateField(input);
+                    });
+                    
+                    input.addEventListener('input', () => {
+                        if (input.classList.contains('is-invalid')) {
+                            this.validateField(input);
+                        }
+                    });
+                });
+            }
+
+            validateField(field) {
+                const value = field.value.trim();
+                const errorElement = document.getElementById(field.name + '-error');
+                
+                if (!errorElement) return;
+                
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (field.hasAttribute('required') && !value) {
+                    isValid = false;
+                    errorMessage = 'This field is required.';
+                } else if (field.type === 'email' && value) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid email address.';
+                    }
+                }
+                
+                if (isValid) {
+                    field.classList.remove('is-invalid');
+                    field.classList.add('is-valid');
+                    errorElement.textContent = '';
+                } else {
+                    field.classList.remove('is-valid');
+                    field.classList.add('is-invalid');
+                    errorElement.textContent = errorMessage;
+                }
+                
+                return isValid;
+            }
+
+            setupFormSubmission() {
+                this.contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const inputs = this.contactForm.querySelectorAll('input, textarea');
+                    let isFormValid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!this.validateField(input)) {
+                            isFormValid = false;
+                        }
+                    });
+                    
+                    if (isFormValid) {
+                        this.submitForm();
+                    } else {
+                        // Focus on first invalid field
+                        const firstInvalid = this.contactForm.querySelector('.is-invalid');
+                        if (firstInvalid) {
+                            firstInvalid.focus();
+                        }
+                    }
+                });
+            }
+
+            submitForm() {
+                const submitButton = this.contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                // Show loading state
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+                
+                // Simulate form submission (replace with actual submission logic)
+                setTimeout(() => {
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitButton.style.background = 'var(--gradient-accent)';
+                    
+                    // Reset form
+                    this.contactForm.reset();
+                    this.contactForm.querySelectorAll('.is-valid').forEach(field => {
+                        field.classList.remove('is-valid');
+                    });
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                        submitButton.style.background = '';
+                    }, 3000);
+                    
+                    // Update live region for accessibility
+                    const liveRegion = document.getElementById('live-region');
+                    if (liveRegion) {
+                        liveRegion.textContent = 'Message sent successfully! Thank you for your inquiry.';
+                    }
+                }, 2000);
+            }
+        }
+
+        // === CLICK EFFECTS ===
+        document.addEventListener('click', (e) => {
+            if (Math.random() > 0.7) {
+                createClickEffect(e.clientX, e.clientY);
+            }
+        });
+
+        function createClickEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.style.cssText = `
+                position: fixed;
+                left: ${x - 25}px;
+                top: ${y - 25}px;
+                width: 50px;
+                height: 50px;
+                background: radial-gradient(circle, rgba(255, 215, 0, 0.6), transparent);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1000;
+                animation: clickExpand 1s ease-out forwards;
+            `;
+
+            const keyframes = `
+                @keyframes clickExpand {
+                    0% { transform: scale(0); opacity: 1; }
+                    50% { transform: scale(1); opacity: 0.8; }
+                    100% { transform: scale(2); opacity: 0; }
+                }
+            `;
+
+            if (!document.querySelector('#clickKeyframes')) {
+                const style = document.createElement('style');
+                style.id = 'clickKeyframes';
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(effect);
+
+            setTimeout(() => {
+                if (effect.parentNode) {
+                    effect.parentNode.removeChild(effect);
+                }
+            }, 1000);
+        }
+
+        // === INITIALIZE APPLICATION ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize loading manager first
+            new LoadingManager();
+            
+            // Debug logging
+            console.log('🎨 Thanattsitt Portfolio - Initialized');
+            console.log('🤖 AI Art Systems - Online');
+            console.log('✨ Liquid Animations - Active');
+            console.log('🌟 Interactive Elements - Ready');
+        });
+
+        // === ERROR HANDLING ===
+        window.addEventListener('error', (e) => {
+            console.warn('Non-critical error caught:', e.error);
+        });
+
+        // === CLEANUP ON PAGE UNLOAD ===
+        window.addEventListener('beforeunload', () => {
+            // Clean up any running animations or intervals
+            document.querySelectorAll('.liquid-trail').forEach(trail => {
+                if (trail.parentNode) {
+                    trail.parentNode.removeChild(trail);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
