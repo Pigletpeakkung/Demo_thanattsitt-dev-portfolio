@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanattsitt Santisamranwilai - AI Artist & Cultural Innovator</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="AI Artist and Cultural Innovator specializing in Thai heritage preservation through AI training and web development.">
+    <meta name="keywords" content="AI artist, Thai culture, Outlier AI, Siam-Blessing, Astrotrias-Archon, web development, cultural preservation">
+    <meta name="author" content="Thanattsitt Santisamranwilai">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Thanattsitt Santisamranwilai - AI Artist & Cultural Innovator">
+    <meta property="og:description" content="Bridging tradition and technology through AI-powered cultural preservation and innovative web experiences.">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ============ CSS VARIABLES ============ */
+        :root {
+            --primary-gold: #FFD700;
+            --secondary-gold: #FFA500;
+            --thai-blue: #1E40AF;
+            --thai-red: #DC2626;
+            --cosmic-purple: #8B5CF6;
+            --sage-green: #10B981;
+            --light-bg: #FFFFFF;
+            --dark-bg: #1F2937;
+            --card-bg: #F8FAFC;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --text-light: #E5E7EB;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 100%);
+            --gradient-thai: linear-gradient(135deg, var(--thai-blue) 0%, var(--thai-red) 100%);
+            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, var(--sage-green) 100%);
+            --border-radius: 20px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ GLOBAL STYLES ============ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', 'Kanit', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--light-bg);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ============ LOADING SCREEN FIXES ============ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--thai-blue) 0%, var(--cosmic-purple) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-screen.hidden {
+            display: none !important;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-lotus {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            position: relative;
+            animation: lotusBloom 3s ease-in-out infinite;
+        }
+
+        .loading-lotus::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: lotusInner 2s ease-in-out infinite;
+        }
+
+        @keyframes lotusBloom {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes lotusInner {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(0.8); }
+        }
+
+        .loading-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            opacity: 0.9;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* ============ FALLBACK STYLES ============ */
+        .no-animations * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .no-animations .gsap-fade-in,
+        .no-animations .gsap-fade-left,
+        .no-animations .gsap-fade-right,
+        .no-animations .gsap-scale-in {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* ============ DYNAMIC STAR FIELD BACKGROUND ============ */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -20;
+            background: linear-gradient(135deg, 
+                #0F172A 0%, 
+                #1E293B 25%, 
+                #334155 50%, 
+                #475569 75%, 
+                #64748B 100%);
+            background-size: 400% 400%;
+            animation: cosmicFlow 20s ease infinite;
+        }
+
+        @keyframes cosmicFlow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #star-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -15;
+            pointer-events: none;
+        }
+
+        /* ============ LIQUID MORPH ELEMENTS ============ */
+        .liquid-morph {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                rgba(139, 92, 246, 0.1) 50%, 
+                rgba(16, 185, 129, 0.1) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            animation: liquidWave 8s ease-in-out infinite;
+        }
+
+        @keyframes liquidWave {
+            0%, 100% { 
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+                transform: translateY(0) scaleY(1);
+            }
+            50% { 
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 90%);
+                transform: translateY(-10px) scaleY(1.05);
+            }
+        }
+
+        /* ============ CONTENT OVERLAY ============ */
+        .content-overlay {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        @supports not (backdrop-filter: blur(20px)) {
+            .content-overlay {
+                background: rgba(255, 255, 255, 0.98);
+            }
+        }
+
+        /* ============ NAVIGATION ============ */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            transition: var(--transition-smooth);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: var(--transition-smooth);
+            text-decoration: none !important;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(248, 250, 252, 0.9) 100%);
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Kanit', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-secondary);
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+            margin: 0.5rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+            margin: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(odd) {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(248, 250, 252, 0.9) 100%);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.9) 0%, 
+                rgba(241, 245, 249, 0.9) 100%);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .thai-gradient {
+            background: var(--gradient-thai);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cosmic-gradient {
+            background: var(--gradient-cosmic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============ CARDS ============ */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .card-3d:hover::before {
+            left: 100%;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-gold);
+        }
+
+        /* ============ SKILL ITEMS ============ */
+        .skill-item {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .skill-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-item h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .skill-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============ PROJECT CARDS ============ */
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* ============ CONTACT FORM ============ */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form .form-control {
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-form .form-control:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+            outline: none;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        /* ============ GSAP ANIMATION CLASSES ============ */
+        .gsap-fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-fade-left {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .gsap-fade-right {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .gsap-scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        /* ============ SPARK EFFECTS ============ */
+        .spark-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-50px);
+            }
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .card-3d,
+            .project-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* ============ PERFORMANCE OPTIMIZATIONS ============ */
+        @media (prefers-reduced-motion: reduce) {
+            .star-field {
+                animation: none;
+            }
+            
+            .liquid-morph {
+                animation: none;
+            }
+            
+            .loading-lotus {
+                animation: none;
+            }
+            
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Star Field Background -->
+    <div class="star-field"></div>
+    <canvas id="star-canvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-lotus"></div>
+            <div class="loading-text">สวัสดี Welcome to My Portfolio</div>
+        </div>
+    </div>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#home">Thanattsitt</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#summary">Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#collaboration">Collaboration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="liquid-morph"></div>
+            <div class="hero-content">
+                <h1 class="hero-title gsap-fade-in">
+                    Bridging Culture and Technology
+                </h1>
+                <h2 class="hero-subtitle gsap-fade-in">
+                    AI Artist & Cultural Innovator
+                </h2>
+                <p class="hero-description gsap-fade-in">
+                    Explore projects like <strong>Siam-Blessing</strong> and <strong>Astrotrias-Archon</strong>, 
+                    inspired by my work in AI training to connect communities and preserve Thai heritage 
+                    through innovative technology.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary gsap-scale-in">
+                        <i class="fas fa-rocket"></i>
+                        Discover My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary gsap-scale-in">
+                        <i class="fas fa-envelope"></i>
+                        Join the Conversation
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summary" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title gradient-text gsap-fade-in">Creating Value Through AI and Culture</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card-3d gsap-fade-in">
+                            <p class="lead text-center mb-4">
+                                I contribute to AI training with natural conversations and precise annotations, 
+                                helping systems better understand human nuances. Projects like 
+                                <strong>Siam-Blessing</strong> and <strong>Astrotrias-Archon</strong> 
+                                blend Thai heritage with innovative tech to inspire and connect.
+                            </p>
+                            <p class="text-center mb-4">
+                                Through my work with <strong>Outlier AI</strong>, I've refined my approach 
+                                based on feedback to deliver clearer, more impactful results that bridge 
+                                the gap between traditional culture and modern technology.
+                            </p>
+                            <div class="text-center">
+                                <a href="#about" class="btn btn-primary gsap-scale-in">
+                                    <i class="fas fa-user"></i>
+                                    Learn More About My Journey
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title thai-gradient gsap-fade-in">Skills Driving Impact</h2>
+                
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="skill-item gsap-fade-left">
+                            <i class="fas fa-microphone" aria-label="AI Training Speaking"></i>
+                            <h3>AI Training (Speaking)</h3>
+                            <p>Crafting natural conversations to improve AI systems, refined for clarity and cultural sensitivity based on extensive feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="skill-item gsap-fade-left">
+                            <i class="fas fa-tags" aria-label="Data Annotations"></i>
+                            <h3>Data Annotations</h3>
+                            <p>Delivering precise data labeling and annotations to boost AI accuracy and cultural understanding.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="skill-item gsap-fade-left">
+                            <i class="fas fa-pen-nib" aria-label="Script Writing"></i>
+                            <h3>Script Writing</h3>
+                            <p>Writing prompts and scripts to make AI more human-like, supporting creative technology applications.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="skill-item gsap-fade-left">
+                            <i class="fas fa-code" aria-label="Web Development"></i>
+                            <h3>Web Development</h3>
+                            <p>Building accessible, high-performance websites like Siam-Blessing and Astrotrias-Archon with modern technologies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title cosmic-gradient gsap-fade-in">My Projects</h2>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card gsap-fade-left">
+                            <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Siam-Blessing Project - Thai Buddhist Heritage" loading="lazy">
+                            <h3 class="thai-gradient">Siam-Blessing</h3>
+                            <p>
+                                A project blending Thai Buddhist heritage with interactive web design, 
+                                featuring mandala animations and lotus symbolism to promote cultural 
+                                preservation and spiritual connection.
+                            </p>
+                            <p class="text-muted">
+                                <strong>Technologies:</strong> HTML5, CSS3, JavaScript, GSAP, Three.js
+                            </p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fab fa-github"></i>
+                                    Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card gsap-fade-right">
+                            <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Astrotrias-Archon Project - Quantum Web Experience" loading="lazy">
+                            <h3 class="cosmic-gradient">Astrotrias-Archon</h3>
+                            <p>
+                                A quantum-inspired web experience combining innovative design with 
+                                storytelling, featuring dynamic particle systems and immersive 
+                                interactions to engage global audiences.
+                            </p>
+                            <p class="text-muted">
+                                <strong>Technologies:</strong> WebGL, Three.js, React, Node.js, MongoDB
+                            </p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fab fa-github"></i>
+                                    Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card gsap-fade-left">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="AI Cultural Preservation Project" loading="lazy">
+                            <h3 class="gradient-text">AI Cultural Preservation</h3>
+                            <p>
+                                Machine learning project focused on preserving Thai cultural heritage 
+                                through AI-powered documentation and restoration techniques.
+                            </p>
+                            <p class="text-muted">
+                                <strong>Technologies:</strong> Python, TensorFlow, OpenCV, FastAPI
+                            </p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fab fa-github"></i>
+                                    Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="project-card gsap-fade-right">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Interactive Thai Language Learning" loading="lazy">
+                            <h3 class="thai-gradient">Interactive Thai Language Learning</h3>
+                            <p>
+                                An AI-powered language learning platform that helps global users 
+                                learn Thai through natural conversations and cultural context.
+                            </p>
+                            <p class="text-muted">
+                                <strong>Technologies:</strong> Vue.js, NLP, Speech Recognition, Firebase
+                            </p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Project
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fab fa-github"></i>
+                                    Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <p class="lead gsap-fade-in">
+                        <em>User experience refined based on feedback for greater clarity and engagement.</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collaboration Section -->
+        <section id="collaboration" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title gradient-text gsap-fade-in">Collaborating for Progress</h2>
+                
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="card-3d gsap-fade-left">
+                            <h3 class="thai-gradient mb-3">Partnership with Outlier AI</h3>
+                            <p class="lead mb-4">
+                                I work with <strong>Outlier AI</strong> to enhance AI models through 
+                                natural conversations and precise annotations, contributing to systems 
+                                that better understand human nuances and cultural context.
+                            </p>
+                            <p class="mb-4">
+                                This collaboration has inspired projects that blend Thai culture with 
+                                technology, creating meaningful connections between tradition and innovation. 
+                                The feedback from this partnership has helped refine my approach for 
+                                greater clarity and impact.
+                            </p>
+                            <div class="collaboration-stats">
+                                <div class="row text-center">
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h4 class="gradient-text">500+</h4>
+                                            <p>Hours of AI Training</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h4 class="gradient-text">1000+</h4>
+                                            <p>Data Annotations</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h4 class="gradient-text">95%</h4>
+                                            <p>Quality Rating</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="collaboration-visual gsap-fade-right">
+                            <div class="tech-stack">
+                                <h4 class="cosmic-gradient mb-3">Technologies Used</h4>
+                                <div class="tech-icons">
+                                    <i class="fab fa-python" title="Python"></i>
+                                    <i class="fab fa-js-square" title="JavaScript"></i>
+                                    <i class="fab fa-react" title="React"></i>
+                                    <i class="fab fa-node-js" title="Node.js"></i>
+                                    <i class="fas fa-database" title="Database"></i>
+                                    <i class="fas fa-brain" title="AI/ML"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="#projects" class="btn btn-primary gsap-scale-in">
+                        <i class="fas fa-rocket"></i>
+                        Explore My Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title thai-gradient gsap-fade-in">About Me</h2>
+                
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-content gsap-fade-left">
+                            <h3 class="gradient-text mb-4">My Journey</h3>
+                            <p class="lead mb-4">
+                                I'm <strong>Thanattsitt</strong>, a freelancer passionate about using 
+                                technology to preserve Thai heritage and advance AI capabilities. 
+                                My work bridges the gap between traditional culture and modern innovation.
+                            </p>
+                            <p class="mb-4">
+                                Through my collaboration with <strong>Outlier AI</strong> and projects 
+                                like <strong>Siam-Blessing</strong> and <strong>Astrotrias-Archon</strong>, 
+                                I've developed expertise in creating natural AI conversations while 
+                                maintaining cultural sensitivity and authenticity.
+                            </p>
+                            <p class="mb-4">
+                                My approach has been refined through continuous feedback, focusing on 
+                                clarity and impact. I believe in the power of technology to connect 
+                                communities and preserve cultural heritage for future generations.
+                            </p>
+                            
+                            <div class="about-values">
+                                <h4 class="cosmic-gradient mb-3">Core Values</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="fas fa-heart text-danger"></i>
+                                        <strong>Cultural Preservation:</strong> Honoring Thai heritage through technology
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-brain text-primary"></i>
+                                        <strong>AI Innovation:</strong> Advancing human-AI interaction with natural conversations
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-users text-success"></i>
+                                        <strong>Community Connection:</strong> Building bridges between cultures and technologies
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <strong>Continuous Learning:</strong> Refining approaches based on feedback and experience
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="about-visual gsap-fade-right">
+                            <div class="profile-card">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Thanattsitt Santisamranwilai" class="profile-image">
+                                <div class="profile-info">
+                                    <h4 class="gradient-text">Thanattsitt Santisamranwilai</h4>
+                                    <p class="text-muted">AI Artist & Cultural Innovator</p>
+                                    <p class="location">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                        Bangkok, Thailand
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="achievements mt-4">
+                                <h4 class="thai-gradient mb-3">Achievements</h4>
+                                <div class="achievement-item">
+                                    <i class="fas fa-trophy text-warning"></i>
+                                    <span>High-rated AI trainer with natural conversation skills</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-medal text-success"></i>
+                                    <span>Cultural preservation advocate through technology</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-award text-primary"></i>
+                                    <span>Creator of innovative web experiences</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="#contact" class="btn btn-primary gsap-scale-in">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="liquid-morph"></div>
+            <div class="container">
+                <h2 class="section-title cosmic-gradient gsap-fade-in">Join the Conversation</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <p class="lead gsap-fade-in">
+                                Share your thoughts on AI and Thai culture—let's inspire and connect together! 
+                                Your feedback helps me create more meaningful experiences.
+                            </p>
+                        </div>
+                        
+                        <div class="contact-form gsap-fade-in">
+                            <form id="contact-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="Subject" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="6" placeholder="Your Message - Share your thoughts on AI, Thai culture, or potential collaborations!" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" id="contact-submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="contact-info mt-5">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="contact-item gsap-fade-left">
+                                        <i class="fas fa-envelope fa-2x gradient-text mb-3"></i>
+                                        <h4>Email</h4>
+                                        <p>thanattsitt@example.com</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-item gsap-fade-in">
+                                        <i class="fas fa-map-marker-alt fa-2x thai-gradient mb-3"></i>
+                                        <h4>Location</h4>
+                                        <p>Bangkok, Thailand</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-item gsap-fade-right">
+                                        <i class="fas fa-globe fa-2x cosmic-gradient mb-3"></i>
+                                        <h4>Languages</h4>
+                                        <p>Thai, English</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="gradient-text mb-4">Let's Connect and Create Together</h3>
+                        <p class="lead mb-4">
+                            Passionate about bridging Thai culture and AI innovation. 
+                            Always open to meaningful conversations and collaborations.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/thanattsitt" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/thanattsitt" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:thanattsitt@example.com" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://twitter.com/thanattsitt" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="footer-links">
+                            <h4 class="thai-gradient mb-3">Quick Links</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#projects">Projects</a></li>
+                                <li><a href="#skills">Skills</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">© 2024 Thanattsitt Santisamranwilai. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="mb-0">Made with ❤️ in Bangkok, Thailand</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <script>
+        // ============ CRITICAL ERROR HANDLING ============
+        window.addEventListener('error', function(e) {
+            console.error('Portfolio Error:', e.error);
+            hideLoadingScreen();
+        });
+
+        // ============ LOADING SCREEN MANAGEMENT ============
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 800);
+            }
+        }
+
+        // ============ STAR FIELD ANIMATION ============
+        function initStarField() {
+            const canvas = document.getElementById('star-canvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const stars = [];
+            const starCount = 200;
+
+            // Create stars
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.8 + 0.2,
+                    twinkleSpeed: Math.random() * 0.02 + 0.01,
+                    color: `hsl(${Math.random() * 60 + 30}, 70%, 70%)`
+                });
+            }
+
+            function animateStars() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                stars.forEach(star => {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity > 1 || star.opacity < 0.2) {
+                        star.twinkleSpeed *= -1;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = star.color;
+                    ctx.globalAlpha = star.opacity;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animateStars);
+            }
+
+            animateStars();
+
+            // Responsive canvas
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // ============ SPARK EFFECTS ============
+        function createSparkEffect(element, event) {
+            const sparks = [];
+            const sparkCount = 12;
+            const container = document.createElement('div');
+            container.className = 'spark-container';
+            element.appendChild(container);
+
+            for (let i = 0; i < sparkCount; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = event.offsetX + 'px';
+                spark.style.top = event.offsetY + 'px';
+                spark.style.animationDelay = Math.random() * 0.2 + 's';
+                spark.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(spark);
+                sparks.push(spark);
+            }
+
+            setTimeout(() => {
+                container.remove();
+            }, 1000);
+        }
+
+        // ============ GSAP ANIMATIONS ============
+        function initGSAPAnimations() {
+            if (typeof gsap === 'undefined') {
+                console.warn('GSAP not loaded, using fallback animations');
+                document.body.classList.add('no-animations');
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero animations
+            gsap.from('.hero-title', {
+                duration: 1.2,
+                y: 100,
+                opacity: 0,
+                ease: 'power3.out',
+                delay: 0.5
+            });
+
+            gsap.from('.hero-subtitle', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power2.out',
+                delay: 0.8
+            });
+
+            gsap.from('.hero-description', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out',
+                delay: 1.1
+            });
+
+            gsap.from('.hero-buttons .btn', {
+                duration: 0.6,
+                scale: 0.8,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'back.out(1.7)',
+                delay: 1.4
+            });
+
+            // Scroll-triggered animations
+            gsap.utils.toArray('.gsap-fade-in').forEach(element => {
+                gsap.from(element, {
+                    duration: 0.8,
+                    y: 50,
+                    opacity: 0,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            gsap.utils.toArray('.gsap-fade-left').forEach(element => {
+                gsap.from(element, {
+                    duration: 0.8,
+                    x: -100,
+                    opacity: 0,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            gsap.utils.toArray('.gsap-fade-right').forEach(element => {
+                gsap.from(element, {
+                    duration: 0.8,
+                    x: 100,
+                    opacity: 0,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            gsap.utils.toArray('.gsap-scale-in').forEach(element => {
+                gsap.from(element, {
+                    duration: 0.6,
+                    scale: 0.8,
+                    opacity: 0,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            // Liquid morph animations
+            gsap.utils.toArray('.liquid-morph').forEach(element => {
+                gsap.to(element, {
+                    duration: 8,
+                    rotation: 360,
+                    repeat: -1,
+                    ease: 'none'
+                });
+            });
+        }
+
+        // ============ NAVBAR FUNCTIONALITY ============
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Active link highlighting
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY + 100;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        // ============ CONTACT FORM ============
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const submitButton = document.getElementById('contact-submit');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Create spark effect on submit
+                createSparkEffect(submitButton, { offsetX: 50, offsetY: 20 });
+                
+                // Show loading state
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitButton.style.background = 'var(--gradient-primary)';
+                    
+                    setTimeout(() => {
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                        submitButton.disabled = false;
+                        form.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        }
+
+        // ============ INTERACTIVE EFFECTS ============
+        function initInteractiveEffects() {
+            // Hover effects for buttons
+            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+                button.addEventListener('mouseenter', (e) => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(button, { scale: 1.05, duration: 0.3 });
+                    }
+                });
+
+                button.addEventListener('mouseleave', (e) => {
+                                        if (typeof gsap !== 'undefined') {
+                        gsap.to(button, { scale: 1, duration: 0.3 });
+                    }
+                });
+
+                button.addEventListener('click', (e) => {
+                    createSparkEffect(button, e);
+                });
+            });
+
+            // Skill item hover effects
+            document.querySelectorAll('.skill-item').forEach(item => {
+                item.addEventListener('mouseenter', (e) => {
+                    createSparkEffect(item, { 
+                        offsetX: item.offsetWidth / 2, 
+                        offsetY: item.offsetHeight / 2 
+                    });
+                });
+            });
+
+            // Project card hover effects
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mouseenter', (e) => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(card, { 
+                            y: -10, 
+                            rotationX: 5, 
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+
+                card.addEventListener('mouseleave', (e) => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(card, { 
+                            y: 0, 
+                            rotationX: 0, 
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            });
+
+            // Social link hover effects
+            document.querySelectorAll('.social-links a').forEach(link => {
+                link.addEventListener('mouseenter', (e) => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(link, { 
+                            y: -5, 
+                            scale: 1.2, 
+                            duration: 0.3,
+                            ease: 'back.out(1.7)'
+                        });
+                    }
+                });
+
+                link.addEventListener('mouseleave', (e) => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(link, { 
+                            y: 0, 
+                            scale: 1, 
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            });
+        }
+
+        // ============ PERFORMANCE OPTIMIZATIONS ============
+        function initPerformanceOptimizations() {
+            // Lazy loading for images
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+
+            // Reduced motion support
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.body.classList.add('no-animations');
+            }
+
+            // Optimize animations for performance
+            if (typeof gsap !== 'undefined') {
+                gsap.config({ force3D: true });
+            }
+        }
+
+        // ============ PARALLAX EFFECTS ============
+        function initParallaxEffects() {
+            const parallaxElements = document.querySelectorAll('.liquid-morph');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                parallaxElements.forEach(element => {
+                    element.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        }
+
+        // ============ THEME DETECTION ============
+        function initThemeDetection() {
+            // Dark mode preference detection
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            if (prefersDarkScheme.matches) {
+                document.body.classList.add('dark-mode-preferred');
+            }
+
+            // High contrast mode detection
+            const prefersHighContrast = window.matchMedia('(prefers-contrast: high)');
+            
+            if (prefersHighContrast.matches) {
+                document.body.classList.add('high-contrast');
+            }
+        }
+
+        // ============ ANALYTICS AND TRACKING ============
+        function initAnalytics() {
+            // Track section views
+            const sections = document.querySelectorAll('section[id]');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.getAttribute('id');
+                        console.log(`Section viewed: ${sectionId}`);
+                        
+                        // Google Analytics tracking (uncomment when ready)
+                        // gtag('event', 'section_view', {
+                        //     section_name: sectionId
+                        // });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => sectionObserver.observe(section));
+
+            // Track button clicks
+            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const buttonText = button.textContent.trim();
+                    console.log(`Button clicked: ${buttonText}`);
+                    
+                    // Google Analytics tracking (uncomment when ready)
+                    // gtag('event', 'button_click', {
+                    //     button_text: buttonText
+                    // });
+                });
+            });
+        }
+
+        // ============ ACCESSIBILITY ENHANCEMENTS ============
+        function initAccessibility() {
+            // Keyboard navigation for buttons
+            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+                button.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        button.click();
+                    }
+                });
+            });
+
+            // Focus management
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+            // Screen reader announcements
+            const liveRegion = document.createElement('div');
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.className = 'sr-only';
+            liveRegion.id = 'live-announcements';
+            document.body.appendChild(liveRegion);
+
+            // Announce page load completion
+            setTimeout(() => {
+                liveRegion.textContent = 'Portfolio website loaded successfully. Navigate using tab key or click on menu items.';
+            }, 2000);
+        }
+
+        // ============ PROGRESSIVE ENHANCEMENT ============
+        function initBasicFunctionality() {
+            // Always ensure loading screen is hidden
+            setTimeout(() => {
+                hideLoadingScreen();
+            }, 1000);
+
+            // Basic smooth scrolling fallback
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Basic form validation
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    const requiredFields = form.querySelectorAll('[required]');
+                    let isValid = true;
+
+                    requiredFields.forEach(field => {
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.style.borderColor = '#dc3545';
+                        } else {
+                            field.style.borderColor = '#28a745';
+                        }
+                    });
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        alert('Please fill in all required fields.');
+                    }
+                });
+            });
+        }
+
+        // ============ MAIN INITIALIZATION ============
+        function initPortfolio() {
+            console.log('🚀 Portfolio initialization started');
+            
+            try {
+                // Always initialize basic functionality first
+                initBasicFunctionality();
+                
+                // Initialize core features
+                initNavbar();
+                initContactForm();
+                initAccessibility();
+                initPerformanceOptimizations();
+                initThemeDetection();
+                initAnalytics();
+                
+                // Initialize visual effects
+                initStarField();
+                initInteractiveEffects();
+                initParallaxEffects();
+                
+                // Initialize GSAP animations (with fallback)
+                if (typeof gsap !== 'undefined') {
+                    initGSAPAnimations();
+                    console.log('✅ GSAP animations initialized');
+                } else {
+                    console.warn('⚠️ GSAP not available, using fallback animations');
+                    document.body.classList.add('no-animations');
+                }
+                
+                console.log('✅ Portfolio initialization completed successfully');
+                
+            } catch (error) {
+                console.error('❌ Portfolio initialization error:', error);
+                
+                // Fallback to basic functionality
+                document.body.classList.add('no-animations');
+                hideLoadingScreen();
+                
+                // Show user-friendly error message
+                const errorMessage = document.createElement('div');
+                errorMessage.innerHTML = `
+                    <div style="position: fixed; top: 20px; right: 20px; background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; z-index: 10000; max-width: 300px;">
+                        <strong>Notice:</strong> Some visual effects may not be available, but the portfolio is fully functional.
+                    </div>
+                `;
+                document.body.appendChild(errorMessage);
+                
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+            }
+        }
+
+        // ============ INITIALIZATION SEQUENCE ============
+        // Use multiple initialization triggers for reliability
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPortfolio);
+        } else {
+            initPortfolio();
+        }
+
+        // Fallback initialization
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (document.getElementById('loading-screen') && 
+                    !document.getElementById('loading-screen').classList.contains('hidden')) {
+                    console.log('⏰ Fallback initialization triggered');
+                    initPortfolio();
+                }
+            }, 500);
+        });
+
+        // Emergency fallback after 5 seconds
+        setTimeout(() => {
+            hideLoadingScreen();
+            console.log('🔄 Emergency fallback - ensuring content visibility');
+        }, 5000);
+
+        // ============ SOCIAL SHARING FUNCTIONS ============
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('Check out my AI Art Portfolio - Bridging Culture and Technology');
+            const summary = encodeURIComponent('Explore my work with AI training, Thai cultural preservation, and innovative web development projects.');
+            
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`, '_blank');
+        }
+
+        function shareViaEmail() {
+            const subject = encodeURIComponent('Thanattsitt\'s AI Art Portfolio - Cultural Innovation');
+            const body = encodeURIComponent(`I wanted to share this amazing portfolio showcasing the intersection of AI and Thai culture:\n\n${window.location.href}\n\nThe projects like Siam-Blessing and Astrotrias-Archon are truly inspiring!`);
+            
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        // ============ UTILITY FUNCTIONS ============
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Optimize scroll event handlers
+        const optimizedScrollHandler = throttle(() => {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            // Parallax effects
+            const parallaxElements = document.querySelectorAll('.liquid-morph');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.2;
+            
+            parallaxElements.forEach(element => {
+                element.style.transform = `translateY(${rate}px)`;
+            });
+        }, 16);
+
+        window.addEventListener('scroll', optimizedScrollHandler);
+
+        // ============ RESIZE HANDLER ============
+        const optimizedResizeHandler = debounce(() => {
+            // Update canvas size
+            const canvas = document.getElementById('star-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            // Update any other responsive elements
+            console.log('🔄 Window resized, updating responsive elements');
+        }, 250);
+
+        window.addEventListener('resize', optimizedResizeHandler);
+
+        // ============ EASTER EGG ============
+        let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    // Easter egg activated!
+                    document.body.style.filter = 'hue-rotate(180deg)';
+                    document.body.style.animation = 'rainbow 2s infinite';
+                    
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes rainbow {
+                            0% { filter: hue-rotate(0deg); }
+                            100% { filter: hue-rotate(360deg); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    setTimeout(() => {
+                        document.body.style.filter = '';
+                        document.body.style.animation = '';
+                        style.remove();
+                    }, 10000);
+                    
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // ============ DEVELOPMENT HELPERS ============
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🔧 Development mode detected');
+            
+            // Add development grid helper
+            const devGrid = document.createElement('div');
+            devGrid.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            devGrid.id = 'dev-grid';
+            document.body.appendChild(devGrid);
+            
+            // Toggle grid with Ctrl+G
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'g') {
+                    e.preventDefault();
+                    const grid = document.getElementById('dev-grid');
+                    grid.style.opacity = grid.style.opacity === '0.5' ? '0' : '0.5';
+                }
+            });
+        }
+
+        console.log('🌟 Thanattsitt\'s Portfolio - Ready to inspire!');
+    </script>
+
+    <!-- Google Analytics (Uncomment when ready) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+</body>
+</html>
+
+
