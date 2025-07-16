@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanattsitt - AI & Hero Animation</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poiret+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* Base Styles */
+    :root {
+      --accent-cyan: #0891B2;
+      --accent-coral: #DC2626;
+      --pastel-pink: #FFE4E1;
+      --pastel-blue: #E6F3FF;
+      --pastel-lavender: #F0E6FF;
+      --pastel-mint: #E8F5E8;
+      --pastel-peach: #FFE5CC;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.5), transparent 50%), #221f28;
+      height: 100dvh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      color: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #4B5563;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-coral));
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      margin: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Floating Moon Circles */
+    .circle-moon-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .circle-moon {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: floatCircle 20s ease-in-out infinite;
+    }
+
+    .circle-moon-1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .circle-moon-2 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--pastel-blue) 0%, transparent 70%);
+      top: 20%;
+      right: 15%;
+      animation-delay: -5s;
+    }
+
+    .circle-moon-3 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--pastel-lavender) 0%, transparent 70%);
+      bottom: 30%;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    .circle-moon-4 {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, var(--pastel-mint) 0%, transparent 70%);
+      bottom: 15%;
+      right: 25%;
+      animation-delay: -15s;
+    }
+
+    .circle-moon-5 {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--pastel-peach) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -20s;
+    }
+
+    /* Orbiting Stars */
+    .star-orbit-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star-orbit {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.8;
+    }
+
+    .star {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: radial-gradient(circle, white 0%, rgba(255,255,255,0.2) 100%);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    /* Orbit Animation */
+    @keyframes orbitClockwise {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orbitCounterClockwise {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+
+    /* Twinkling Animation */
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+      }
+    }
+
+    /* AI Animation */
+    @property --a {
+      syntax: "<angle>";
+      inherits: true;
+      initial-value: 0deg;
+    }
+
+    @property --l {
+      syntax: "<number>";
+      inherits: true;
+      initial-value: 0;
+    }
+
+    @property --x {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0;
+    }
+
+    @property --y {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0;
+    }
+
+    @property --o {
+      syntax: "<number>";
+      inherits: false;
+      initial-value: 0;
+    }
+
+    @property --value {
+      syntax: "<angle>";
+      inherits: true;
+      initial-value: 0deg;
+    }
+
+    @property --width-ratio {
+      syntax: "<number>";
+      inherits: true;
+      initial-value: 0;
+    }
+
+    @property --scale {
+      syntax: "<number>";
+      inherits: true;
+      initial-value: 0;
+    }
+
+    .ai {
+      --s: 40vmin;
+      --p: calc(var(--s) / 4);
+      width: var(--s);
+      aspect-ratio: 1;
+      --bg-color: color-mix(in srgb, #7b7bf4, transparent 90%);
+      background: 
+        radial-gradient(60% 75% at center, var(--bg-color) 50%, transparent 50%),
+        radial-gradient(75% 60% at center, var(--bg-color) 50%, transparent 50%);
+      padding: var(--p);
+      display: grid;
+      place-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    .container {
+      overflow: hidden;
+      background: #b6a9f8;
+      width: 100%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .c {
+      opacity: 0.9;
+      position: absolute;
+      width: 10vmin;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      --offset-per-item: calc(360deg / 4);
+      --current-angle-offset: calc(var(--offset-per-item) * var(--i) + var(--a));
+      translate: 
+        calc(cos(var(--current-angle-offset)) * var(--radius) + var(--x, 0)) 
+        calc(sin(var(--current-angle-offset)) * var(--radius) * -1);
+      scale: calc(0.6 + var(--l));
+      animation: ai 5.5s cubic-bezier(0.45, -0.35, 0.16, 1.5) infinite;
+      transition: opacity 0.3s linear;
+      opacity: var(--o, 1);
+    }
+
+    @keyframes ai {
+      from {
+        --a: 360deg;
+        --l: 0.35;
+        --o: 1;
+      }
+      30% {
+        --l: 1.5;
+      }
+      70% {
+        --o: 0.4;
+        --l: 0.05;
+      }
+      98% {
+        --o: 0.7;
+      }
+      to {
+        --a: 0deg;
+        --l: 0.35;
+        --o: 1;
+      }
+    }
+
+    .c1 {
+      --i: 0;
+      --radius: 6vmin;
+      background: radial-gradient(50% 50% at center, #79e3ee, #e7e7fb);
+      width: 16vmin;
+      --x: 1vmin;
+      animation-timing-function: cubic-bezier(0.12, 0.32, 0.68, 0.24);
+    }
+
+    .c2 {
+      --i: 1;
+      --radius: 6vmin;
+      background: radial-gradient(50% 50% at center, #ef788c, #e7e7fb);
+      width: 15vmin;
+    }
+
+    .c3 {
+      --i: 2;
+      --radius: 6vmin;
+      background: radial-gradient(50% 50% at center, #eb7fc6, transparent);
+      width: 5vmin;
+      opacity: 0.6;
+      --x: -1vmin;
+    }
+
+    .c4 {
+      --i: 3;
+      --radius: 6vmin;
+      background: #6d67c8;
+      animation-timing-function: cubic-bezier(0.39, -0.03, 0.75, 0.47);
+    }
+
+    .glass {
+      overflow: hidden;
+      position: absolute;
+      --w: 0.5vmin;
+      inset: calc(var(--p) - var(--w));
+      border-radius: 50%;
+      backdrop-filter: blur(1.3vmin);
+      box-shadow: 0 0 8vmin color-mix(in srgb, black, transparent 70%);
+      background: radial-gradient(10vmin at 70% 30%, rgba(255, 255, 255, 0.7), transparent);
+    }
+
+    .glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      --c: rgba(255, 255, 255, 0.03);
+      --w: 0.0625rem;
+      --g: 0.1875rem;
+      background: repeating-linear-gradient(
+        var(--c),
+        var(--c),
+        var(--w),
+        transparent var(--w),
+        transparent calc(var(--w) + var(--g))
+      );
+      border-radius: inherit;
+      border: 1vmin rgba(255, 255, 255, 0.1) solid;
+    }
+
+    .rings {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: absolute;
+      inset: 0;
+      perspective: 11rem;
+      opacity: 0.9;
+    }
+
+    .rings::before,
+    .rings::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 0, 0, 1);
+      border-radius: 50%;
+      --width-ratio: 1;
+      border: calc(var(--width) * var(--width-ratio)) solid transparent;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      animation: ring 8s ease-in-out infinite;
+      --start: 180deg;
+      --value: var(--start);
+      --scale: 1;
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+
+    .rings::after {
+      --start: 90deg;
+    }
+
+    @keyframes ring {
+      from {
+        --value: var(--start);
+        --scale: 1;
+      }
+      50% {
+        --scale: 1.2;
+        --width-ratio: 1.5;
+      }
+      70% {
+        --scale: 1;
+        --value: calc(var(--start) + 180deg);
+        --width-ratio: 1;
+      }
+      80% {
+        --scale: 1.2;
+        --width-ratio: 1.5;
+      }
+      to {
+        --value: calc(var(--start) + 360deg);
+        --scale: 1;
+        --width-ratio: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ai {
+        --s: 20vmin;
+        --p: calc(var(--s) / 2);
+      }
+
+      .c1 {
+        width: 10vmin;
+      }
+
+      .c2 {
+        width: 9vmin;
+      }
+
+      .c3 {
+        width: 3vmin;
+      }
+
+      .circle-moon-1, .circle-moon-2, .circle-moon-3, .circle-moon-4, .circle-moon-5 {
+        width: 120px;
+        height: 120px;
+      }
+
+      .circle-moon-1 { width: 100px; height: 100px; }
+      .circle-moon-2 { width: 80px; height: 80px; }
+      .circle-moon-3 { width: 60px; height: 60px; }
+      .circle-moon-4 { width: 50px; height: 50px; }
+      .circle-moon-5 { width: 30px; height: 30px; }
+
+      .star-orbit {
+        width: 200px;
+        height: 200px;
+      }
+
+      .star {
+        width: 3px;
+        height: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" id="mainHero">
+    <!-- Floating Moon Circles -->
+    <div class="circle-moon-container">
+      <div class="circle-moon circle-moon-1"></div>
+      <div class="circle-moon circle-moon-2"></div>
+      <div class="circle-moon circle-moon-3"></div>
+      <div class="circle-moon circle-moon-4"></div>
+      <div class="circle-moon circle-moon-5"></div>
+    </div>
+
+    <!-- Orbiting Stars Container -->
+    <div class="star-orbit-container" id="starOrbitContainer">
+      <!-- Orbits will be generated by JavaScript -->
+    </div>
+
+    <!-- Main Hero Content -->
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Thanattsitt <br> Santisamranwilai
+      </h1>
+      <p class="hero-subtitle">
+        AI Creative Designer | Researcher | Scriptwriter
+      </p>
+      <a href="#projects" class="btn">View My Work</a>
+      <a href="#contact" class="btn">Let's Connect</a>
+    </div>
+  </section>
+
+  <!-- AI Animation -->
+  <div class="ai">
+    <div class="container">
+      <div class="c c1"></div>
+      <div class="c c2"></div>
+      <div class="c c3"></div>
+      <div class="c c4"></div>
+      <div class="rings"></div>
+    </div>
+    <div class="glass"></div>
+  </div>
+
+  <!-- Canvas Animation -->
+  <canvas id="canv"></canvas>
+
+  <script>
+    // AI Animation Script
+    (function () {
+      const canvas = document.getElementById('canv');
+      const ctx = canvas.getContext('2d');
+
+      let width, height;
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const arr = [];
+      const dp = 0.7;
+      const ms = { x: 0, y: 0 };
+      const msd = { x: 0, y: 0 };
+
+      function Obj(x, y, z) {
+        this.set(x, y, z);
+      }
+
+      Obj.prototype = {
+        set(x, y, z) {
+          this.x = x || 0;
+          this.y = y || 0;
+          this.z = z || 0;
+        },
+        rotX(ang) {
+          const y = this.y;
+          const z = this.z;
+          this.y = y * Math.cos(ang) - z * Math.sin(ang);
+          this.z = z * Math.cos(ang) + y * Math.sin(ang);
+        },
+        rotY(ang) {
+          const x = this.x;
+          const z = this.z;
+          this.x = x * Math.cos(ang) - z * Math.sin(ang);
+          this.z = z * Math.cos(ang) + x * Math.sin(ang);
+        },
+        rotZ(ang) {
+          const x = this.x;
+          const y = this.y;
+          this.x = x * Math.cos(ang) - y * Math.sin(ang);
+          this.y = y * Math.cos(ang) + x * Math.sin(ang);
+        }
+      };
+
+      function Part(x, y, z) {
+        this.op = new Obj(x, y, z);
+        this.rp = new Obj(x, y, z);
+        this.rot = new Obj();
+        this.vel = new Obj();
+        this.col = 'hsla(216,95%,85%,' + Math.random() * 0.5 + 0.5 + ')';
+      }
+
+      function update(rot) {
+        for (let i in arr) {
+          const p = arr[i];
+          const op = p.op;
+          const rp = p.rp;
+          const rot = p.rot;
+          const vel = p.vel;
+
+          vel.x += msd.x * 0.15;
+          vel.y += msd.y * 0.15;
+          rp.set(op.x, op.y, op.z);
+
+          rot.x += vel.x;
+          rot.y += vel.y;
+          rot.x = rot.x > Math.PI * 2 ? 0 : rot.x;
+          rot.y = rot.y > Math.PI * 2 ? 0 : rot.y;
+
+          rp.rotY(rot.y);
+          rp.rotX(rot.x);
+
+          vel.set(vel.x * dp, vel.y * dp, 0);
+        }
+        msd.x = 0.0005;
+        msd.y = 0.0005;
+      }
+
+      function draw() {
+        const text = "Sparkling Blue".split("").join(String.fromCharCode(0x2004));
+        ctx.font = "4em Poiret One";
+        ctx.fillStyle = 'hsla(216,95%,85%,0.3)';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, (width - ctx.measureText(text).width) / 2, height / 2);
+
+        for (let i in arr) {
+          const p = arr[i];
+          const dth = ((p.rp.z / height) + 1);
+          ctx.fillStyle = p.col;
+          ctx.fillRect(width + p.rp.x, height + p.rp.y, dth / 0.8, dth / 0.9);
+        }
+      }
+
+      function init() {
+        for (let i = 0; i < 6800; i++) {
+          const x = Math.random() * width - width;
+          const y = Math.random() * height - height;
+          const z = Math.random() * height - height;
+          const part = new Part(x, y, z);
+          part.vel.set(0, 0, 0);
+          arr.push(part);
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        const gradient = ctx.createLinearGradient(width, height * 1.5, width, 0);
+        gradient.addColorStop(0, 'hsla(253, 5%, 75%, 1)');
+        gradient.addColorStop(0.5, 'hsla(314, 95%, 10%, 1)');
+        gradient.addColorStop(0.8, 'hsla(259, 95%, 5%, 1)');
+        gradient.addColorStop(1, 'hsla(0, 0%, 5%, 1)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+
+        update();
+        draw();
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        msd.x = (e.clientY - ms.y) / height;
+        msd.y = (e.clientX - ms.x) / width;
+        ms.x = e.clientX;
+        ms.y = e.clientY;
+      });
+
+      window.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        msd.x = (touch.clientY - ms.y) / height;
+        msd.y = (touch.clientX - ms.x) / width;
+        ms.x = touch.clientX;
+        ms.y = touch.clientY;
+      });
+
+      init();
+      animate();
+    })();
+
+    // Orbiting Stars Script
+    {
+      const container = document.getElementById('starOrbitContainer');
+      const orbitRadii = [100, 150, 200];
+
+      orbitRadii.forEach((radius, orbitIndex) => {
+        const orbit = document.createElement('div');
+        orbit.className = 'star-orbit';
+        orbit.style.width = `${2 * radius}px`;
+        orbit.style.height = `${2 * radius}px`;
+        orbit.style.animation = orbitIndex % 2 === 0 
+          ? `orbitClockwise ${40 + Math.random() * 10}s linear infinite` 
+          : `orbitCounterClockwise ${40 + Math.random() * 10}s linear infinite`;
+        container.appendChild(orbit);
+
+        for (let i = 0; i < 10; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const angle = (360 / 10) * i;
+
+          star.style.top = `${-radius + Math.random() * 20}px`;
+          star.style.left = `${-radius + Math.random() * 20}px`;
+          star.style.transform = `rotate(${angle}deg) translateX(${radius}px) rotate(-${angle}deg)`;
+
+          orbit.appendChild(star);
+        }
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        const stars = document.querySelectorAll('.star');
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        stars.forEach(star => {
+          const dx = mouseX - centerX;
+          const dy = mouseY - centerY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 200) {
+            star.style.opacity = 0.8;
+          } else {
+            star.style.opacity = 0.4 + Math.random() * 0.4;
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
