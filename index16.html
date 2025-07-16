@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanattsitt Santisamranwilai - AI Artist & Creative Developer</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="AI Artist and Creative Developer specializing in cultural heritage preservation through artificial intelligence and digital art.">
+    <meta name="keywords" content="AI artist, creative developer, cultural heritage, artificial intelligence, digital art">
+    <meta name="author" content="Thanattsitt Santisamranwilai">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Thanattsitt Santisamranwilai - AI Artist & Creative Developer">
+    <meta property="og:description" content="Bridging tradition and technology through AI-powered cultural preservation.">
+    <meta property="og:type" content="website">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* === CSS VARIABLES FOR PROFESSIONAL LIGHT THEME === */
+        :root {
+            /* Primary Colors */
+            --primary-gold: #FFD700;
+            --secondary-gold: #FFA500;
+            --accent-teal: #20B2AA;
+            --accent-coral: #FF6B6B;
+            
+            /* Light Theme Backgrounds */
+            --light-bg: #FFFFFF;
+            --card-bg: #F8F9FA;
+            --section-bg: #F5F7FA;
+            
+            /* High Contrast Text */
+            --text-primary: #2C3E50;
+            --text-secondary: #5D6D7E;
+            --text-light: #7F8C8D;
+            
+            /* Borders & Shadows */
+            --border-light: #E5E8EB;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 100%);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-section: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            
+            /* Design System */
+            --border-radius: 15px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* === GLOBAL STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--light-bg);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* === ACCESSIBILITY === */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-gold);
+            color: var(--text-primary);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* === LOADING SCREEN === */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-moon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            position: relative;
+            animation: moonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes moonPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* === DYNAMIC ANIMATED GRADIENT BACKGROUND === */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === CONTENT OVERLAY WITH BACKDROP BLUR === */
+        .content-overlay {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-primary);
+            transition: width 0.1s ease;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: var(--transition-smooth);
+            text-decoration: none !important;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-gold) !important;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 80%;
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.9) 100%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-light);
+        }
+
+        /* === BUTTONS === */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            background: var(--gradient-primary);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--section-bg);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* === CARDS WITH HARDWARE ACCELERATION === */
+        .card-3d {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) translateZ(0);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-face {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+        }
+
+        .card-face:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* === PROJECT CARDS === */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-gold);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--text-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* === SKILLS SECTION === */
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+            margin: 1rem 0;
+            position: relative;
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-gold);
+            font-family: serif;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-info-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+            will-change: transform;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* === FORM STYLES === */
+        .form-control {
+            background: var(--card-bg) !important;
+            border: 1px solid var(--border-light) !important;
+            color: var(--text-primary) !important;
+            border-radius: 8px !important;
+            padding: 0.75rem 1rem !important;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-gold) !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important;
+        }
+
+        .form-label {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #B0B0B0;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            will-change: transform;
+        }
+
+        .social-link:hover {
+            background: var(--primary-gold);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            color: #B0B0B0;
+        }
+
+        /* === GSAP ANIMATION CLASSES === */
+        .gsap-fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-fade-left {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .gsap-fade-right {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .gsap-scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .card-3d {
+                padding: 1.5rem;
+            }
+            
+            .navbar-nav {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 10px;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* === ACCESSIBILITY & PERFORMANCE === */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .dynamic-bg {
+                animation: none;
+                background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+            }
+        }
+
+        /* === GPU ACCELERATION === */
+        .gpu-accelerated {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Accessibility Features -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-moon"></div>
+            <div class="loading-text">Welcome to AI Art Portfolio</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Dynamic Animated Gradient Background -->
+    <div class="dynamic-bg"></div>
+
+    <!-- Content Overlay with Backdrop Blur -->
+    <div class="content-overlay">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
+            <div class="container">
+                <a class="navbar-brand gsap-fade-left" href="#home">Thanattsitt</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active gsap-fade-right" href="#home" data-delay="0.1">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gsap-fade-right" href="#about" data-delay="0.2">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gsap-fade-right" href="#portfolio" data-delay="0.3">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gsap-fade-right" href="#skills" data-delay="0.4">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gsap-fade-right" href="#testimonials" data-delay="0.5">Testimonials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gsap-fade-right" href="#contact" data-delay="0.6">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title gsap-fade-in">
+                        Thanattsitt Santisamranwilai
+                    </h1>
+                    <h2 class="hero-subtitle gsap-fade-in" data-delay="0.2">
+                        AI Artist & Creative Developer
+                    </h2>
+                    <p class="hero-description gsap-fade-in" data-delay="0.4">
+                        Bridging the gap between tradition and technology through innovative AI-powered art. 
+                        I specialize in cultural heritage preservation, creating immersive digital experiences 
+                        that honor the past while embracing the future.
+                    </p>
+                    
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="#portfolio" class="cta-button gsap-scale-in gpu-accelerated" data-delay="0.6">
+                            <i class="fas fa-rocket"></i>
+                            Explore My Work
+                        </a>
+                        <a href="#contact" class="cta-button btn-secondary gsap-scale-in gpu-accelerated" data-delay="0.8">
+                            <i class="fas fa-paper-plane"></i>
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="container">
+                    <h2 class="section-title gradient-text gsap-fade-in">About Me</h2>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card-3d gsap-fade-left gpu-accelerated">
+                                <h3 class="gradient-text mb-3">My Journey</h3>
+                                <p class="mb-3">
+                                    As an AI artist and creative developer, I'm passionate about exploring the intersection 
+                                    of artificial intelligence and cultural preservation. My work focuses on creating innovative 
+                                    digital experiences that bridge traditional art forms with cutting-edge technology.
+                                </p>
+                                <p>
+                                    Through my projects, I aim to preserve and celebrate cultural heritage while pushing 
+                                    the boundaries of what's possible with AI-generated art and interactive media.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.1">
+                                        <div class="text-center">
+                                            <i class="fas fa-brain fa-2x mb-2" style="color: var(--primary-gold);"></i>
+                                            <h4>AI Innovation</h4>
+                                            <p>Pioneering new approaches to AI-generated art and machine learning applications.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.2">
+                                        <div class="text-center">
+                                            <i class="fas fa-landmark fa-2x mb-2" style="color: var(--primary-gold);"></i>
+                                            <h4>Cultural Heritage</h4>
+                                            <p>Preserving traditional art forms through digital transformation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.3">
+                                        <div class="text-center">
+                                            <i class="fas fa-code fa-2x mb-2" style="color: var(--primary-gold);"></i>
+                                            <h4>Creative Development</h4>
+                                            <p>Building interactive experiences that engage audiences meaningfully.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="card-face gsap-fade-right gpu-accelerated" data-delay="0.4">
+                                        <div class="text-center">
+                                            <i class="fas fa-palette fa-2x mb-2" style="color: var(--primary-gold);"></i>
+                                            <h4>Digital Art</h4>
+                                            <p>Creating immersive visual experiences with modern technology.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="section">
+                <div class="container">
+                    <h2 class="section-title gradient-text gsap-fade-in">Portfolio</h2>
+                    
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="project-card gsap-fade-left gpu-accelerated">
+                                <h3 class="gradient-text mb-3">AI Cultural Heritage Preservation</h3>
+                                <p class="mb-3">
+                                    A groundbreaking project that uses machine learning to restore and preserve ancient 
+                                    artifacts and artworks. The AI analyzes historical patterns and reconstructs missing 
+                                    elements while maintaining cultural authenticity.
+                                </p>
+                                
+                                <div class="project-tech">
+                                    <span class="tech-tag">TensorFlow</span>
+                                    <span class="tech-tag">Computer Vision</span>
+                                    <span class="tech-tag">3D Reconstruction</span>
+                                    <span class="tech-tag">Cultural Analysis</span>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <a href="#" class="cta-button me-2 gpu-accelerated">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Project
+                                    </a>
+                                    <a href="#" class="cta-button btn-secondary gpu-accelerated">
+                                        <i class="fab fa-github"></i>
+                                        Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="project-card gsap-fade-right gpu-accelerated">
+                                <h3 class="gradient-text mb-3">Interactive AI Art Installation</h3>
+                                <p class="mb-3">
+                                    An immersive installation that responds to visitor movements and emotions, 
+                                    generating unique artworks in real-time. The system combines motion tracking, 
+                                    facial recognition, and generative AI.
+                                </p>
+                                
+                                <div class="project-tech">
+                                    <span class="tech-tag">OpenCV</span>
+                                    <span class="tech-tag">Emotion Recognition</span>
+                                    <span class="tech-tag">Generative AI</span>
+                                    <span class="tech-tag">Real-time Processing</span>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <a href="#" class="cta-button me-2 gpu-accelerated">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Project
+                                    </a>
+                                    <a href="#" class="cta-button btn-secondary gpu-accelerated">
+                                        <i class="fab fa-github"></i>
+                                        Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="project-card gsap-fade-left gpu-accelerated" data-delay="0.2">
+                                <h3 class="gradient-text mb-3">Digital Storytelling Platform</h3>
+                                <p class="mb-3">
+                                    A web-based platform that allows communities to share and preserve their cultural 
+                                    stories through AI-enhanced multimedia experiences. Features include automatic 
+                                    translation, voice synthesis, and adaptive visual narratives.
+                                </p>
+                                
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Natural Language Processing</span>
+                                    <span class="tech-tag">Voice Synthesis</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <a href="#" class="cta-button me-2 gpu-accelerated">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Project
+                                    </a>
+                                    <a href="#" class="cta-button btn-secondary gpu-accelerated">
+                                        <i class="fab fa-github"></i>
+                                        Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="project-card gsap-fade-right gpu-accelerated" data-delay="0.2">
+                                <h3 class="gradient-text mb-3">AI-Powered Music Visualization</h3>
+                                <p class="mb-3">
+                                    A dynamic visualization system that creates stunning visual art from traditional 
+                                    music compositions. The AI analyzes musical patterns, emotions, and cultural 
+                                    context to generate culturally relevant visual interpretations.
+                                </p>
+                                
+                                <div class="project-tech">
+                                    <span class="tech-tag">Audio Analysis</span>
+                                    <span class="tech-tag">Three.js</span>
+                                    <span class="tech-tag">Machine Learning</span>
+                                    <span class="tech-tag">WebGL</span>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <a href="#" class="cta-button me-2 gpu-accelerated">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        View Project
+                                    </a>
+                                    <a href="#" class="cta-button btn-secondary gpu-accelerated">
+                                        <i class="fab fa-github"></i>
+                                        Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <div class="container">
+                    <h2 class="section-title gradient-text gsap-fade-in">Skills & Expertise</h2>
+                    
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="skill-category gsap-fade-left gpu-accelerated">
+                                <h3 class="gradient-text mb-3">AI & Machine Learning</h3>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Deep Learning</h4>
+                                        <p>Neural networks, CNNs, GANs for creative applications</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <div>
+                                                                                <h4>Computer Vision</h4>
+                                        <p>Image processing, object detection, style transfer</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Natural Language Processing</h4>
+                                        <p>Text analysis, language generation, translation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="skill-category gsap-fade-right gpu-accelerated">
+                                <h3 class="gradient-text mb-3">Creative Development</h3>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fab fa-js-square"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Frontend Development</h4>
+                                        <p>React, Vue.js, Three.js, WebGL for interactive experiences</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Backend Development</h4>
+                                        <p>Python, Node.js, API development, cloud deployment</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-cube"></i>
+                                    </div>
+                                    <div>
+                                        <h4>3D Graphics & Animation</h4>
+                                        <p>Blender, Unity, procedural generation, real-time rendering</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="skill-category gsap-fade-left gpu-accelerated" data-delay="0.2">
+                                <h3 class="gradient-text mb-3">Cultural & Artistic</h3>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-palette"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Digital Art Creation</h4>
+                                        <p>Generative art, digital painting, multimedia composition</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-landmark"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Cultural Research</h4>
+                                        <p>Heritage preservation, anthropological analysis, art history</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Community Engagement</h4>
+                                        <p>Participatory design, cultural consultation, inclusive practices</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="skill-category gsap-fade-right gpu-accelerated" data-delay="0.2">
+                                <h3 class="gradient-text mb-3">Tools & Technologies</h3>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fab fa-python"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Python Ecosystem</h4>
+                                        <p>TensorFlow, PyTorch, OpenCV, Pandas, NumPy</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-cloud"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Cloud Platforms</h4>
+                                        <p>AWS, Google Cloud, Azure, Docker, Kubernetes</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Data Management</h4>
+                                        <p>MongoDB, PostgreSQL, Data pipelines, ETL processes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="section">
+                <div class="container">
+                    <h2 class="section-title gradient-text gsap-fade-in">What People Say</h2>
+                    
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="testimonial-card gsap-fade-in gpu-accelerated" data-delay="0.1">
+                                <p class="mb-3">
+                                    "Thanattsitt's work in AI-powered cultural preservation is groundbreaking. 
+                                    His ability to merge traditional art forms with cutting-edge technology 
+                                    has opened new possibilities for our heritage projects."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                                   border-radius: 50%; display: flex; align-items: center; 
+                                                   justify-content: center; color: white; font-weight: bold;">
+                                            DR
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Dr. Sarah Chen</h5>
+                                        <small class="text-muted">Director, Cultural Heritage Institute</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="testimonial-card gsap-fade-in gpu-accelerated" data-delay="0.2">
+                                <p class="mb-3">
+                                    "The interactive AI art installation created by Thanattsitt transformed 
+                                    our gallery space. Visitors are captivated by how the artwork responds 
+                                    to their presence, creating truly unique and personal experiences."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                                   border-radius: 50%; display: flex; align-items: center; 
+                                                   justify-content: center; color: white; font-weight: bold;">
+                                            MJ
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Marcus Johnson</h5>
+                                        <small class="text-muted">Curator, Modern Art Museum</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="testimonial-card gsap-fade-in gpu-accelerated" data-delay="0.3">
+                                <p class="mb-3">
+                                    "Working with Thanattsitt on our digital storytelling platform was 
+                                    an incredible experience. His technical expertise combined with deep 
+                                    cultural sensitivity resulted in a tool that truly serves our community."
+                                </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); 
+                                                   border-radius: 50%; display: flex; align-items: center; 
+                                                   justify-content: center; color: white; font-weight: bold;">
+                                            AP
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-0">Aisha Patel</h5>
+                                        <small class="text-muted">Community Arts Director</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title gradient-text gsap-fade-in">Get In Touch</h2>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="text-center mb-5">
+                                <p class="lead gsap-fade-in" data-delay="0.2">
+                                    Ready to explore the intersection of AI and cultural heritage? 
+                                    Let's collaborate on creating meaningful digital experiences that honor tradition 
+                                    while embracing innovation.
+                                </p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="contact-info-card gsap-fade-left gpu-accelerated">
+                                        <div class="contact-icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <h4>Email</h4>
+                                        <p>thanattsitt@example.com</p>
+                                        <a href="mailto:thanattsitt@example.com" class="cta-button gpu-accelerated">
+                                            Send Message
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 mb-4">
+                                    <div class="contact-info-card gsap-fade-in gpu-accelerated" data-delay="0.1">
+                                        <div class="contact-icon">
+                                            <i class="fab fa-linkedin"></i>
+                                        </div>
+                                        <h4>LinkedIn</h4>
+                                        <p>Connect professionally</p>
+                                        <a href="#" class="cta-button gpu-accelerated">
+                                            Connect
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 mb-4">
+                                    <div class="contact-info-card gsap-fade-right gpu-accelerated">
+                                        <div class="contact-icon">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <h4>GitHub</h4>
+                                        <p>Explore my code</p>
+                                        <a href="#" class="cta-button gpu-accelerated">
+                                            View Projects
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Form -->
+                            <div class="card-3d mt-5 gsap-fade-in gpu-accelerated" data-delay="0.4">
+                                <form id="contact-form" action="#" method="POST" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Name *</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                            <div id="name-error" class="invalid-feedback"></div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <div id="email-error" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subject" class="form-label">Subject *</label>
+                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                        <div id="subject-error" class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="message" class="form-label">Message *</label>
+                                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                        <div id="message-error" class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="cta-button gpu-accelerated">
+                                            <i class="fas fa-paper-plane"></i>
+                                            Send Message
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Thanattsitt Santisamranwilai</h4>
+                    <p>AI Artist & Creative Developer specializing in cultural heritage preservation through innovative technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link gpu-accelerated" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link gpu-accelerated" aria-label="GitHub Profile">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link gpu-accelerated" aria-label="Twitter Profile">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link gpu-accelerated" aria-label="Instagram Profile">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">AI Art Creation</a></li>
+                        <li><a href="#">Cultural Preservation</a></li>
+                        <li><a href="#">Interactive Installations</a></li>
+                        <li><a href="#">Digital Storytelling</a></li>
+                        <li><a href="#">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            thanattsitt@example.com
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Bangkok, Thailand
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            Available Worldwide
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Thanattsitt Santisamranwilai. All rights reserved. | 
+                   <a href="#" style="color: var(--primary-gold);">Privacy Policy</a> | 
+                   <a href="#" style="color: var(--primary-gold);">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // === GSAP INITIALIZATION ===
+        gsap.registerPlugin(ScrollTrigger);
+
+        // === PERFORMANCE OPTIMIZATION ===
+        class PerformanceManager {
+            constructor() {
+                this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                this.isMobile = window.innerWidth <= 768;
+                this.init();
+            }
+
+            init() {
+                if (this.isReducedMotion) {
+                    document.body.classList.add('reduced-motion');
+                    // Disable GSAP animations for reduced motion
+                    gsap.set('*', { clearProps: 'all' });
+                }
+
+                // Optimize for mobile
+                if (this.isMobile) {
+                    ScrollTrigger.config({
+                        syncInterval: 150,
+                        ignoreMobileResize: true
+                    });
+                }
+            }
+        }
+
+        // === GSAP ANIMATION MANAGER ===
+        class GSAPAnimationManager {
+            constructor() {
+                this.timeline = gsap.timeline();
+                this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                this.init();
+            }
+
+            init() {
+                if (this.isReducedMotion) return;
+
+                this.initNavbarAnimations();
+                this.initHeroAnimations();
+                this.initScrollTriggerAnimations();
+                this.initMobileOptimizations();
+            }
+
+            initNavbarAnimations() {
+                // Navbar brand animation
+                gsap.from('.navbar-brand', {
+                    duration: 0.8,
+                    x: -50,
+                    opacity: 0,
+                    ease: 'power3.out'
+                });
+
+                // Navbar links staggered animation
+                gsap.from('.nav-link', {
+                    duration: 0.6,
+                    y: -30,
+                    opacity: 0,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    delay: 0.3
+                });
+            }
+
+            initHeroAnimations() {
+                const heroTl = gsap.timeline();
+
+                heroTl
+                    .from('.hero-title', {
+                        duration: 1,
+                        y: 50,
+                        opacity: 0,
+                        ease: 'power3.out'
+                    })
+                    .from('.hero-subtitle', {
+                        duration: 0.8,
+                        y: 30,
+                        opacity: 0,
+                        ease: 'power2.out'
+                    }, '-=0.5')
+                    .from('.hero-description', {
+                        duration: 0.8,
+                        y: 30,
+                        opacity: 0,
+                        ease: 'power2.out'
+                    }, '-=0.4')
+                    .from('.cta-button', {
+                        duration: 0.6,
+                        scale: 0.8,
+                        opacity: 0,
+                        stagger: 0.2,
+                        ease: 'back.out(1.7)'
+                    }, '-=0.3');
+            }
+
+            initScrollTriggerAnimations() {
+                // Section titles
+                gsap.utils.toArray('.section-title').forEach(title => {
+                    gsap.from(title, {
+                        duration: 0.8,
+                        y: 50,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: title,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                });
+
+                // Cards with staggered animations
+                gsap.utils.toArray('.card-3d, .project-card, .skill-category').forEach((card, index) => {
+                    gsap.from(card, {
+                        duration: 0.8,
+                        y: 60,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            end: 'bottom 15%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                });
+
+                // Testimonials with different directions
+                gsap.utils.toArray('.testimonial-card').forEach((testimonial, index) => {
+                    const direction = index % 2 === 0 ? -60 : 60;
+                    gsap.from(testimonial, {
+                        duration: 0.8,
+                        x: direction,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: testimonial,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                });
+
+                // Contact cards
+                gsap.utils.toArray('.contact-info-card').forEach((card, index) => {
+                    gsap.from(card, {
+                        duration: 0.8,
+                        y: 40,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        delay: index * 0.1,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                });
+
+                // Form animation
+                gsap.from('#contact-form', {
+                    duration: 1,
+                    y: 60,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '#contact-form',
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            }
+
+            initMobileOptimizations() {
+                if (window.innerWidth <= 768) {
+                    // Reduce animation complexity on mobile
+                    gsap.set('*', { force3D: true });
+                    
+                    // Optimize scroll triggers for mobile
+                    ScrollTrigger.batch('.gsap-fade-in, .gsap-fade-left, .gsap-fade-right', {
+                        onEnter: (elements) => {
+                            gsap.from(elements, {
+                                duration: 0.6,
+                                y: 30,
+                                opacity: 0,
+                                stagger: 0.1,
+                                ease: 'power2.out'
+                            });
+                        },
+                        start: 'top 90%'
+                    });
+                }
+            }
+        }
+
+        // === LOADING SCREEN MANAGEMENT ===
+        class LoadingManager {
+            constructor() {
+                this.loadingScreen = document.getElementById('loading-screen');
+                this.minLoadTime = 1500;
+                this.startTime = Date.now();
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('load', () => {
+                    this.hideLoadingScreen();
+                });
+                
+                setTimeout(() => {
+                    this.hideLoadingScreen();
+                }, 3000);
+            }
+
+            hideLoadingScreen() {
+                const elapsed = Date.now() - this.startTime;
+                const remaining = Math.max(0, this.minLoadTime - elapsed);
+                
+                setTimeout(() => {
+                    gsap.to(this.loadingScreen, {
+                        duration: 0.8,
+                        opacity: 0,
+                        ease: 'power2.out',
+                        onComplete: () => {
+                            this.loadingScreen.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                            
+                            // Initialize other systems
+                            new NavigationManager();
+                            new GSAPAnimationManager();
+                            new FormManager();
+                            new ScrollProgressManager();
+                            
+                            const liveRegion = document.getElementById('live-region');
+                            if (liveRegion) {
+                                liveRegion.textContent = 'Portfolio loaded successfully. Welcome!';
+                            }
+                        }
+                    });
+                }, remaining);
+            }
+        }
+
+        // === SCROLL PROGRESS MANAGER ===
+        class ScrollProgressManager {
+            constructor() {
+                this.progressBar = document.getElementById('progressBar');
+                this.init();
+            }
+
+            init() {
+                gsap.to(this.progressBar, {
+                    width: '100%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.3
+                    }
+                });
+            }
+        }
+
+        // === NAVIGATION MANAGER ===
+        class NavigationManager {
+            constructor() {
+                this.navbar = document.getElementById('navbar');
+                this.navLinks = document.querySelectorAll('.nav-link');
+                this.sections = document.querySelectorAll('section[id]');
+                this.init();
+            }
+
+            init() {
+                this.setupScrollEffects();
+                this.setupActiveNavigation();
+                this.setupSmoothScrolling();
+            }
+
+            setupScrollEffects() {
+                gsap.to(this.navbar, {
+                    backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                    backdropFilter: 'blur(25px)',
+                    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: 'top -100',
+                        end: 'bottom bottom',
+                        toggleActions: 'play none none reverse',
+                        scrub: 0.3
+                    }
+                });
+            }
+
+            setupActiveNavigation() {
+                this.sections.forEach(section => {
+                    ScrollTrigger.create({
+                        trigger: section,
+                        start: 'top 30%',
+                        end: 'bottom 30%',
+                        onEnter: () => this.updateActiveLink(section.id),
+                        onEnterBack: () => this.updateActiveLink(section.id)
+                    });
+                });
+            }
+
+            updateActiveLink(activeId) {
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${activeId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            setupSmoothScrolling() {
+                this.navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            gsap.to(window, {
+                                duration: 1,
+                                scrollTo: {
+                                    y: targetElement,
+                                    offsetY: 80
+                                },
+                                ease: 'power2.out'
+                            });
+                        }
+                    });
+                });
+            }
+        }
+
+        // === FORM MANAGER ===
+        class FormManager {
+            constructor() {
+                this.contactForm = document.getElementById('contact-form');
+                this.init();
+            }
+
+            init() {
+                if (!this.contactForm) return;
+                
+                this.setupFormValidation();
+                this.setupFormSubmission();
+                this.setupFormAnimations();
+            }
+
+            setupFormValidation() {
+                const inputs = this.contactForm.querySelectorAll('input, textarea');
+                
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => {
+                        this.validateField(input);
+                    });
+                    
+                    input.addEventListener('input', () => {
+                        if (input.classList.contains('is-invalid')) {
+                            this.validateField(input);
+                        }
+                    });
+                });
+            }
+
+            validateField(field) {
+                const value = field.value.trim();
+                const errorElement = document.getElementById(field.name + '-error');
+                
+                if (!errorElement) return;
+                
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (field.hasAttribute('required') && !value) {
+                    isValid = false;
+                    errorMessage = 'This field is required.';
+                } else if (field.type === 'email' && value) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid email address.';
+                    }
+                }
+                
+                if (isValid) {
+                    field.classList.remove('is-invalid');
+                    field.classList.add('is-valid');
+                    errorElement.textContent = '';
+                } else {
+                    field.classList.remove('is-valid');
+                    field.classList.add('is-invalid');
+                    errorElement.textContent = errorMessage;
+                }
+                
+                return isValid;
+            }
+
+            setupFormSubmission() {
+                this.contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const inputs = this.contactForm.querySelectorAll('input, textarea');
+                    let isFormValid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!this.validateField(input)) {
+                            isFormValid = false;
+                        }
+                    });
+                    
+                    if (isFormValid) {
+                        this.submitForm();
+                    } else {
+                        const firstInvalid = this.contactForm.querySelector('.is-invalid');
+                        if (firstInvalid) {
+                            firstInvalid.focus();
+                        }
+                    }
+                });
+            }
+
+            setupFormAnimations() {
+                // Form field focus animations
+                const formControls = this.contactForm.querySelectorAll('.form-control');
+                formControls.forEach(control => {
+                    control.addEventListener('focus', () => {
+                        gsap.to(control, {
+                            duration: 0.3,
+                            scale: 1.02,
+                            ease: 'power2.out'
+                        });
+                    });
+                    
+                    control.addEventListener('blur', () => {
+                        gsap.to(control, {
+                            duration: 0.3,
+                            scale: 1,
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            }
+
+            submitForm() {
+                const submitButton = this.contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                
+                // Button loading animation
+                gsap.to(submitButton, {
+                    duration: 0.3,
+                    scale: 0.95,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        submitButton.disabled = true;
+                        
+                        gsap.to(submitButton, {
+                            duration: 0.3,
+                            scale: 1,
+                            ease: 'back.out(1.7)'
+                        });
+                    }
+                });
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitButton.style.background = 'var(--accent-teal)';
+                    
+                    // Success animation
+                    gsap.fromTo(submitButton, 
+                        { scale: 1 },
+                        { 
+                            duration: 0.6,
+                            scale: 1.05,
+                            ease: 'elastic.out(1, 0.3)',
+                            yoyo: true,
+                            repeat: 1
+                        }
+                    );
+                    
+                    this.contactForm.reset();
+                    this.contactForm.querySelectorAll('.is-valid').forEach(field => {
+                        field.classList.remove('is-valid');
+                    });
+                    
+                    setTimeout(() => {
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                        submitButton.style.background = '';
+                    }, 3000);
+                    
+                    const liveRegion = document.getElementById('live-region');
+                    if (liveRegion) {
+                        liveRegion.textContent = 'Message sent successfully! Thank you for your inquiry.';
+                    }
+                }, 2000);
+            }
+        }
+
+        // === ENHANCED HOVER EFFECTS ===
+        class HoverEffectsManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupCardHoverEffects();
+                this.setupButtonHoverEffects();
+                this.setupSocialLinkEffects();
+            }
+
+            setupCardHoverEffects() {
+                // Enhanced card hover animations
+                const cards = document.querySelectorAll('.card-3d, .project-card, .skill-category, .contact-info-card, .testimonial-card');
+                
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        gsap.to(card, {
+                            duration: 0.3,
+                            y: -10,
+                            rotationX: 2,
+                            rotationY: 2,
+                            scale: 1.02,
+                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+                            ease: 'power2.out'
+                        });
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            duration: 0.3,
+                            y: 0,
+                            rotationX: 0,
+                            rotationY: 0,
+                            scale: 1,
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            }
+
+            setupButtonHoverEffects() {
+                const buttons = document.querySelectorAll('.cta-button');
+                
+                buttons.forEach(button => {
+                    button.addEventListener('mouseenter', () => {
+                        gsap.to(button, {
+                            duration: 0.3,
+                            y: -3,
+                            scale: 1.05,
+                            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+                            ease: 'back.out(1.7)'
+                        });
+                        
+                        // Icon animation
+                        const icon = button.querySelector('i');
+                        if (icon) {
+                            gsap.to(icon, {
+                                duration: 0.3,
+                                rotation: 360,
+                                ease: 'power2.out'
+                            });
+                        }
+                    });
+                    
+                    button.addEventListener('mouseleave', () => {
+                        gsap.to(button, {
+                            duration: 0.3,
+                            y: 0,
+                            scale: 1,
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                            ease: 'power2.out'
+                        });
+                        
+                        const icon = button.querySelector('i');
+                        if (icon) {
+                            gsap.to(icon, {
+                                duration: 0.3,
+                                rotation: 0,
+                                ease: 'power2.out'
+                            });
+                        }
+                    });
+                });
+            }
+
+            setupSocialLinkEffects() {
+                const socialLinks = document.querySelectorAll('.social-link');
+                
+                socialLinks.forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        gsap.to(link, {
+                            duration: 0.3,
+                            y: -3,
+                            scale: 1.1,
+                            rotation: 5,
+                            ease: 'back.out(1.7)'
+                        });
+                    });
+                    
+                    link.addEventListener('mouseleave', () => {
+                        gsap.to(link, {
+                            duration: 0.3,
+                            y: 0,
+                            scale: 1,
+                            rotation: 0,
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            }
+        }
+
+        // === PARALLAX EFFECTS ===
+        class ParallaxManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                this.setupHeroParallax();
+                this.setupSectionParallax();
+            }
+
+            setupHeroParallax() {
+                gsap.to('.hero-content', {
+                    yPercent: -50,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero-section',
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+            }
+
+            setupSectionParallax() {
+                // Subtle parallax for section titles
+                gsap.utils.toArray('.section-title').forEach(title => {
+                    gsap.to(title, {
+                        yPercent: -30,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: title,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true
+                        }
+                    });
+                });
+            }
+        }
+
+        // === CURSOR EFFECTS (Desktop Only) ===
+        class CursorEffects {
+            constructor() {
+                this.isMobile = window.innerWidth <= 768;
+                if (!this.isMobile) {
+                    this.init();
+                }
+            }
+
+            init() {
+                this.cursor = document.createElement('div');
+                this.cursor.className = 'custom-cursor';
+                this.cursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: var(--primary-gold);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    mix-blend-mode: difference;
+                    transition: transform 0.1s ease;
+                `;
+                document.body.appendChild(this.cursor);
+
+                this.setupCursorTracking();
+                this.setupHoverEffects();
+            }
+
+            setupCursorTracking() {
+                document.addEventListener('mousemove', (e) => {
+                    gsap.to(this.cursor, {
+                        duration: 0.1,
+                        x: e.clientX - 10,
+                        y: e.clientY - 10,
+                        ease: 'none'
+                    });
+                });
+            }
+
+            setupHoverEffects() {
+                const hoverElements = document.querySelectorAll('a, button, .card-3d, .project-card');
+                
+                hoverElements.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                        gsap.to(this.cursor, {
+                            duration: 0.2,
+                            scale: 2,
+                            ease: 'power2.out'
+                        });
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        gsap.to(this.cursor, {
+                            duration: 0.2,
+                            scale: 1,
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            }
+        }
+
+        // === INTERSECTION OBSERVER FOR PERFORMANCE ===
+        class VisibilityManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupLazyAnimations();
+                this.setupVisibilityTracking();
+            }
+
+            setupLazyAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            
+                            // Trigger custom animations for specific elements
+                            if (entry.target.classList.contains('skill-item')) {
+                                this.animateSkillItem(entry.target);
+                            }
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '50px' });
+
+                document.querySelectorAll('.skill-item, .tech-tag').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            setupVisibilityTracking() {
+                // Track section visibility for analytics
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log(`Section ${entry.target.id} is visible`);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                document.querySelectorAll('section[id]').forEach(section => {
+                    sectionObserver.observe(section);
+                });
+            }
+
+            animateSkillItem(item) {
+                const icon = item.querySelector('.skill-icon');
+                const text = item.querySelector('div:last-child');
+                
+                gsap.timeline()
+                    .from(icon, {
+                        duration: 0.6,
+                        scale: 0,
+                        rotation: 180,
+                        ease: 'back.out(1.7)'
+                    })
+                    .from(text, {
+                        duration: 0.4,
+                        x: 30,
+                        opacity: 0,
+                        ease: 'power2.out'
+                    }, '-=0.3');
+            }
+        }
+
+        // === PERFORMANCE MONITORING ===
+        class PerformanceMonitor {
+            constructor() {
+                this.metrics = {
+                    loadTime: 0,
+                    animationFrames: 0,
+                    lastFrameTime: performance.now()
+                };
+                this.init();
+            }
+
+            init() {
+                this.trackLoadTime();
+                this.monitorFPS();
+                this.optimizeForDevice();
+            }
+
+            trackLoadTime() {
+                window.addEventListener('load', () => {
+                    this.metrics.loadTime = performance.now();
+                    console.log(`🚀 Page loaded in ${this.metrics.loadTime.toFixed(2)}ms`);
+                });
+            }
+
+            monitorFPS() {
+                const trackFPS = () => {
+                    const now = performance.now();
+                    const delta = now - this.metrics.lastFrameTime;
+                    this.metrics.lastFrameTime = now;
+                    this.metrics.animationFrames++;
+                    
+                    // Log FPS every second
+                    if (this.metrics.animationFrames % 60 === 0) {
+                        const fps = 1000 / delta;
+                        if (fps < 30) {
+                            console.warn(`⚠️ Low FPS detected: ${fps.toFixed(1)}`);
+                            this.reduceAnimationComplexity();
+                        }
+                    }
+                    
+                    requestAnimationFrame(trackFPS);
+                };
+                
+                requestAnimationFrame(trackFPS);
+            }
+
+            optimizeForDevice() {
+                // Reduce animations on low-end devices
+                if (navigator.hardwareConcurrency <= 2) {
+                    gsap.globalTimeline.timeScale(0.7);
+                    console.log('🔧 Reduced animation complexity for low-end device');
+                }
+            }
+
+            reduceAnimationComplexity() {
+                // Reduce animation quality if performance is poor
+                gsap.set('*', { force3D: false });
+                ScrollTrigger.refresh();
+            }
+        }
+
+        // === INITIALIZE APPLICATION ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize performance monitoring first
+            new PerformanceManager();
+            new PerformanceMonitor();
+            
+            // Initialize loading screen
+            new LoadingManager();
+            
+            // Initialize additional effects after load
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    new HoverEffectsManager();
+                    new ParallaxManager();
+                    new CursorEffects();
+                    new VisibilityManager();
+                }, 1000);
+            });
+            
+            console.log('🎨 Thanattsitt Portfolio - Enhanced with GSAP');
+            console.log('⚡ Hardware-accelerated animations loaded');
+            console.log('📱 Mobile-friendly optimizations active');
+            console.log('♿ Accessibility features enabled');
+            console.log('🎭 Professional light theme applied');
+            console.log('🌈 Dynamic gradient background active');
+        });
+
+        // === ERROR HANDLING ===
+        window.addEventListener('error', (e) => {
+            console.warn('Non-critical error caught:', e.error);
+            
+            // Fallback for animation failures
+            if (e.error.message.includes('gsap')) {
+                document.querySelectorAll('.gsap-fade-in, .gsap-fade-left, .gsap-fade-right, .gsap-scale-in').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
+        });
+
+        // === SERVICE WORKER FOR PERFORMANCE (Optional) ===
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('🔧 SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
